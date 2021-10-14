@@ -1,15 +1,15 @@
 import React from "react";
-import logo from "./logo.svg";
+import areyawinning from "./are ya winnin son.jpg";
 import "./App.css";
 
 function App(): JSX.Element {
     return (
         <div className="App">
             <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo" />
+                <img src={areyawinning} className="App-logo" alt="logo" />
                 UD CIS Scheduler
                 <p>
-                    Edit <code>src/App.tsx</code> and save to reload.
+                    Donovan Messer, Vincent Ains, Lawrence Huffman
                 </p>
             </header>
         </div>
