@@ -9,7 +9,7 @@ function App(): JSX.Element {
                 <img src={areyawinning} className="App-logo" alt="logo" />
                 UD CIS Scheduler
                 <p>
-                    Donovan Messer, Vincent Ains, Lawrence Huffman
+                    Donovan Messer , Vincent Ains, Lawrence Huffman
                 </p>
             </header>
         </div>
