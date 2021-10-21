@@ -6,7 +6,7 @@ TEMPLATE FOR JSON
         "name": "",
         "desc": "",
         "preReq": "",
-        "corReq": "",
+        "coReq": "",
         "credits": 
 },
 */
