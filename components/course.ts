@@ -7,8 +7,8 @@ TEMPLATE FOR JSON
         "desc": "",
         "preReq": "",
         "corReq": "",
-        "credits": ,
-    },
+        "credits": 
+},
 */
 export interface Course{
     school: string,
