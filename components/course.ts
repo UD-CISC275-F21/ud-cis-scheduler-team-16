@@ -18,4 +18,5 @@ export interface Course{
     preReq: string,
     coReq: string,
     credits: number,
+    creditRange: string,
 }
