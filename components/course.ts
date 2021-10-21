@@ -8,7 +8,6 @@ TEMPLATE FOR JSON
         "preReq": "",
         "corReq": "",
         "credits": ,
-        "creditRange": 
     },
 */
 export interface Course{
@@ -19,5 +18,4 @@ export interface Course{
     preReq: string,
     coReq: string,
     credits: number,
-    creditRange: string,
 }
