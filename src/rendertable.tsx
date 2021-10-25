@@ -1,4 +1,8 @@
-import { TextSpan } from "typescript";
+
+//This is an old file for a format I decided not to use, but will keep this here as reference anyways. 
+
+
+/* import { TextSpan } from "typescript";
 import { Course } from "./components/course"
 
 export function courseTable(): JSX.Element{
@@ -21,4 +25,6 @@ export function courseTable(): JSX.Element{
                 </tr>);
         })}
         </table>);
-}
+}*/
+
+export{}

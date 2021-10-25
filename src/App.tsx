@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./App.css";
-import data from "./components/class-list.json"
+import data from "./components/class-list.json";
 
 const App = () => {
     const [courses, setCourse] = useState(data);
@@ -18,17 +18,17 @@ const App = () => {
             </thead>
             <tbody>
                 {courses.map((course)=> (              
-                <tr>
-                    <td>{course.School}</td>
-                    <td>{course["Class ID"]}</td>
-                    <td>{course.Name}</td>
-                    <td>{course.Desc}</td>
-                    <td>{course.Credits}</td>
-                </tr> 
+                    <tr>
+                        <td>{course.School}</td>
+                        <td>{course["Class ID"]}</td>
+                        <td>{course.Name}</td>
+                        <td>{course.Desc}</td>
+                        <td>{course.Credits}</td>
+                    </tr> 
                 ))}
             </tbody>
         </table>
-    </div>
-}
+    </div>;
+};
 
 export default App;
