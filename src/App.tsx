@@ -1,19 +1,34 @@
-import React from "react";
-import areyawinning from "./are ya winnin son.jpg";
+import React, { useState } from "react";
 import "./App.css";
+import data from "./components/class-list.json"
 
-function App(): JSX.Element {
-    return (
-        <div className="App">
-            <header className="App-header">
-                <img src={areyawinning} className="App-logo" alt="logo" />
-                UD CIS Scheduler
-                <p>
-                    Donovan Messer , Vincent Ains, Lawrence Huffman
-                </p>
-            </header>
-        </div>
-    );
+const App = () => {
+    const [courses, setCourse] = useState(data);
+
+    return <div className= "app-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>School</th>
+                    <th>Class ID</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Credits</th>
+                </tr>
+            </thead>
+            <tbody>
+                {courses.map((course)=> (              
+                <tr>
+                    <td>{course.School}</td>
+                    <td>{course["Class ID"]}</td>
+                    <td>{course.Name}</td>
+                    <td>{course.Desc}</td>
+                    <td>{course.Credits}</td>
+                </tr> 
+                ))}
+            </tbody>
+        </table>
+    </div>
 }
 
 export default App;

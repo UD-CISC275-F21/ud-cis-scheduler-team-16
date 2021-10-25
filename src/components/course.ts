@@ -1,21 +1,23 @@
 /*
 TEMPLATE FOR JSON
 {
-        "school": "",
-        "id": ,
-        "name": "",
-        "desc": "",
-        "preReq": "",
-        "corReq": "",
-        "credits": 
+        "Index": ,
+        "School": "",
+        "Class ID": ,
+        "Name": "",
+        "Desc": "",
+        "PreReq": "",
+        "CoReq": "",
+        "Credits": 
     },
 */
 export interface Course{
-    school: string,
-    id: number,
-    name: string,
-    desc: string,
-    preReq: string,
-    coReq: string,
-    credits: number,
+    "Index": number,
+    "School": string,
+    "Class ID": number,
+    "Name": string,
+    "Desc": string,
+    "PreReq": string,
+    "CoReq": string,
+    "Credits": number 
 }
