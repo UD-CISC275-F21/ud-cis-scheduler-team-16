@@ -2,7 +2,7 @@
     {
       "ID": 0,
       "School": "CISC",
-      "ClassID": "108",
+      "ClassID": 108,
       "Name": "Introduction to Computer Science I",
       "Desc": "Test",
       "Credits": 3
@@ -10,7 +10,7 @@
     {
         "ID": 1,
         "School": "EGGG",
-        "ClassID": "101",
+        "ClassID": 101,
         "Name": "Introduction to Engineering",
         "Desc": "Test",
         "Credits": 2
@@ -18,7 +18,7 @@
       {
         "ID": 2,
         "School": "ENGL",
-        "ClassID": "110",
+        "ClassID": 110,
         "Name": "Seminar in Composition",
         "Desc": "Test",
         "Credits": 3
@@ -26,7 +26,7 @@
       {
         "ID": 3,
         "School": "MATH",
-        "ClassID": "241",
+        "ClassID": 241,
         "Name": "Analytic Geometry and Calculus A",
         "Desc": "Test",
         "Credits": 4
@@ -34,7 +34,7 @@
       {
         "ID": 4,
         "School": "HIST",
-        "ClassID": "101",
+        "ClassID": 101,
         "Name": "Europe and the World to 1648",
         "Desc": "Test",
         "Credits": 3

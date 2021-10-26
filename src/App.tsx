@@ -40,7 +40,7 @@ const App = () => {
             School: addCourseData.School,
             ClassID: addCourseData.ClassID,
             Name: addCourseData.Name,
-            Description: addCourseData.Desc,
+            Desc: addCourseData.Desc,
             Credits: addCourseData.Credits
         };
 
@@ -53,9 +53,9 @@ const App = () => {
             <thead>
                 <tr>
                     <th>School</th>
-                    <th>Class ID</th>
+                    <th>ClassID</th>
                     <th>Name</th>
-                    <th>Description</th>
+                    <th>Desc</th>
                     <th>Credits</th>
                 </tr>
             </thead>
@@ -96,7 +96,7 @@ const App = () => {
             />
             <input 
                 type ="text"
-                name = "Description"
+                name = "Desc"
                 required = {true}
                 placeholder = "Enter a Class Description."
                 onChange={handleAddCourseChange}
