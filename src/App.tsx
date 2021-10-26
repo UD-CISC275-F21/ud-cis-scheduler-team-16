@@ -55,7 +55,7 @@ const App = () => {
     const handleEditClick = (event, course)=> {
         event.preventDefault();
         setEditCourseId(course.ID);
-    }
+    };
 
     return <div className= "app-container">
         <form>
@@ -77,8 +77,8 @@ const App = () => {
                                 <MutableRow /> 
                             ) : ( 
                                 <ReadOnlyRow 
-                                course={course} 
-                                handleEditClick={handleEditClick}/>
+                                    course={course} 
+                                    handleEditClick={handleEditClick}/>
                             )} 
                         </Fragment>
                     ))}

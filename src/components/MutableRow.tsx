@@ -46,7 +46,7 @@ const MutableRow = () => {
             </td>
 
         </tr>
-    )
-}
+    );
+};
 
-export default MutableRow
+export default MutableRow;

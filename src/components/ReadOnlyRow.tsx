@@ -16,4 +16,4 @@ const ReadOnlyRow = ({ course, handleEditClick }) => {
     );
 };
 
-export default ReadOnlyRow
+export default ReadOnlyRow;
