@@ -42,9 +42,9 @@ const App = () => {
             Credits: addCourseData.Credits
         };
 
-        const newCourses = [...courses, newCourse]
+        const newCourses = [...courses, newCourse];
         setCourse(newCourses);
-    }
+    };
 
     return <div className= "app-container">
         <table>
