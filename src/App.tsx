@@ -32,7 +32,7 @@ const App = () => {
         setAddFormData(newCourseData);
     };
 
-    const handleAddCourseSubmit = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const handleAddCourseSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
         const newCourse = {
