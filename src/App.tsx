@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { nanoid } from "nanoid";
 import "./App.css";
 import data from "./components/class-list.json";
+import { Course } from "./components/course";
 
 /* Tutorials that assisted in the making of this:
 1. https://youtu.be/dYjdzpZv5yc
@@ -11,26 +12,27 @@ import data from "./components/class-list.json";
 
 const App = () => {
     const [courses, setCourse] = useState(data);
-    const [addCourseData, setAddFormData] = useState({
+    const [addCourseData, setAddFormData] = useState<Course>({
+        ID: 0,
         School: "",
-        ClassID: "",
+        ClassID: 108,
         Name: "",
-        Description: "",
-        Credits: ""
+        Desc: "",
+        Credits: 3
     });
 
-    const handleAddCourseChange = (event) => {
+    const handleAddCourseChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         event.preventDefault();
 
-        const fieldName = event.target.getAttribute("name");
+        const fieldName = event.target.name;
         const fieldValue = event.target.value;
-        const newCourseData = { ...addCourseData};
-        newCourseData[fieldName] = fieldValue;
+        const newCourseData = { ...addCourseData, [fieldName]: fieldValue};
+        //newCourseData[fieldName] = fieldValue;
 
         setAddFormData(newCourseData);
     };
 
-    const handleAddCourseSubmit = (event) => {
+    const handleAddCourseSubmit = (event: React.ChangeEvent<HTMLInputElement>) => {
         event.preventDefault();
 
         const newCourse = {
@@ -38,7 +40,7 @@ const App = () => {
             School: addCourseData.School,
             ClassID: addCourseData.ClassID,
             Name: addCourseData.Name,
-            Description: addCourseData.Description,
+            Description: addCourseData.Desc,
             Credits: addCourseData.Credits
         };
 
@@ -61,7 +63,7 @@ const App = () => {
                 {courses.map((course)=> (              
                     <tr key={course.ID}>
                         <td>{course.School}</td>
-                        <td>{course["Class ID"]}</td>
+                        <td>{course.ClassID}</td>
                         <td>{course.Name}</td>
                         <td>{course.Desc}</td>
                         <td>{course.Credits}</td>
@@ -79,7 +81,7 @@ const App = () => {
                 onChange={handleAddCourseChange}
             />
             <input 
-                type ="number"
+                type = "number"
                 name = "ClassID"
                 required = {true}
                 placeholder = "Enter a Class ID."

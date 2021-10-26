@@ -5,8 +5,6 @@
       "Class ID": "108",
       "Name": "Introduction to Computer Science I",
       "Desc": "Test",
-      "PreReq": "N/A",
-      "CoReq": "MATH115, MATH117",
       "Credits": 3
     },
     {
@@ -15,8 +13,6 @@
         "Class ID": "101",
         "Name": "Introduction to Engineering",
         "Desc": "Test",
-        "PreReq": "N/A",
-        "CoReq": "N/A",
         "Credits": 2
       },
       {
@@ -25,8 +21,6 @@
         "Class ID": "110",
         "Name": "Seminar in Composition",
         "Desc": "Test",
-        "PreReq": "N/A",
-        "CoReq": "N/A",
         "Credits": 3
       },
       {
@@ -35,8 +29,6 @@
         "Class ID": "241",
         "Name": "Analytic Geometry and Calculus A",
         "Desc": "Test",
-        "PreReq": "MATH117",
-        "CoReq": "N/A",
         "Credits": 4
       },
       {
@@ -45,8 +37,6 @@
         "Class ID": "101",
         "Name": "Europe and the World to 1648",
         "Desc": "Test",
-        "PreReq": "N/A",
-        "CoReq": "N/A",
         "Credits": 3
       }
   ]
