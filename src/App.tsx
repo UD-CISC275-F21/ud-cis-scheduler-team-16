@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, Fragment } from "react";
 import { nanoid } from "nanoid";
 import "./App.css";
 import data from "./components/class-list.json";
 import { Course } from "./components/course";
 import ReadOnlyRow from "./components/ReadOnlyRow";
+import MutableRow from "./components/MutableRow";
 
 /* Tutorials that assisted in the making of this:
 1. https://youtu.be/dYjdzpZv5yc
@@ -21,6 +22,8 @@ const App = () => {
         Desc: "",
         Credits: 3
     });
+
+    const [editCourseId, setEditCourseId] = useState(null);
 
     const handleAddCourseChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         event.preventDefault();
@@ -50,22 +53,30 @@ const App = () => {
     };
 
     return <div className= "app-container">
-        <table>
-            <thead>
-                <tr>
-                    <th>School</th>
-                    <th>ClassID</th>
-                    <th>Course Name</th>
-                    <th>Desc</th>
-                    <th>Credits</th>
-                </tr>
-            </thead>
-            <tbody>
-                {courses.map((course)=> (              
-                    <ReadOnlyRow course={course}/> 
-                ))}
-            </tbody>
-        </table>
+        <form>
+            <table>
+                <thead>
+                    <tr>
+                        <th>School</th>
+                        <th>ClassID</th>
+                        <th>Course Name</th>
+                        <th>Desc</th>
+                        <th>Credits</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {courses.map((course)=> ( 
+                        <Fragment>
+                            { editCourseId === course.ID ? (
+                                <MutableRow /> 
+                            ) : ( 
+                                <ReadOnlyRow course={course} />
+                            )} 
+                        </Fragment>
+                    ))}
+                </tbody>
+            </table>
+        </form>
         <h2>Add another Class</h2>
         <form onSubmit={handleAddCourseSubmit}>
             <input 
