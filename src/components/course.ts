@@ -12,7 +12,7 @@ TEMPLATE FOR JSON
     },
 */
 export interface Course{
-    ID: number,
+    ID: string,
     School: string,
     ClassID: number,
     Name: string,

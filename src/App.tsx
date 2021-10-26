@@ -13,7 +13,7 @@ import { Course } from "./components/course";
 const App = () => {
     const [courses, setCourse] = useState(data);
     const [addCourseData, setAddFormData] = useState<Course>({
-        ID: 0,
+        ID: "",
         School: "",
         ClassID: 108,
         Name: "",
