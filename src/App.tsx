@@ -3,6 +3,7 @@ import { nanoid } from "nanoid";
 import "./App.css";
 import data from "./components/class-list.json";
 import { Course } from "./components/course";
+import ReadOnlyRow from "./components/ReadOnlyRow";
 
 /* Tutorials that assisted in the making of this:
 1. https://youtu.be/dYjdzpZv5yc
@@ -61,13 +62,7 @@ const App = () => {
             </thead>
             <tbody>
                 {courses.map((course)=> (              
-                    <tr key={course.ID}>
-                        <td>{course.School}</td>
-                        <td>{course.ClassID}</td>
-                        <td>{course.CourseName}</td>
-                        <td>{course.Desc}</td>
-                        <td>{course.Credits}</td>
-                    </tr> 
+                    <ReadOnlyRow course={course}/> 
                 ))}
             </tbody>
         </table>
