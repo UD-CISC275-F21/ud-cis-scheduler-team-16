@@ -16,7 +16,7 @@ const App = () => {
         ID: "",
         School: "",
         ClassID: 108,
-        Name: "",
+        CourseName: "",
         Desc: "",
         Credits: 3
     });
@@ -39,7 +39,7 @@ const App = () => {
             ID: nanoid(),
             School: addCourseData.School,
             ClassID: addCourseData.ClassID,
-            Name: addCourseData.Name,
+            CourseName: addCourseData.CourseName,
             Desc: addCourseData.Desc,
             Credits: addCourseData.Credits
         };
@@ -54,7 +54,7 @@ const App = () => {
                 <tr>
                     <th>School</th>
                     <th>ClassID</th>
-                    <th>Name</th>
+                    <th>Course Name</th>
                     <th>Desc</th>
                     <th>Credits</th>
                 </tr>
@@ -64,7 +64,7 @@ const App = () => {
                     <tr key={course.ID}>
                         <td>{course.School}</td>
                         <td>{course.ClassID}</td>
-                        <td>{course.Name}</td>
+                        <td>{course.CourseName}</td>
                         <td>{course.Desc}</td>
                         <td>{course.Credits}</td>
                     </tr> 
@@ -89,9 +89,9 @@ const App = () => {
             />
             <input 
                 type ="text"
-                name = "Class Name"
+                name = "Course Name"
                 required = {true}
-                placeholder = "Enter a Class Name."
+                placeholder = "Enter a Course Name."
                 onChange={handleAddCourseChange}
             />
             <input 
