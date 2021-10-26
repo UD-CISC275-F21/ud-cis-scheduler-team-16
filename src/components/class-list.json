@@ -1,6 +1,6 @@
 [
     {
-      "Index": 0,
+      "ID": 0,
       "School": "CISC",
       "Class ID": "108",
       "Name": "Introduction to Computer Science I",
@@ -10,7 +10,7 @@
       "Credits": 3
     },
     {
-        "Index": 1,
+        "ID": 1,
         "School": "EGGG",
         "Class ID": "101",
         "Name": "Introduction to Engineering",
@@ -20,7 +20,7 @@
         "Credits": 2
       },
       {
-        "Index": 2,
+        "ID": 2,
         "School": "ENGL",
         "Class ID": "110",
         "Name": "Seminar in Composition",
@@ -30,17 +30,17 @@
         "Credits": 3
       },
       {
-        "Index": 3,
+        "ID": 3,
         "School": "MATH",
         "Class ID": "241",
         "Name": "Analytic Geometry and Calculus A",
         "Desc": "Test",
         "PreReq": "MATH117",
         "CoReq": "N/A",
-        "Credits": 3
+        "Credits": 4
       },
       {
-        "Index": 4,
+        "ID": 4,
         "School": "HIST",
         "Class ID": "101",
         "Name": "Europe and the World to 1648",
