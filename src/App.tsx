@@ -52,7 +52,7 @@ const App = () => {
         setCourse(newCourses);
     };
 
-    const handleEditClick = (event, course)=> {
+    const handleEditClick = (event: Event, course)=> {
         event.preventDefault();
         setEditCourseId(course.ID);
     };
