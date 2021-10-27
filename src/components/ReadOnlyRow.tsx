@@ -1,7 +1,8 @@
 import React from "react";
 import { Course } from "./course";
 
-const ReadOnlyRow = ({ course, handleEditClick }) => {
+const ReadOnlyRow = ({ course, handleEditClick }:
+    {course : Course , handleEditClick: (event: React.MouseEvent, course: Course) => void}) => {
     return(
         <tr key={course.ID}>
             <td>{course.School}</td>
