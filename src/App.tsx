@@ -23,7 +23,7 @@ const App = () => {
         Credits: 3
     });
 
-    const [editCourseId, setEditCourseId] = useState(null);
+    const [editCourseId, setEditCourseId] = useState("");
 
     const handleAddCourseChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         event.preventDefault();
@@ -52,7 +52,7 @@ const App = () => {
         setCourse(newCourses);
     };
 
-    const handleEditClick = (event: Event, course)=> {
+    const handleEditClick = (event: Event, course: Course)=> {
         event.preventDefault();
         setEditCourseId(course.ID);
     };
