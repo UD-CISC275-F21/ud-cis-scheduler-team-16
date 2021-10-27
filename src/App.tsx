@@ -72,7 +72,7 @@ const App = () => {
                 </thead>
                 <tbody>
                     {courses.map((course)=> ( 
-                        <Fragment>
+                        <Fragment key={course.ID}>
                             { editCourseId === course.ID ? (
                                 <MutableRow /> 
                             ) : ( 
