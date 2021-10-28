@@ -23,6 +23,15 @@ const App = () => {
         Credits: 3
     });
 
+    const[editCourseData, setEditCourseData] = useState({
+        ID: "",
+        School: "",
+        ClassID: 108,
+        CourseName: "",
+        Desc: "",
+        Credits: 3
+    });
+
     const [editCourseId, setEditCourseId] = useState("");
 
     const handleAddCourseChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -34,6 +43,18 @@ const App = () => {
         //newCourseData[fieldName] = fieldValue;
 
         setAddFormData(newCourseData);
+    };
+
+    const handleEditFormChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        event.preventDefault();
+
+        const fieldName = event.target.getAttribute("name");
+        const fieldValue = event.target.value;
+
+        const newCourseData = {...editCourseData};
+        newCourseData[fieldName] = fieldValue;
+
+        setEditCourseData(newCourseData);
     };
 
     const handleAddCourseSubmit = (event: React.FormEvent<HTMLFormElement>) => {
