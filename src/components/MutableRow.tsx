@@ -10,6 +10,7 @@ const MutableRow = ({editCourseData, handleEditCourseChange} : {editCourseData: 
                     required = {true}
                     placeholder= "Enter School"
                     name = "School"
+                    value = {editCourseData.School}
                     onChange={handleEditCourseChange}
                 ></input>
             </td>
@@ -19,6 +20,7 @@ const MutableRow = ({editCourseData, handleEditCourseChange} : {editCourseData: 
                     required = {true}
                     placeholder= "Enter Course ID"
                     name = "ClassID"
+                    value = {editCourseData.ClassID}
                     onChange={handleEditCourseChange}
                 ></input>
             </td>
@@ -28,6 +30,7 @@ const MutableRow = ({editCourseData, handleEditCourseChange} : {editCourseData: 
                     required = {true}
                     placeholder= "Enter Course Name"
                     name = "CourseName"
+                    value = {editCourseData.CourseName}
                     onChange={handleEditCourseChange}
                 ></input>
             </td>
@@ -37,6 +40,7 @@ const MutableRow = ({editCourseData, handleEditCourseChange} : {editCourseData: 
                     required = {true}
                     placeholder= "Enter Desc"
                     name = "Desc"
+                    value = {editCourseData.Desc}
                     onChange={handleEditCourseChange}
                 ></input>
             </td>
@@ -46,10 +50,13 @@ const MutableRow = ({editCourseData, handleEditCourseChange} : {editCourseData: 
                     required = {true}
                     placeholder= "Enter Credit Amount"
                     name = "Credits"
+                    value = {editCourseData.Credits}
                     onChange={handleEditCourseChange}
                 ></input>
             </td>
-
+            <td>
+                <button type= "submit">Save</button>
+            </td>
         </tr>
     );
 };
