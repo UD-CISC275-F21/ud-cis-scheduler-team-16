@@ -40,7 +40,6 @@ const App = () => {
         const fieldName = event.target.name;
         const fieldValue = event.target.value;
         const newCourseData = { ...addCourseData, [fieldName]: fieldValue};
-        //newCourseData[fieldName] = fieldValue;
 
         setAddFormData(newCourseData);
     };
@@ -48,11 +47,10 @@ const App = () => {
     const handleEditFormChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         event.preventDefault();
 
-        const fieldName = event.target.getAttribute("name");
+        const fieldName = event.target.name;
         const fieldValue = event.target.value;
 
-        const newCourseData = {...editCourseData};
-        newCourseData[fieldName] = fieldValue;
+        const newCourseData = {...editCourseData, [fieldName]: fieldValue};
 
         setEditCourseData(newCourseData);
     };
