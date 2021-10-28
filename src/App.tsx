@@ -114,6 +114,16 @@ const App = () => {
         setEditCourseId("");
     }
 
+    const handleDeleteClick = (courseID) => {
+        const newCourses = [...courses];
+
+        const index = courses.findIndex((course: Course) => course.ID = courseID);
+
+        newCourses.splice(index, 1);
+
+        setCourse(newCourses);
+    }
+
     return <div className= "app-container">
         <form onSubmit={handleEditCourseSubmit}>
             <table>
@@ -139,7 +149,9 @@ const App = () => {
                             ) : ( 
                                 <ReadOnlyRow 
                                     course={course} 
-                                    handleEditClick={handleEditClick}/>
+                                    handleEditClick={handleEditClick}
+                                    handleDeleteClick={handleDeleteClick}
+                                    />
                             )} 
                         </Fragment>
                     ))}
