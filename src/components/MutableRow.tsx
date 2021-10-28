@@ -1,7 +1,8 @@
 import React from "react";
 import { Course } from "./course";
 
-const MutableRow = ({editCourseData, handleEditCourseChange} : {editCourseData: Course , handleEditCourseChange: (event: React.ChangeEvent<HTMLInputElement>) => void}) => {
+const MutableRow = ({editCourseData, handleEditCourseChange} : 
+    {editCourseData: Course , handleEditCourseChange: (event: React.ChangeEvent<HTMLInputElement>) => void}) => {
     return (
         <tr>
             <td>
