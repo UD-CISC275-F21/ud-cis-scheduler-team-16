@@ -1,7 +1,7 @@
 import React from "react";
 import { Course } from "./course";
 
-const MutableRow = () => {
+const MutableRow = ({editCourseData, handleEditCourseChange} : {editCourseData: Course , handleEditCourseChange: (event: React.ChangeEvent<HTMLInputElement>) => void}) => {
     return (
         <tr>
             <td>
@@ -10,6 +10,7 @@ const MutableRow = () => {
                     required = {true}
                     placeholder= "Enter School"
                     name = "School"
+                    onChange={handleEditCourseChange}
                 ></input>
             </td>
             <td>                
@@ -18,6 +19,7 @@ const MutableRow = () => {
                     required = {true}
                     placeholder= "Enter Course ID"
                     name = "ClassID"
+                    onChange={handleEditCourseChange}
                 ></input>
             </td>
             <td>
@@ -26,6 +28,7 @@ const MutableRow = () => {
                     required = {true}
                     placeholder= "Enter Course Name"
                     name = "CourseName"
+                    onChange={handleEditCourseChange}
                 ></input>
             </td>
             <td>
@@ -34,6 +37,7 @@ const MutableRow = () => {
                     required = {true}
                     placeholder= "Enter Desc"
                     name = "Desc"
+                    onChange={handleEditCourseChange}
                 ></input>
             </td>
             <td>
@@ -42,6 +46,7 @@ const MutableRow = () => {
                     required = {true}
                     placeholder= "Enter Credit Amount"
                     name = "Credits"
+                    onChange={handleEditCourseChange}
                 ></input>
             </td>
 

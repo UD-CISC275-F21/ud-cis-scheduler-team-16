@@ -23,7 +23,7 @@ const App = () => {
         Credits: 3
     });
 
-    const[editCourseData, setEditCourseData] = useState({
+    const[editCourseData, setEditCourseData] = useState<Course>({
         ID: "",
         School: "",
         ClassID: 108,
@@ -44,7 +44,7 @@ const App = () => {
         setAddFormData(newCourseData);
     };
 
-    const handleEditFormChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const handleEditCourseChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         event.preventDefault();
 
         const fieldName = event.target.name;
@@ -74,6 +74,17 @@ const App = () => {
     const handleEditClick = (event: React.MouseEvent, course: Course)=> {
         event.preventDefault();
         setEditCourseId(course.ID);
+
+        const courseValues = {
+            ID: course.ID,
+            School: course.School,
+            ClassID: course.ClassID,
+            CourseName: course.CourseName,
+            Desc: course.Desc,
+            Credits: course.Credits
+        }
+
+        setEditCourseData(courseValues);
     };
 
     return <div className= "app-container">
@@ -93,7 +104,9 @@ const App = () => {
                     {courses.map((course)=> ( 
                         <Fragment key={course.ID}>
                             { editCourseId === course.ID ? (
-                                <MutableRow /> 
+                                <MutableRow 
+                                    editCourseData = {editCourseData} 
+                                    handleEditCourseChange = {handleEditCourseChange}/> 
                             ) : ( 
                                 <ReadOnlyRow 
                                     course={course} 
