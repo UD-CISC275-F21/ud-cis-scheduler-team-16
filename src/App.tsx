@@ -82,7 +82,7 @@ const App = () => {
             CourseName: course.CourseName,
             Desc: course.Desc,
             Credits: course.Credits
-        }
+        };
 
         setEditCourseData(courseValues);
     };
