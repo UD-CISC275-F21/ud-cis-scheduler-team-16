@@ -71,6 +71,29 @@ const App = () => {
         setCourse(newCourses);
     };
 
+    const handleEditCourseSubmit = (event: Event) => {
+        event.preventDefault();
+
+        const editedCourse = {
+            ID: editCourseId,
+            School: editCourseData.School,
+            ClassID: editCourseData.ClassID,
+            CourseName: editCourseData.CourseName,
+            Desc: editCourseData.Desc,
+            Credits: editCourseData.Credits
+        }
+
+        const newCourses = [...courses];
+
+        const index = courses.findIndex((course: Course)=> course.ID === editCourseId);
+
+        newCourses[index] = editedCourse;
+
+        setCourse(newCourses);
+        setEditCourseData(null);
+    };
+
+
     const handleEditClick = (event: React.MouseEvent, course: Course)=> {
         event.preventDefault();
         setEditCourseId(course.ID);
@@ -88,7 +111,7 @@ const App = () => {
     };
 
     return <div className= "app-container">
-        <form>
+        <form onSubmit={handleEditCourseSubmit}>
             <table>
                 <thead>
                     <tr>
