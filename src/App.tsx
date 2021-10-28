@@ -90,7 +90,7 @@ const App = () => {
         newCourses[index] = editedCourse;
 
         setCourse(newCourses);
-        setEditCourseData(null);
+        setEditCourseData(useState(null));
     };
 
 
@@ -109,6 +109,10 @@ const App = () => {
 
         setEditCourseData(courseValues);
     };
+
+    const handleCancelClick = () => {
+        setEditCourseId("");
+    }
 
     return <div className= "app-container">
         <form onSubmit={handleEditCourseSubmit}>
@@ -129,7 +133,9 @@ const App = () => {
                             { editCourseId === course.ID ? (
                                 <MutableRow 
                                     editCourseData = {editCourseData} 
-                                    handleEditCourseChange = {handleEditCourseChange}/> 
+                                    handleEditCourseChange = {handleEditCourseChange}
+                                    handleCancelClick = {handleCancelClick}
+                                    /> 
                             ) : ( 
                                 <ReadOnlyRow 
                                     course={course} 
