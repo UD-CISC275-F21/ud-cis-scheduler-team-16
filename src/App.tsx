@@ -71,7 +71,7 @@ const App = () => {
         setCourse(newCourses);
     };
 
-    const handleEditCourseSubmit = (event: Event) => {
+    const handleEditCourseSubmit = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
         const editedCourse = {
@@ -90,7 +90,7 @@ const App = () => {
         newCourses[index] = editedCourse;
 
         setCourse(newCourses);
-        setEditCourseData(useState(null));
+        setEditCourseData(useState(""));
     };
 
 
@@ -114,7 +114,7 @@ const App = () => {
         setEditCourseId("");
     }
 
-    const handleDeleteClick = (courseID) => {
+    const handleDeleteClick = (courseID: string) => {
         const newCourses = [...courses];
 
         const index = courses.findIndex((course: Course) => course.ID = courseID);
