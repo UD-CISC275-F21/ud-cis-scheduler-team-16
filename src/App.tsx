@@ -23,7 +23,8 @@ const App = () => {
         Credits: 3
     });
 
-    const[editCourseData, setEditCourseData] = useState<Course>({
+    const[editCourseData, setEditCourseData] = useState<string | null>('')
+    ({
         ID: "",
         School: "",
         ClassID: 108,
@@ -71,7 +72,7 @@ const App = () => {
         setCourse(newCourses);
     };
 
-    const handleEditCourseSubmit = (event: FormEvent<HTMLFormElement>) => {
+    const handleEditCourseSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
         const editedCourse = {
