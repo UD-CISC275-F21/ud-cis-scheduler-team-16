@@ -23,7 +23,7 @@ const App = () => {
         Credits: 3
     });
 
-    const[editCourseData, setEditCourseData] = useState<string | null>('')
+    const[editCourseData, setEditCourseData] = useState("");
     ({
         ID: "",
         School: "",
