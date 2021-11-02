@@ -12,7 +12,7 @@ import MutableRow from "./components/MutableRow";
 
 */
 
-const App = () => {
+const App = () : JSX.Element => {
     const [courses, setCourse] = useState(data);
     const [addCourseData, setAddFormData] = useState<Course>({
         ID: "",
