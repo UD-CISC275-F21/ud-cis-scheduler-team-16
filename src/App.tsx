@@ -139,23 +139,23 @@ const App = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {courses.map(course=> ( 
+                    {courses.map(course=>  
                         <Fragment key={course.ID}>
-                            { editCourseId === course.ID ? (
+                            { editCourseId === course.ID ? 
                                 <MutableRow 
                                     editCourseData = {editCourseData} 
                                     handleEditCourseChange = {handleEditCourseChange}
                                     handleCancelClick = {handleCancelClick}
                                 /> 
-                            ) : ( 
+                                :  
                                 <ReadOnlyRow 
                                     course={course} 
                                     handleEditClick={handleEditClick}
                                     handleDeleteClick={handleDeleteClick}
                                 />
-                            )} 
+                            } 
                         </Fragment>
-                    ))}
+                    )}
                 </tbody>
             </table>
         </form>
