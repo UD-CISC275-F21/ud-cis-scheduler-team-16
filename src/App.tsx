@@ -23,7 +23,7 @@ const App = () => {
         Credits: 3
     });
 
-    const[editCourseData, setEditCourseData] = useState("");
+    const[editCourseData, setEditCourseData] = useState<Course>
     ({
         ID: "",
         School: "",
@@ -75,14 +75,14 @@ const App = () => {
     const handleEditCourseSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
-        const editedCourse = {
+        const editedCourse:Course = {
             ID: editCourseId,
             School: editCourseData.School,
             ClassID: editCourseData.ClassID,
             CourseName: editCourseData.CourseName,
             Desc: editCourseData.Desc,
             Credits: editCourseData.Credits
-        }
+        };
 
         const newCourses = [...courses];
 
@@ -91,7 +91,6 @@ const App = () => {
         newCourses[index] = editedCourse;
 
         setCourse(newCourses);
-        setEditCourseData(useState(""));
     };
 
 
@@ -113,7 +112,7 @@ const App = () => {
 
     const handleCancelClick = () => {
         setEditCourseId("");
-    }
+    };
 
     const handleDeleteClick = (courseID: string) => {
         const newCourses = [...courses];
@@ -123,7 +122,7 @@ const App = () => {
         newCourses.splice(index, 1);
 
         setCourse(newCourses);
-    }
+    };
 
     return <div className= "app-container">
         <form onSubmit={handleEditCourseSubmit}>
@@ -146,13 +145,13 @@ const App = () => {
                                     editCourseData = {editCourseData} 
                                     handleEditCourseChange = {handleEditCourseChange}
                                     handleCancelClick = {handleCancelClick}
-                                    /> 
+                                /> 
                             ) : ( 
                                 <ReadOnlyRow 
                                     course={course} 
                                     handleEditClick={handleEditClick}
                                     handleDeleteClick={handleDeleteClick}
-                                    />
+                                />
                             )} 
                         </Fragment>
                     ))}
