@@ -176,7 +176,7 @@ const App = () => {
             />
             <input 
                 type ="text"
-                name = "Course Name"
+                name = "CourseName"
                 required = {true}
                 placeholder = "Enter a Course Name."
                 onChange={handleAddCourseChange}
