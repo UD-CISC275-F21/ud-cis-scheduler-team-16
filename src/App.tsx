@@ -91,6 +91,7 @@ const App = () => {
         newCourses[index] = editedCourse;
 
         setCourse(newCourses);
+        setEditCourseId("");
     };
 
 
