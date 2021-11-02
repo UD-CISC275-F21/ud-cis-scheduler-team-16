@@ -126,6 +126,7 @@ const App = () : JSX.Element => {
     };
 
     return <div className= "app-container">
+        <p>UD CIS Scheduler</p>
         <form onSubmit={handleEditCourseSubmit}>
             <table>
                 <thead>
