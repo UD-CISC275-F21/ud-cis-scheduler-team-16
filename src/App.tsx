@@ -17,20 +17,20 @@ const App = () : JSX.Element => {
     const [addCourseData, setAddFormData] = useState<Course>({
         ID: "",
         School: "",
-        ClassID: 108,
+        ClassID: 0,
         CourseName: "",
         Desc: "",
-        Credits: 3
+        Credits: 0
     });
 
     const[editCourseData, setEditCourseData] = useState<Course>
     ({
         ID: "",
         School: "",
-        ClassID: 108,
+        ClassID: 0,
         CourseName: "",
         Desc: "",
-        Credits: 3
+        Credits: 0
     });
 
     const [editCourseId, setEditCourseId] = useState("");
