@@ -52,4 +52,9 @@ form * {
   width: 50px;
   height: 35px;
   border: transparent;
+  opacity: 60%;
+}
+
+.modal-close:hover{
+  opacity: 100%;
 }
