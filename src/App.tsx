@@ -5,6 +5,7 @@ import data from "./components/class-list.json";
 import { Course } from "./components/course";
 import ReadOnlyRow from "./components/ReadOnlyRow";
 import MutableRow from "./components/MutableRow";
+import  Modal from "react-modal";
 
 /* Tutorials that assisted in the making of this:
 1. https://youtu.be/dYjdzpZv5yc
@@ -123,7 +124,37 @@ const App = () => {
         setCourse(newCourses);
     };
 
+    const customModal = {
+        content: {
+            top: "50%",
+            left: "50%",
+            right: "auto",
+            bottom: "auto",
+            marginRight: "-50%",
+            transform: "translate(-50%, -50%)",
+        },
+    };
+    const [modalIsOpen, setIsOpen] = React.useState(true);
+    const openModal = () => {
+        setIsOpen(true);
+    };
+
+    const closeModal = () => {
+        setIsOpen(false);
+    };
+
     return <div className= "app-container">
+        
+        <Modal
+            isOpen={modalIsOpen}
+            onRequestClose={closeModal}
+            contentLabel="Welcome Message"
+            style={customModal}
+        >
+            <p>Welcome to the UDEL course selector and plan creator!</p>
+            <hr></hr>
+            <button className= "modal-close" onClick={closeModal}></button>
+        </Modal>
         <form onSubmit={handleEditCourseSubmit}>
             <table>
                 <thead>
