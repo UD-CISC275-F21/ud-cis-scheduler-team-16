@@ -125,6 +125,8 @@ const App = () => {
         setCourse(newCourses);
     };
 
+    const [modalOpen, setOpen] = React.useState(true);
+
     const customModal = {
         content: {
             top: "50%",
@@ -135,26 +137,34 @@ const App = () => {
             transform: "translate(-50%, -50%)",
         },
     };
-    const [modalIsOpen, setIsOpen] = React.useState(true);
-    const openModal = () => {
-        setIsOpen(true);
-    };
-
+    
     const closeModal = () => {
-        setIsOpen(false);
+        setOpen(false);
     };
+    
+    //unused function
+    const openModal = () => {
+        setOpen(true);
+    };
+    
+    const writeMessage = () => {
+        return <div>
+            <p>Welcome to the UDEL course selector and plan creator!</p>
+            <hr></hr>
+            <button className= "modal-close" onClick={closeModal}></button>
+        </div>;
+    };
+    
+    const message = writeMessage();
 
     return <div className= "app-container">
-        
         <Modal
-            isOpen={modalIsOpen}
+            isOpen={modalOpen}
             onRequestClose={closeModal}
             contentLabel="Welcome Message"
             style={customModal}
         >
-            <p>Welcome to the UDEL course selector and plan creator!</p>
-            <hr></hr>
-            <button className= "modal-close" onClick={closeModal}></button>
+            {message}
         </Modal>
         <form onSubmit={handleEditCourseSubmit}>
             <table>
