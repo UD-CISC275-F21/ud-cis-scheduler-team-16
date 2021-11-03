@@ -10,6 +10,7 @@ import  Modal from "react-modal";
 /* Tutorials that assisted in the making of this:
 1. https://youtu.be/dYjdzpZv5yc
 2. NanoID description: https://www.npmjs.com/package/nanoid
+3. Modal: https://www.npmjs.com/package/react-modal
 
 */
 
