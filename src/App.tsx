@@ -6,7 +6,8 @@ import { Course } from "./components/course";
 import ReadOnlyRow from "./components/ReadOnlyRow";
 import MutableRow from "./components/MutableRow";
 import  Modal from "react-modal";
-//import { modalOpen, customModal, closeModal, message } from "./components/WelcomeMessage";
+import { WriteMessage } from "./components/WelcomeMessage";
+import { customModal } from "./components/WelcomeMessage";
 
 /* Tutorials that assisted in the making of this:
 1. https://youtu.be/dYjdzpZv5yc
@@ -17,6 +18,7 @@ import  Modal from "react-modal";
 
 const App = () => {
     const [courses, setCourse] = useState(data);
+    const [modalOpen, setOpen] = React.useState(true);
     const [addCourseData, setAddFormData] = useState<Course>({
         ID: "",
         School: "",
@@ -126,21 +128,7 @@ const App = () => {
         setCourse(newCourses);
     };
 
-    const [modalOpen, setOpen] = React.useState(true);
 
-    
-    const customModal = {
-        content: {
-            top: "50%",
-            left: "50%",
-            right: "auto",
-            bottom: "auto",
-            marginRight: "-50%",
-            transform: "translate(-50%, -50%)",
-        },
-    };
-    
-    
     const closeModal = () => {
         setOpen(false);
     };
@@ -149,20 +137,6 @@ const App = () => {
     const openModal = () => {
         setOpen(true);
     };
-    
-    const writeMessage = () => {
-        return <div>
-            <p>
-                Welcome to the UDEL course selector and plan creator! <br />
-                This is where you can create your course plan for each semester of college.<br />
-                Just pick your school from the sidebar and drag your courses into each semster to add them. 
-            </p>
-            <hr />
-            <button className= "modal-close" onClick={closeModal}></button>
-        </div>;
-    };
-    
-    const message = writeMessage();
 
     return <div className= "app-container">
         <Modal
@@ -171,7 +145,7 @@ const App = () => {
             contentLabel="Welcome Message"
             style={customModal}
         >
-            {message}
+            <WriteMessage closeModal={closeModal}></WriteMessage>
         </Modal>
         <form onSubmit={handleEditCourseSubmit}>
             <table>
