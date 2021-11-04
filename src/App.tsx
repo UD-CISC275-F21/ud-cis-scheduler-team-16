@@ -16,7 +16,7 @@ import { customModal } from "./components/WelcomeMessage";
 
 */
 
-const App = () => {
+const App = () : JSX.Element => {
     const [courses, setCourse] = useState(data);
     const [modalOpen, setOpen] = React.useState(true);
     const [addCourseData, setAddFormData] = useState<Course>({
@@ -134,11 +134,6 @@ const App = () => {
     const closeModal = () => {
         setOpen(false);
     };
-    
-    //unused function
-    const openModal = () => {
-        setOpen(true);
-    };
 
     return <div className= "app-container">
         <Modal
@@ -149,6 +144,7 @@ const App = () => {
         >
             <WriteMessage closeModal={closeModal}></WriteMessage>
         </Modal>
+        <p>UD CIS Scheduler</p>
         <form onSubmit={handleEditCourseSubmit}>
             <table>
                 <thead>
