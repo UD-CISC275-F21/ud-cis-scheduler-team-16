@@ -5,15 +5,20 @@ import data from "./components/class-list.json";
 import { Course } from "./components/course";
 import ReadOnlyRow from "./components/ReadOnlyRow";
 import MutableRow from "./components/MutableRow";
+import  Modal from "react-modal";
+import { WriteMessage } from "./components/WelcomeMessage";
+import { customModal } from "./components/WelcomeMessage";
 
 /* Tutorials that assisted in the making of this:
 1. https://youtu.be/dYjdzpZv5yc
 2. NanoID description: https://www.npmjs.com/package/nanoid
+3. Modal: https://www.npmjs.com/package/react-modal
 
 */
 
 const App = () => {
     const [courses, setCourse] = useState(data);
+    const [modalOpen, setOpen] = React.useState(true);
     const [addCourseData, setAddFormData] = useState<Course>({
         ID: "",
         School: "",
@@ -125,7 +130,25 @@ const App = () => {
         setCourse(newCourses);
     };
 
+
+    const closeModal = () => {
+        setOpen(false);
+    };
+    
+    //unused function
+    const openModal = () => {
+        setOpen(true);
+    };
+
     return <div className= "app-container">
+        <Modal
+            isOpen={modalOpen}
+            onRequestClose={closeModal}
+            contentLabel="Welcome Message"
+            style={customModal}
+        >
+            <WriteMessage closeModal={closeModal}></WriteMessage>
+        </Modal>
         <form onSubmit={handleEditCourseSubmit}>
             <table>
                 <thead>
