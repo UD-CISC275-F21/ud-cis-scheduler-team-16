@@ -135,6 +135,10 @@ const App = () : JSX.Element => {
         setOpen(false);
     };
 
+    const refreshPage = () => {
+        window.location.reload();
+    };
+
     return <div className= "app-container">
         <Modal
             isOpen={modalOpen}
@@ -144,7 +148,8 @@ const App = () : JSX.Element => {
         >
             <WriteMessage closeModal={closeModal}></WriteMessage>
         </Modal>
-        <p>UD CIS Scheduler</p>
+        <button className="refresh-logo" onClick={refreshPage}></button> 
+        <h1 className="header">UD CIS Scheduler</h1>
         <form onSubmit={handleEditCourseSubmit}>
             <table>
                 <thead>
@@ -204,7 +209,7 @@ const App = () : JSX.Element => {
             <input 
                 type ="text"
                 name = "Desc"
-                required = {true}
+                required = {false}
                 placeholder = "Enter a Class Description."
                 onChange={handleAddCourseChange}
             />
