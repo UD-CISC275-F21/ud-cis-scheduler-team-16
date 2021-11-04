@@ -19,7 +19,7 @@ td {
 }
 
 th {
-  background-color: gainsboro;
+  background-color: silver;
 }
 
 td {
@@ -40,6 +40,44 @@ form * {
   font-size: 18px;
 }
 
+.delete-class {
+  float: right;
+  background-color: transparent;
+  background-image: url("components/delete.jpeg");
+  background-size: 52px;
+  font-family:sans-serif;
+  width: 70px;
+  height: 60px;
+  border: transparent;
+  opacity: 60%;
+  background-repeat: no-repeat;
+  background-position-y: center;
+  background-position-x: center;
+}
+
+.delete-class:hover {
+  opacity: 100%
+}
+
+.edit-class {
+  float: right;
+  background-color: transparent;
+  background-image: url("components/edit.png");
+  background-size: 45px;
+  font-family:sans-serif;
+  width: 70px;
+  height: 60px;
+  border: transparent;
+  opacity: 60%;
+  background-repeat: no-repeat;
+  background-position-y: center;
+  background-position-x: center;
+}
+
+.edit-class:hover {
+  opacity: 100%
+}
+
 .modal-close {
   float: right;
   background-color: transparent;
@@ -54,4 +92,18 @@ form * {
 
 .modal-close:hover {
   opacity: 100%;
+}
+
+.refresh-logo {
+  background-image: url("components/UD-logo.png");
+  background-size: 100px;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  border: transparent;
+  width: 100px;
+  height: 110px;
+}
+
+.header {
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
