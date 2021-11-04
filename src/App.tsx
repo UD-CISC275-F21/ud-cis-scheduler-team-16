@@ -94,7 +94,6 @@ const App = () : JSX.Element => {
         setEditCourseId("");
     };
 
-
     const handleEditClick = (event: React.MouseEvent, course: Course)=> {
         event.preventDefault();
         setEditCourseId(course.ID);
