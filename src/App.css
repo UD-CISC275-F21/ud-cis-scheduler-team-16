@@ -43,7 +43,7 @@ form * {
   font-size: 22px;
 }
 
-.modal-close{
+.modal-close {
   float: right;
   background-color: transparent;
   background-image: url("components/close.jpeg");
@@ -55,6 +55,6 @@ form * {
   opacity: 60%;
 }
 
-.modal-close:hover{
+.modal-close:hover {
   opacity: 100%;
 }
