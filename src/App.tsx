@@ -5,6 +5,7 @@ import data from "./components/class-list.json";
 import { Course } from "./components/course";
 import ReadOnlyRow from "./components/ReadOnlyRow";
 import MutableRow from "./components/MutableRow";
+//import Accordion from "./components/Accordion";
 
 /* Tutorials that assisted in the making of this:
 1. https://youtu.be/dYjdzpZv5yc
