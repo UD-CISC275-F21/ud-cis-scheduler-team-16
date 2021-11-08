@@ -1,6 +1,6 @@
 import React from "react";
 
-function Icon({className, height, width} : {className : string, height: number, width: number }){
+function Icon({className, height, width, fill} : {className : string, height: number, width: number, fill: string }){
     return(
         <svg
             className = {className}

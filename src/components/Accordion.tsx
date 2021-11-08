@@ -19,18 +19,18 @@ function Accordion({title} : {title: string}){
     }
 
     return(
-        <div className="accordionArea">
+        <div className="accordion__section">
             <button className={'accordion {setActive}'} onClick={toggleAccordion}>
-                <p className="title">{title}</p>
-                <Icon className={'{rotate}'} width = {10} fill={"#777"} />
+                <p className="accordion__title">{title}</p>
+                <Icon className={'{rotate}'} height = {50} width = {10} fill={"#777"} />
             </button>
             <div
-                ref={content}
+                ref={innerContent}
                 style={{maxHeight: '{height}'}}
-                className= "accordionContent"
+                className= "accordion__content"
             >
                 <div
-                    className="accordionText"
+                    className="accordion__text"
                     dangerouslySetInnerHTML={{__html: innerContent}}
                 />
             </div>
