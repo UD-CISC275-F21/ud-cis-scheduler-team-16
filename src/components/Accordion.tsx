@@ -6,7 +6,7 @@ function Accordion({title} : {title: string}){
     const[height, setHeight] = useState("0px");
     const[rotate, setRotate] = useState("rotating_icon");
 
-    const innerContent = useRef<HTMLFormElement>(null)
+    const innerContent = useRef<HTMLDivElement>(null)
 
     function toggleAccordion(){
         setActive(active === true ? false : true);
@@ -29,10 +29,6 @@ function Accordion({title} : {title: string}){
                 style={{maxHeight: '{height}'}}
                 className= "accordion__content"
             >
-                <div
-                    className="accordion__text"
-                    dangerouslySetInnerHTML={{__html: innerContent}}
-                />
             </div>
         </div>
     )
