@@ -9,6 +9,8 @@ import MutableRow from "./components/MutableRow";
 import  Modal from "react-modal";
 import { WriteMessage } from "./components/WelcomeMessage";
 import { customModal } from "./components/WelcomeMessage";
+import { AddSemester } from "./components/addsemester";
+import { customModalSemester } from "./components/addsemester";
 
 /* Resources that assisted in the making of this:
 1. Basis of the semester table: https://youtu.be/dYjdzpZv5yc
@@ -134,6 +136,10 @@ const App = () : JSX.Element => {
 
     const closeModal = () => {
         setOpen(false);
+    };
+
+    const openModal = () => {
+        setOpen(true);
     };
 
     const refreshPage = () => {
