@@ -39,29 +39,3 @@ form td:last-child {
 form * {
   font-size: 18px;
 }
-
-
-/* Below is formatting for the accordion styling for the semesters. */
-
-.accordion { /* Default State of the accordion */
-  background-color: aliceblue;
-  color:blueviolet;
-  cursor: pointer;
-  padding: 20px;
-  width: 100%;
-  text-align: left;
-  border:none;
-  outline:none;
-  transition: 0.45s;
-}
-
-.active, .accordion:hover{ /*When the button is clicked, or a mouse is hovering over the button */
-  background-color: cornsilk;
-}
-
-.panel { /*Styling for the dropped down panel */
-  padding: 0 20px;
-  background-color: whitesmoke;
-  display: none;
-  overflow: hidden;
-}
