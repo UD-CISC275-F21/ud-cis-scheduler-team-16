@@ -19,7 +19,7 @@ td {
 }
 
 th {
-  background-color: gainsboro;
+  background-color: silver;
 }
 
 td {
@@ -40,18 +40,127 @@ form * {
   font-size: 18px;
 }
 
+.delete-class {
+  float: right;
+  background-color: transparent;
+  background-image: url("components/delete.jpeg");
+  background-size: 52px;
+  font-family:sans-serif;
+  width: 70px;
+  height: 60px;
+  border: transparent;
+  opacity: 60%;
+  background-repeat: no-repeat;
+  background-position-y: center;
+  background-position-x: center;
+}
+
+.delete-class:hover {
+  opacity: 100%
+}
+
+.edit-class {
+  float: right;
+  background-color: transparent;
+  background-image: url("components/edit.png");
+  background-size: 45px;
+  font-family:sans-serif;
+  width: 70px;
+  height: 60px;
+  border: transparent;
+  opacity: 60%;
+  background-repeat: no-repeat;
+  background-position-y: center;
+  background-position-x: center;
+}
+
+.edit-class:hover {
+  opacity: 100%
+}
+
+.save-class {
+  float: right;
+  background-color: transparent;
+  background-image: url("components/save.png");
+  background-size: 45px;
+  font-family:sans-serif;
+  width: 70px;
+  height: 60px;
+  border: transparent;
+  opacity: 60%;
+  background-repeat: no-repeat;
+  background-position-y: center;
+  background-position-x: center;
+}
+
+.save-class:hover {
+  opacity: 100%
+}
+
+.cancel-class{
+  float: right;
+  background-color: transparent;
+  background-image: url("components/delete.jpeg");
+  background-size: 52px;
+  font-family:sans-serif;
+  width: 70px;
+  height: 60px;
+  border: transparent;
+  opacity: 60%;
+  background-repeat: no-repeat;
+  background-position-y: center;
+  background-position-x: center;
+}
+
+.cancel-class:hover{
+  opacity: 100%;
+}
+
 .modal-close {
   float: right;
   background-color: transparent;
-  background-image: url("components/close.jpeg");
-  background-size: 50px;
+  background-image: url("components/delete.jpeg");
+  background-size: 30px;
   font-family:sans-serif;
   width: 50px;
   height: 35px;
   border: transparent;
   opacity: 60%;
+  background-repeat: no-repeat;
+  background-position-y: 5px;
 }
 
 .modal-close:hover {
   opacity: 100%;
+}
+
+.refresh-logo {
+  background-image: url("components/UD-logo.png");
+  background-size: 100px;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  border: transparent;
+  width: 100px;
+  height: 110px;
+}
+
+.header {
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.welcome-message{
+  position: relative;
+  background-size: 600px;
+  background-repeat:no-repeat;
+  border-radius: 25px;
+  padding: 4px;
+}
+
+.welcome-message-body {
+  text-align: center;
+}
+
+.welcome-message-header{
+  text-align: center;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }

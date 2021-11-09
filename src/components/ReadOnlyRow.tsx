@@ -1,5 +1,6 @@
 import React from "react";
 import { Course } from "./course";
+import "../App.css";
 
 const ReadOnlyRow = ({ course, handleEditClick, handleDeleteClick }:
     {course : Course , handleEditClick: (event: React.MouseEvent, course: Course) => void, handleDeleteClick: (courseId: string) => void}) : JSX.Element => {
@@ -11,8 +12,8 @@ const ReadOnlyRow = ({ course, handleEditClick, handleDeleteClick }:
             <td>{course.Desc}</td>
             <td>{course.Credits}</td>
             <td>
-                <button type= "button" onClick={(event) => handleEditClick(event, course)}>Edit</button>
-                <button type= "button" onClick={()=> handleDeleteClick(course.ID)}>Delete</button>
+                <button className= "edit-class" type= "button" onClick={(event) => handleEditClick(event, course)}></button>
+                <button className= "delete-class" type= "button" onClick={()=> handleDeleteClick(course.ID)}></button>
             </td>
         </tr> 
     );

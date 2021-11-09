@@ -136,6 +136,10 @@ const App = () : JSX.Element => {
         setOpen(false);
     };
 
+    const refreshPage = () => {
+        window.location.reload();
+    };
+
     return <div className= "app-container">
         <Modal
             isOpen={modalOpen}
@@ -145,7 +149,8 @@ const App = () : JSX.Element => {
         >
             <WriteMessage closeModal={closeModal}></WriteMessage>
         </Modal>
-        <p>UD CIS Scheduler</p>
+        <button className="refresh-logo" onClick={refreshPage}></button> 
+        <h1 className="header">UD CIS Scheduler</h1>
         <Accordion flush>
             <Accordion.Item eventKey = "0">
                 <Accordion.Header>Semester 1</Accordion.Header>
