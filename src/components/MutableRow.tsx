@@ -1,5 +1,6 @@
 import React from "react";
 import { Course } from "./course";
+import "../App.css";
 
 const MutableRow = ({editCourseData, handleEditCourseChange, handleCancelClick}: 
     {editCourseData: Course , handleEditCourseChange: (event: React.ChangeEvent<HTMLInputElement>) => void, handleCancelClick: () => void}) : JSX.Element => {
@@ -56,8 +57,8 @@ const MutableRow = ({editCourseData, handleEditCourseChange, handleCancelClick}:
                 ></input>
             </td>
             <td>
-                <button type= "submit">Save</button>
-                <button type= "button" onClick={handleCancelClick}>Cancel</button>
+                <button className= "save-class" type= "submit"></button>
+                <button className= "cancel-class" type= "button" onClick={handleCancelClick}></button>
             </td>
         </tr>
     );

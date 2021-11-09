@@ -1,5 +1,6 @@
 import React from "react";
 import { Course } from "./course";
+import "../App.css";
 
 const ReadOnlyRow = ({ course, handleEditClick, handleDeleteClick }:
     {course : Course , handleEditClick: (event: React.MouseEvent, course: Course) => void, handleDeleteClick: (courseId: string) => void}) : JSX.Element => {
