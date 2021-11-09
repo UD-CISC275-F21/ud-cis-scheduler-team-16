@@ -225,6 +225,8 @@ const App = () : JSX.Element => {
                 </Accordion.Body>
             </Accordion.Item>
         </Accordion>
+        <button>Add Semester</button>
+        <button>Delete Semester</button>
     </div>;
 };
 
