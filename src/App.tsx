@@ -6,15 +6,21 @@ import data from "./components/class-list.json";
 import { Course } from "./components/course";
 import ReadOnlyRow from "./components/ReadOnlyRow";
 import MutableRow from "./components/MutableRow";
+import  Modal from "react-modal";
+import { WriteMessage } from "./components/WelcomeMessage";
+import { customModal } from "./components/WelcomeMessage";
 
 /* Resources that assisted in the making of this:
 1. Basis of the semester table: https://youtu.be/dYjdzpZv5yc
 2. NanoID description: https://www.npmjs.com/package/nanoid
 3. React-bootstrap accordion: https://react-bootstrap.github.io/components/accordion/
+4. Modal: https://www.npmjs.com/package/react-modal
+
 */
 
 const App = () : JSX.Element => {
     const [courses, setCourse] = useState(data);
+    const [modalOpen, setOpen] = React.useState(true);
     const [addCourseData, setAddFormData] = useState<Course>({
         ID: "",
         School: "",
@@ -125,7 +131,20 @@ const App = () : JSX.Element => {
         setCourse(newCourses);
     };
 
+
+    const closeModal = () => {
+        setOpen(false);
+    };
+
     return <div className= "app-container">
+        <Modal
+            isOpen={modalOpen}
+            onRequestClose={closeModal}
+            contentLabel="Welcome Message"
+            style={customModal}
+        >
+            <WriteMessage closeModal={closeModal}></WriteMessage>
+        </Modal>
         <p>UD CIS Scheduler</p>
         <Accordion flush>
             <Accordion.Item eventKey = "0">
