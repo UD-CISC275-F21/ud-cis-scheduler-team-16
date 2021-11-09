@@ -1,8 +1,13 @@
 import React, {useState, useRef} from "react";
 import Icon from "./Icon";
 
+/*I am leaving this function here just to give a look into what I was doing before I 
+learned about React-bootstrap having a pre-built accordion.
+*/
+
+
 function Accordion({title} : {title: string}){
-    const[active, setActive] = useState(true);
+    /*const[active, setActive] = useState(true);
     const[height, setHeight] = useState("0px");
     const[rotate, setRotate] = useState("rotating_icon");
 
@@ -31,7 +36,7 @@ function Accordion({title} : {title: string}){
             >
             </div>
         </div>
-    );
-}
+    );*/
+} 
 
-export default Accordion;
+export default Accordion; 
