@@ -39,3 +39,19 @@ form td:last-child {
 form * {
   font-size: 18px;
 }
+
+.modal-close {
+  float: right;
+  background-color: transparent;
+  background-image: url("components/close.jpeg");
+  background-size: 50px;
+  font-family:sans-serif;
+  width: 50px;
+  height: 35px;
+  border: transparent;
+  opacity: 60%;
+}
+
+.modal-close:hover {
+  opacity: 100%;
+}
