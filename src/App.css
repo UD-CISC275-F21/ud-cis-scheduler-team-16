@@ -68,7 +68,7 @@ form * {
   width: 70px;
   height: 60px;
   border: transparent;
-  opacity: 61%;
+  opacity: .6;
   background-repeat: no-repeat;
   background-position-y: center;
   background-position-x: center;
