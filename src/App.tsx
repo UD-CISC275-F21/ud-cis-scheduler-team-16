@@ -12,6 +12,7 @@ import { customModal } from "./components/WelcomeMessage";
 import { AddSemester } from "./components/addsemester";
 import { customModalSemester } from "./components/addsemester";
 
+
 /* Resources that assisted in the making of this:
 1. Basis of the semester table: https://youtu.be/dYjdzpZv5yc
 2. NanoID description: https://www.npmjs.com/package/nanoid
@@ -138,9 +139,15 @@ const App = () : JSX.Element => {
         setOpen(false);
     };
 
+<<<<<<< HEAD
     const openModal = () => {
         setOpen(true);
     };
+=======
+    /*const openModal = () => {
+        setOpen(true);
+    };*/
+>>>>>>> 30b6bca0197bff5623fa3ad7be9ff9d43a775a75
 
     const refreshPage = () => {
         window.location.reload();
