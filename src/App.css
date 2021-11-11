@@ -49,14 +49,14 @@ form * {
   width: 70px;
   height: 60px;
   border: transparent;
-  opacity: 60%;
+  opacity: 0.6;
   background-repeat: no-repeat;
   background-position-y: center;
   background-position-x: center;
 }
 
 .delete-class:hover {
-  opacity: 100%
+  opacity: 1.0;
 }
 
 .edit-class {
@@ -68,14 +68,14 @@ form * {
   width: 70px;
   height: 60px;
   border: transparent;
-  opacity: 60%;
+  opacity: 0.6;
   background-repeat: no-repeat;
   background-position-y: center;
   background-position-x: center;
 }
 
 .edit-class:hover {
-  opacity: 100%
+  opacity: 1.0;
 }
 
 .save-class {
@@ -87,14 +87,14 @@ form * {
   width: 70px;
   height: 60px;
   border: transparent;
-  opacity: 60%;
+  opacity: 0.6;
   background-repeat: no-repeat;
   background-position-y: center;
   background-position-x: center;
 }
 
 .save-class:hover {
-  opacity: 100%
+  opacity: 1.0;
 }
 
 .cancel-class{
@@ -106,14 +106,14 @@ form * {
   width: 70px;
   height: 60px;
   border: transparent;
-  opacity: 60%;
+  opacity: 0.6;
   background-repeat: no-repeat;
   background-position-y: center;
   background-position-x: center;
 }
 
 .cancel-class:hover{
-  opacity: 100%;
+  opacity: 1.0;
 }
 
 .modal-close {
@@ -125,13 +125,13 @@ form * {
   width: 50px;
   height: 35px;
   border: transparent;
-  opacity: 60%;
+  opacity: 0.6;
   background-repeat: no-repeat;
   background-position-y: 5px;
 }
 
 .modal-close:hover {
-  opacity: 100%;
+  opacity: 1.0;
 }
 
 .refresh-logo {
@@ -160,7 +160,7 @@ form * {
   text-align: center;
 }
 
-.welcome-message-header{
+.welcome-message-header {
   text-align: center;
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
