@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/ud-cis-scheduler-team-16/static/css/main.d79ba0fc.chunk.css",
+    "main.css": "/ud-cis-scheduler-team-16/static/css/main.031fc95f.chunk.css",
     "main.js": "/ud-cis-scheduler-team-16/static/js/main.50d9a89b.chunk.js",
     "main.js.map": "/ud-cis-scheduler-team-16/static/js/main.50d9a89b.chunk.js.map",
     "runtime-main.js": "/ud-cis-scheduler-team-16/static/js/runtime-main.a67c0222.js",
@@ -10,14 +10,14 @@
     "static/js/3.ee598716.chunk.js": "/ud-cis-scheduler-team-16/static/js/3.ee598716.chunk.js",
     "static/js/3.ee598716.chunk.js.map": "/ud-cis-scheduler-team-16/static/js/3.ee598716.chunk.js.map",
     "index.html": "/ud-cis-scheduler-team-16/index.html",
-    "static/css/main.d79ba0fc.chunk.css.map": "/ud-cis-scheduler-team-16/static/css/main.d79ba0fc.chunk.css.map",
+    "static/css/main.031fc95f.chunk.css.map": "/ud-cis-scheduler-team-16/static/css/main.031fc95f.chunk.css.map",
     "static/js/2.7f11962e.chunk.js.LICENSE.txt": "/ud-cis-scheduler-team-16/static/js/2.7f11962e.chunk.js.LICENSE.txt",
     "static/media/App.css": "/ud-cis-scheduler-team-16/static/media/save.85d6608c.png"
   },
   "entrypoints": [
     "static/js/runtime-main.a67c0222.js",
     "static/js/2.7f11962e.chunk.js",
-    "static/css/main.d79ba0fc.chunk.css",
+    "static/css/main.031fc95f.chunk.css",
     "static/js/main.50d9a89b.chunk.js"
   ]
 }
