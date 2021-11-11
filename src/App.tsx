@@ -10,6 +10,7 @@ import  Modal from "react-modal";
 import { WriteMessage } from "./components/WelcomeMessage";
 import { customModal } from "./components/WelcomeMessage";
 
+
 /* Resources that assisted in the making of this:
 1. Basis of the semester table: https://youtu.be/dYjdzpZv5yc
 2. NanoID description: https://www.npmjs.com/package/nanoid
@@ -24,20 +25,20 @@ const App = () : JSX.Element => {
     const [addCourseData, setAddFormData] = useState<Course>({
         ID: "",
         School: "",
-        ClassID: 108,
+        ClassID: 0,
         CourseName: "",
         Desc: "",
-        Credits: 3
+        Credits: 0
     });
 
     const[editCourseData, setEditCourseData] = useState<Course>
     ({
         ID: "",
         School: "",
-        ClassID: 108,
+        ClassID: 0,
         CourseName: "",
         Desc: "",
-        Credits: 3
+        Credits: 0
     });
 
     const [editCourseId, setEditCourseId] = useState("");
@@ -136,6 +137,10 @@ const App = () : JSX.Element => {
         setOpen(false);
     };
 
+    /*const openModal = () => {
+        setOpen(true);
+    };*/
+
     const refreshPage = () => {
         window.location.reload();
     };
@@ -230,6 +235,8 @@ const App = () : JSX.Element => {
                 </Accordion.Body>
             </Accordion.Item>
         </Accordion>
+        <button>Add Semester</button>
+        <button>Delete Semester</button>
     </div>;
 };
 
