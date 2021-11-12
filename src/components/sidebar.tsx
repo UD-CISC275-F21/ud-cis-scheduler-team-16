@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import { ProSidebar, Menu, MenuItem, SubMenu, SidebarHeader, SidebarFooter, SidebarContent } from 'react-pro-sidebar';
 import "./App.css";
+
 <ProSidebar>
   <Menu iconShape="square">
   <MenuItem>Colleges</MenuItem>

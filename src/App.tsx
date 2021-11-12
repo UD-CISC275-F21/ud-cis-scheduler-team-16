@@ -9,6 +9,10 @@ import MutableRow from "./components/MutableRow";
 import  Modal from "react-modal";
 import { WriteMessage } from "./components/WelcomeMessage";
 import { customModal } from "./components/WelcomeMessage";
+import { ProSidebar, Menu, MenuItem, SubMenu, SidebarHeader, SidebarFooter, SidebarContent } from "react-pro-sidebar";
+import AccordionItem from "react-bootstrap/esm/AccordionItem";
+import AccordionHeader from "react-bootstrap/esm/AccordionHeader";
+import AccordionBody from "react-bootstrap/esm/AccordionBody";
 
 /* Resources that assisted in the making of this:
 1. Basis of the semester table: https://youtu.be/dYjdzpZv5yc
@@ -149,9 +153,37 @@ const App = () : JSX.Element => {
         >
             <WriteMessage closeModal={closeModal}></WriteMessage>
         </Modal>
+        <ProSidebar className= "sidebar">
+            <SidebarHeader className="sidebar-header">
+            PICK YOUR SCHOOL
+            </SidebarHeader>
+            <SidebarContent>
+                <Menu iconShape="square">
+                    <Accordion>
+                        <AccordionItem eventKey= "0">
+                            <AccordionHeader>MATH</AccordionHeader>
+                            <AccordionBody>
+                                {}
+                            </AccordionBody>
+                        </AccordionItem>
+                    </Accordion>
+                    <Accordion>
+                        <AccordionItem eventKey= "0">
+                            <AccordionHeader>CISC</AccordionHeader>
+                            <AccordionBody>
+                                {}
+                            </AccordionBody>
+                        </AccordionItem>
+                    </Accordion>
+                </Menu>
+            </SidebarContent>
+            <SidebarFooter>
+
+            </SidebarFooter>
+        </ProSidebar>
         <button className="refresh-logo" onClick={refreshPage}></button> 
         <h1 className="header">UD CIS Scheduler</h1>
-        <Accordion flush>
+        <Accordion className= "acc1">
             <Accordion.Item eventKey = "0">
                 <Accordion.Header>Semester 1</Accordion.Header>
                 <Accordion.Body>
