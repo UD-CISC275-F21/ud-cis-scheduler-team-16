@@ -72,6 +72,7 @@ const App = () : JSX.Element => {
     const handleAddCourseSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
+
         const newCourse = {
             ID: nanoid(),
             School: addCourseData.School,
