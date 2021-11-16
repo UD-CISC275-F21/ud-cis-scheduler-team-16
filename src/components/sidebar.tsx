@@ -1,23 +1,43 @@
-import React, {useState} from "react";
-import { ProSidebar, Menu, MenuItem, SubMenu, SidebarHeader, SidebarFooter, SidebarContent } from 'react-pro-sidebar';
-import "./App.css";
+import React from "react";
+import "../App.css";
+import { Accordion } from "react-bootstrap";
+import AccordionItem from "react-bootstrap/esm/AccordionItem";
+import AccordionHeader from "react-bootstrap/esm/AccordionHeader";
+import AccordionBody from "react-bootstrap/esm/AccordionBody";
+import "../App.css";
 
-<ProSidebar>
-  <Menu iconShape="square">
-  <MenuItem>Colleges</MenuItem>
-    <SubMenu title="Colleges">
-      <MenuItem>Math</MenuItem>
-      <SubMenu> Math243 </SubMenu>
-      <SubMenu> Math242 </SubMenu> 
-      <SubMenu> Math241 </SubMenu>
-      <SubMenu> Math349 </SubMenu>
-      <SubMenu> Math426 </SubMenu>
-    <MenuItem>Computer Science</MenuItem>
-      <SubMenu> CISC108 </SubMenu>
-      <SubMenu> CISC210 </SubMenu>
-      <SubMenu> CISC220 </SubMenu>
-      <SubMenu> CISC181 </SubMenu>
-      <SubMenu> CISC275 </SubMenu>
-    </SubMenu>
-  </Menu>
-</ProSidebar>;
+export const loadSidebarContent = (schoolName: string): JSX.Element => {
+    return(
+        <div className="card">
+            <div className="card-body">
+                <div className="row">
+                    <div className="col-8">
+                        <h5 className="card-title">{schoolName}</h5>
+                        <p className="card-text">class</p>
+                    </div>
+                    <div className="col-4">
+                        <button className="add-class"></button>
+                    </div>  
+                </div>
+            </div>
+        </div>
+    );
+};
+
+export const loadSidebar = (schoolName: string): JSX.Element => {
+    return(
+        <div>
+            <Accordion>
+                <AccordionItem eventKey= "0">
+                    <AccordionHeader>{schoolName}</AccordionHeader>
+                    <AccordionBody>
+                        {loadSidebarContent(schoolName)}
+                    </AccordionBody>
+                </AccordionItem>
+            </Accordion>
+        </div>
+    );
+};
+
+
+                        
