@@ -1,9 +1,42 @@
 [
     {
       "ID": "0",
-      "Semester Name": "Freshman Semester 1",
-      "Classes": {
-          
-      }
-    }
+      "SemesterName": "Freshman Semester 1",
+      "Courses": []
+    },
+    {
+      "ID": "1",
+      "SemesterName": "Freshman Semester 2",
+      "Courses": []
+    },
+    {
+      "ID": "2",
+      "SemesterName": "Sophomore Semester 1",
+      "Courses": []
+    },
+    {
+      "ID": "3",
+      "SemesterName": "Sophomore Semester 2",
+      "Courses": []
+    },
+    {
+      "ID": "4",
+      "SemesterName": "Junior Semester 1",
+      "Courses": []
+    },
+    {
+      "ID": "5",
+      "SemesterName": "Junior Semester 2",
+      "Courses": []
+    },
+    {
+      "ID": "6",
+      "SemesterName": "Senior Semester 1",
+        "Courses": []
+    },
+    {
+      "ID": "7",
+      "SemesterName": "Senior Semester 2",
+      "Courses": []
+    } 
 ]
