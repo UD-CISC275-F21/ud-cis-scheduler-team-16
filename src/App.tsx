@@ -1,12 +1,12 @@
 import React, { useState, Fragment } from "react";
-//import { Accordion } from "react-bootstrap";
+//import { Accordion, Dropdown } from "react-bootstrap";
 import { nanoid } from "nanoid";
 import "./App.css";
-import courseData from "./components/class-list.json";
-import semesterData from "./components/semester-list.json";
+//import courseData from "./components/class-list.json";
+//import semesterData from "./components/semester-list.json";
 import { Course } from "./components/course";
 import { Semester } from "./components/semester";
-import { Plan } from "./components/plan";
+//import { Plan } from "./components/plan";
 import ReadOnlyRow from "./components/ReadOnlyRow";
 import MutableRow from "./components/MutableRow";
 import  Modal from "react-modal";
@@ -24,6 +24,7 @@ import { customModal } from "./components/WelcomeMessage";
 const App = () : JSX.Element => {
     const [plan, setPlan] = useState<Semester[]>([]);
     const [currentSemesterID, setCurrentSemesterID]= useState("");
+    const [currentSemester, setCurrentSemester] = useState<Semester>();
     const [courses, setCourse] = useState<Course[]>([]);
     const [modalOpen, setOpen] = useState(true); // For welcome message
     const [semNum, setSemNum] = useState(1);
@@ -48,16 +49,6 @@ const App = () : JSX.Element => {
 
     const [editCourseId, setEditCourseId] = useState("");
 
-    const handleAddCourseChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        event.preventDefault();
-
-        const fieldName = event.target.name;
-        const fieldValue = event.target.value;
-        const newCourseData = { ...addCourseData, [fieldName]: fieldValue};
-
-        setAddFormData(newCourseData);
-    };
-
     const handleEditCourseChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         event.preventDefault();
 
@@ -69,9 +60,18 @@ const App = () : JSX.Element => {
         setEditCourseData(newCourseData);
     };
 
-    const handleAddCourseSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    const handleAddCourseChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         event.preventDefault();
 
+        const fieldName = event.target.name;
+        const fieldValue = event.target.value;
+        const newCourseData = { ...addCourseData, [fieldName]: fieldValue};
+
+        setAddFormData(newCourseData);
+    };
+
+    const handleAddCourseSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
 
         const newCourse = {
             ID: nanoid(),
@@ -81,7 +81,6 @@ const App = () : JSX.Element => {
             Desc: addCourseData.Desc,
             Credits: addCourseData.Credits
         };
-
         const newCourses = [...courses, newCourse];
         setCourse(newCourses);
     };
@@ -131,7 +130,7 @@ const App = () : JSX.Element => {
     const handleDeleteClick = (courseID: string) => {
         const newCourses = [...courses];
 
-        const index = courses.findIndex((course: Course) => course.ID = courseID);
+        const index = courses.findIndex((course: Course) => course.ID === courseID);
 
         newCourses.splice(index, 1);
 
@@ -158,9 +157,9 @@ const App = () : JSX.Element => {
         setPlan([...plan, newSemester]);
     }
 
-    function deleteSemester(plan : Semester[], currentSemesterID: string){
+    function deleteSemester(plan : Semester[]){
         const newPlan = [...plan];
-        const index = plan.findIndex((semester: Semester) => semester.ID = currentSemesterID);
+        const index = plan.findIndex((semester: Semester) => semester.ID === currentSemesterID);
 
         //Note for later, add something in here that updates the other semester number when this is called
 
@@ -168,7 +167,17 @@ const App = () : JSX.Element => {
         setPlan(newPlan);
     }
 
-    
+    function clearSemesters(plan : Semester[]){
+        const newPlan = [...plan];
+        newPlan.splice(0, newPlan.length);
+        setPlan(newPlan);
+    }
+
+    function clearClasses(plan : Semester[]){
+        //I DONT KNOW WHAT TO FUCKING PUT HERE
+        
+    }
+
     return(
         <div className = "App">
             <Modal
@@ -182,9 +191,10 @@ const App = () : JSX.Element => {
             <button className="refresh-logo" onClick={refreshPage}></button> 
             <h1 className="header">UD CIS Scheduler</h1>
             <div> 
+                <p>Current Semester: {currentSemesterID}</p>
                 { plan.map ( (sem: Semester) => 
                     <div key= {sem.ID} onClick= {() => setCurrentSemesterID(sem.ID)}>
-                        {sem.SemesterName}
+                        {sem.SemesterName} <br />
                         { sem.Courses.map ( (cour: Course) => cour.School)}
                         { sem.Courses.map ( (cour: Course) => cour.ClassID)}
                         { sem.Courses.map ( (cour: Course) => cour.CourseName)}
@@ -229,9 +239,11 @@ const App = () : JSX.Element => {
             <button className = "add-semester" type = "button" 
                 onClick= {() => addSemester(plan)}>Add Semester</button>
             <button className = "delete-semester" type = "button" 
-                onClick= {() => deleteSemester(plan, currentSemesterID)}>Delete Current Semester</button>
-            <h2>Add another Class</h2>
+                onClick= {() => deleteSemester(plan)}>Delete Current Semester</button>
+            <button className = "clear-semesters" type = "button" 
+                onClick= {() => clearSemesters(plan)}>Clear All Semesters</button>
             <form onSubmit={handleAddCourseSubmit}>
+
                 <input 
                     type ="text"
                     name = "School"
