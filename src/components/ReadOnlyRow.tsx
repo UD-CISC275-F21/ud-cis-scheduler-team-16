@@ -1,11 +1,11 @@
 import React from "react";
-import { Course } from "./course";
+import { Plan } from "./plan";
 import { Semester } from "./semester"
 import "../App.css";
 import "../App.tsx";
 
-const ReadOnlyRow = ({ currentCourseID, course, handleEditClick, handleDeleteClick }:
-    {currentCourseID : String, course : Course , handleEditClick: (event: React.MouseEvent, course: Course) => void, handleDeleteClick: (currentCourseID: String) => void}) : JSX.Element => {
+const ReadOnlyRow = ({ currentCourseID, plan, handleEditClick, handleDeleteClick }:
+    {currentCourseID : String, plan: Plan , handleEditClick: (event: React.MouseEvent, plan: Semester[]) => void, handleDeleteClick: (currentCourseID: String) => void}) : JSX.Element => {
     return(
         <tr key={course.ID}>
             <td>{course.School}</td>
@@ -14,7 +14,7 @@ const ReadOnlyRow = ({ currentCourseID, course, handleEditClick, handleDeleteCli
             <td>{course.Desc}</td>
             <td>{course.Credits}</td>
             <td>
-                <button className= "edit-class" type= "button" onClick={(event) => handleEditClick(event, course)}></button>
+                <button className= "edit-class" type= "button" onClick={(event) => handleEditClick(event, plan)}></button>
                 <button className= "delete-class" type= "button" onClick={()=> handleDeleteClick(currentCourseID)}></button>
             </td>
         </tr> 

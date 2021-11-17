@@ -224,14 +224,41 @@ const App = () : JSX.Element => {
                     </div>           
                 )}
             </div>
-            <button className = "add-semester" type = "button" 
-                onClick= {() => addSemester(plan)}>Add Semester</button>
-            <button className = "delete-semester" type = "button" 
-                onClick= {() => deleteSemester(plan)}>Delete Selected Semester</button>
-            <button className = "clear-semesters" type = "button" 
-                onClick= {() => clearSemesters(plan)}>Clear All Semesters</button>
-            <button className = "clear-classes" type = "button" 
-                onClick= {() => clearClasses(plan)}>Clear All Classes From Selected Semester</button>
+            <form onSubmit={handleEditCourseSubmit}>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>School</th>
+                            <th>ClassID</th>
+                            <th>Course Name</th>
+                            <th>Desc</th>
+                            <th>Credits</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {plan.map((sem: Semester)=>  
+                            <div key= {sem.ID} onClick= {() => setCurrentSemesterID(sem.ID)}>
+                                <Fragment key={currentSemesterID}>
+                                    { editCourseId === currentCourseID ? 
+                                        <MutableRow 
+                                            editCourseData = {editCourseData} 
+                                            handleEditCourseChange = {handleEditCourseChange}
+                                            handleCancelClick = {handleCancelClick}
+                                        /> 
+                                        :  
+                                        <ReadOnlyRow 
+                                            plan={plan} 
+                                            handleEditClick={handleEditClick}
+                                            handleDeleteClick={handleDeleteClick}
+                                        />
+                                    } 
+                                </Fragment>
+                            </div>
+                        )}
+                    </tbody>
+                </table>
+            </form>
             <form onSubmit={handleAddCourseSubmit}>
                 <input 
                     type ="text"
@@ -269,6 +296,14 @@ const App = () : JSX.Element => {
                     onChange={handleAddCourseChange}
                 />
                 <button type="submit">Add Course</button>
+                <button className = "add-semester" type = "button" 
+                onClick= {() => addSemester(plan)}>Add Semester</button>
+                <button className = "delete-semester" type = "button" 
+                    onClick= {() => deleteSemester(plan)}>Delete Selected Semester</button>
+                <button className = "clear-semesters" type = "button" 
+                    onClick= {() => clearSemesters(plan)}>Clear All Semesters</button>
+                <button className = "clear-classes" type = "button" 
+                    onClick= {() => clearClasses(plan)}>Clear All Classes From Selected Semester</button>
             </form>
         </div>
         
