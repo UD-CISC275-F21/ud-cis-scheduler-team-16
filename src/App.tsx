@@ -24,7 +24,7 @@ import { customModal } from "./components/WelcomeMessage";
 const App = () : JSX.Element => {
     const [plan, setPlan] = useState<Semester[]>([]);
     const [currentSemesterID, setCurrentSemesterID]= useState("");
-    const [currentSemester, setCurrentSemester] = useState<Semester>();
+    //const [currentSemester, setCurrentSemester] = useState<Semester>();
     const [courses, setCourse] = useState<Course[]>([]);
     const [modalOpen, setOpen] = useState(true); // For welcome message
     const [semNum, setSemNum] = useState(1);
@@ -170,12 +170,25 @@ const App = () : JSX.Element => {
     function clearSemesters(plan : Semester[]){
         const newPlan = [...plan];
         newPlan.splice(0, newPlan.length);
+        
         setPlan(newPlan);
+        setCurrentSemesterID("");
+        setSemNum(1);
+        //Add something that clears classes from all semesters as well.
     }
 
-    function clearClasses(plan : Semester[]){
-        //I DONT KNOW WHAT TO FUCKING PUT HERE
-        
+    function clearClasses(plan : Semester[]){ //This currently just changes semester names? Does nothing to courses.
+        const newPlan = [...plan];
+        const index = plan.findIndex((semester: Semester) => semester.ID === currentSemesterID);
+        const blankSem : Semester = {
+            ID: currentSemesterID,
+            SemesterName: "Semester" + index,
+            Courses: [] 
+        };
+
+        newPlan.splice(index, 1);
+        newPlan.splice(index-1, 0, blankSem);
+        setPlan(newPlan);
     }
 
     return(
@@ -239,9 +252,11 @@ const App = () : JSX.Element => {
             <button className = "add-semester" type = "button" 
                 onClick= {() => addSemester(plan)}>Add Semester</button>
             <button className = "delete-semester" type = "button" 
-                onClick= {() => deleteSemester(plan)}>Delete Current Semester</button>
+                onClick= {() => deleteSemester(plan)}>Delete Selected Semester</button>
             <button className = "clear-semesters" type = "button" 
                 onClick= {() => clearSemesters(plan)}>Clear All Semesters</button>
+            <button className = "clear-classes" type = "button" 
+                onClick= {() => clearClasses(plan)}>Clear All Classes From Selected Semester</button>
             <form onSubmit={handleAddCourseSubmit}>
 
                 <input 
