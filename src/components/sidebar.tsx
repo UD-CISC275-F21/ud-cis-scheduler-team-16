@@ -13,7 +13,7 @@ export const loadSidebarContent = (schoolName: string): JSX.Element => {
                 <div className="row">
                     <div className="col-8">
                         <h5 className="card-title">{schoolName}</h5>
-                        <p className="card-text">class</p>
+                        <p className="card-text">{schoolName}</p>
                     </div>
                     <div className="col-4">
                         <button className="add-class"></button>
@@ -24,7 +24,28 @@ export const loadSidebarContent = (schoolName: string): JSX.Element => {
     );
 };
 
+const countCourses = (schoolName: string) => {
+    let count = 0;
+    const courses = JSON.parse("class-list");
+    for(let tempID = 0; courses.length>=tempID; tempID++){
+        if(courses[count].School === schoolName){
+            count++;
+        }
+    }
+        
+    return count;
+};
+
+
 export const loadSidebar = (schoolName: string): JSX.Element => {
+    /*
+    let courseNumber = {countCourses(schoolName): string};
+    let count = 0;
+    while(count === courseNumber){
+        count++;
+    }
+    */
+
     return(
         <div>
             <Accordion>
