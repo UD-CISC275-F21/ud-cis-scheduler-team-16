@@ -193,11 +193,11 @@ const App = () : JSX.Element => {
             <div className="col-8">
                 <h1 className="header"><button className="refresh-logo" onClick={refreshPage}></button> UD CIS Scheduler</h1>
 
-                <button className = "add-semester" type = "button" 
+                <button className = "edit-semester" type = "button" 
                     onClick= {() => addSemester(plan)}>Add Semester</button>
-                <button className = "delete-semester" type = "button" 
+                <button className = "edit-semester" type = "button" 
                     onClick= {() => deleteSemester(plan)}>Delete Current Semester</button>
-                <button className = "clear-semesters" type = "button" 
+                <button className = "edit-semester" type = "button" 
                     onClick= {() => clearSemesters(plan)}>Clear All Semesters</button>
                 <br /><br /><br />
                 

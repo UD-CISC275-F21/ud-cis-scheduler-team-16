@@ -199,4 +199,24 @@ form * {
 
 .add-class:hover {
   opacity: 1.0;
+
+}
+
+
+.edit-semester{
+  padding: 0.3em 1.2em;
+  margin:0 0.3em 0.3em 0;
+  border-radius: 25px;
+  text-decoration:none;
+  font-family:'Roboto',sans-serif;
+  font-weight:300;
+  color:black;
+  font-weight: bold;
+  background-color:#4eb5f1;
+  text-align:center;
+  border-color: transparent;
+}
+
+.edit-semester:hover{
+  background-color: #4095c6;
 }
