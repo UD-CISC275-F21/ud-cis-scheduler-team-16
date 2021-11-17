@@ -1,5 +1,5 @@
 import React, { useState, Fragment } from "react";
-import { Accordion, Dropdown } from "react-bootstrap";
+//import { Accordion, Dropdown } from "react-bootstrap";
 import { nanoid } from "nanoid";
 import "./App.css";
 //import courseData from "./components/class-list.json";
@@ -192,7 +192,15 @@ const App = () : JSX.Element => {
         <div className="row">
             <div className="col-8">
                 <h1 className="header"><button className="refresh-logo" onClick={refreshPage}></button> UD CIS Scheduler</h1>
-                <p>Current Semester: {currentSemesterID}</p>
+
+                <button className = "add-semester" type = "button" 
+                    onClick= {() => addSemester(plan)}>Add Semester</button>
+                <button className = "delete-semester" type = "button" 
+                    onClick= {() => deleteSemester(plan)}>Delete Current Semester</button>
+                <button className = "clear-semesters" type = "button" 
+                    onClick= {() => clearSemesters(plan)}>Clear All Semesters</button>
+                <br /><br /><br />
+                
                 { plan.map ( (sem: Semester) => 
                     <div key= {sem.ID} onClick= {() => setCurrentSemesterID(sem.ID)}>
                         {sem.SemesterName} <br />
@@ -236,52 +244,46 @@ const App = () : JSX.Element => {
                         </form>
                     </div>           
                 )}
-            </div>
-            <button className = "add-semester" type = "button" 
-                onClick= {() => addSemester(plan)}>Add Semester</button>
-            <button className = "delete-semester" type = "button" 
-                onClick= {() => deleteSemester(plan)}>Delete Current Semester</button>
-            <button className = "clear-semesters" type = "button" 
-                onClick= {() => clearSemesters(plan)}>Clear All Semesters</button>
-            <form onSubmit={handleAddCourseSubmit}>
+                <form onSubmit={handleAddCourseSubmit}>
 
-                <input 
-                    type ="text"
-                    name = "School"
-                    required= {true}
-                    placeholder = "Enter a School."
-                    onChange={handleAddCourseChange}
-                />
-                <input 
-                    type = "number"
-                    name = "ClassID"
-                    required = {true}
-                    placeholder = "Enter a Class ID."
-                    onChange={handleAddCourseChange}
-                />
-                <input 
-                    type ="text"
-                    name = "CourseName"
-                    required = {true}
-                    placeholder = "Enter a Course Name."
-                    onChange={handleAddCourseChange}
-                />
-                <input 
-                    type ="text"
-                    name = "Desc"
-                    required = {true}
-                    placeholder = "Enter a Class Description."
-                    onChange={handleAddCourseChange}
-                />
-                <input 
-                    type ="number"
-                    name = "Credits"
-                    required = {true}
-                    placeholder = "Enter a Credit Amount."
-                    onChange={handleAddCourseChange}
-                />
-                <button type="submit">Add Course</button>
-            </form>
+                    <input 
+                        type ="text"
+                        name = "School"
+                        required= {true}
+                        placeholder = "Enter a School."
+                        onChange={handleAddCourseChange}
+                    />
+                    <input 
+                        type = "number"
+                        name = "ClassID"
+                        required = {true}
+                        placeholder = "Enter a Class ID."
+                        onChange={handleAddCourseChange}
+                    />
+                    <input 
+                        type ="text"
+                        name = "CourseName"
+                        required = {true}
+                        placeholder = "Enter a Course Name."
+                        onChange={handleAddCourseChange}
+                    />
+                    <input 
+                        type ="text"
+                        name = "Desc"
+                        required = {true}
+                        placeholder = "Enter a Class Description."
+                        onChange={handleAddCourseChange}
+                    />
+                    <input 
+                        type ="number"
+                        name = "Credits"
+                        required = {true}
+                        placeholder = "Enter a Credit Amount."
+                        onChange={handleAddCourseChange}
+                    />
+                    <button type="submit">Add Course</button>
+                </form>
+            </div>
             <div className="col-4">
                 <div className="full-column">
                     <ProSidebar className="sidebar">
@@ -305,5 +307,5 @@ const App = () : JSX.Element => {
             </div>
         </div>  
     </div>;
-}
+};
 export default App;
