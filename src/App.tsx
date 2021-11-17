@@ -182,7 +182,7 @@ const App = () : JSX.Element => {
         const index = plan.findIndex((semester: Semester) => semester.ID === currentSemesterID);
         const blankSem : Semester = {
             ID: currentSemesterID,
-            SemesterName: "Semester" + index,
+            SemesterName: "Semester" + (index-1),
             Courses: [] 
         };
 
