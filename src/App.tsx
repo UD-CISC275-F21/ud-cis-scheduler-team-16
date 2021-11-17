@@ -26,7 +26,6 @@ const App = () : JSX.Element => {
     const [plan, setPlan] = useState<Semester[]>([]);
     const [currentSemesterID, setCurrentSemesterID]= useState("");
     const [currentCourseID, setCurrentCourseID] = useState("");
-    const [courses, setCourse] = useState<Course[]>([]);
     const [modalOpen, setOpen] = useState(true); // For welcome message
     const [semNum, setSemNum] = useState(1);
     const [courNum, setCourNum] = useState(1);
@@ -64,15 +63,16 @@ const App = () : JSX.Element => {
     const handleEditClick = (event: React.MouseEvent, plan: Semester[])=> {
         event.preventDefault();
         const semIndex = plan.findIndex((semester: Semester) => semester.ID === currentSemesterID);
-        setEditCourseId(plan[semIndex].Courses[].ID);
+        const courIndex = plan[semIndex].Courses.findIndex((course: Course) => course.ID === currentCourseID)
+        setEditCourseId(plan[semIndex].Courses[courIndex].ID);
 
         const courseValues = {
-            ID: course.ID,
-            School: course.School,
-            ClassID: course.ClassID,
-            CourseName: course.CourseName,
-            Desc: course.Desc,
-            Credits: course.Credits
+            ID: plan[semIndex].Courses[courIndex].ID,
+            School: plan[semIndex].Courses[courIndex].School,
+            ClassID: plan[semIndex].Courses[courIndex].ClassID,
+            CourseName: plan[semIndex].Courses[courIndex].CourseName,
+            Desc: plan[semIndex].Courses[courIndex].Desc,
+            Credits: plan[semIndex].Courses[courIndex].Credits
         };
 
         setEditCourseData(courseValues);
@@ -94,7 +94,7 @@ const App = () : JSX.Element => {
             Credits: editCourseData.Credits
         };
 
-        const courseIndex = plan.findIndex((course: Course)=> plan[semIndex].Courses[course.ID] === editCourseId);
+        const courseIndex = plan[semIndex].Courses.findIndex((course: Course)=> course.ID === editCourseId);
         newPlan[semIndex].Courses[courseIndex] = editedCourse;
         setEditCourseId("");
     };
@@ -115,18 +115,7 @@ const App = () : JSX.Element => {
             return {...inner}; 
         });
 
-        const tempCourse = {
-            ID: nanoid(),
-            School: "",
-            ClassID: 0,
-            CourseName: "",
-            Desc: "",
-            Credits: 0
-        }
         const semIndex = plan.findIndex((semester: Semester) => semester.ID === currentSemesterID);
-        newPlan[semIndex].Courses.push(tempCourse);
-        setCurrentCourseID(tempCourse.ID);
-        const courIndex = plan.findIndex((course: Course) => course.ID === currentCourseID);
         
         const newCourse = {
             ID: nanoid(),
@@ -137,7 +126,7 @@ const App = () : JSX.Element => {
             Credits: addCourseData.Credits
         };
 
-        newPlan[semIndex].Courses[courIndex] = newCourse;
+        newPlan = [...newPlan, newPlan[semIndex].Courses.push(newCourse)];
         setPlan(newPlan);
     };
 
@@ -145,15 +134,15 @@ const App = () : JSX.Element => {
         setEditCourseId("");
     };
 
-    const handleDeleteClick = (plan: Semester[]) => {
+    const handleDeleteClick = (currentCourseID: String) => {
         const newPlan = plan.map(inner =>{ 
             return {...inner}; 
         });
         const semIndex = plan.findIndex((semester: Semester) => semester.ID === currentSemesterID);
-        const courIndex = plan
+        const courIndex = plan[semIndex].Courses.findIndex((course: Course) => course.ID === currentCourseID);
 
 
-        newPlan.splice(index, 1);
+        newPlan[semIndex].Courses.splice(courIndex, 1);
         setPlan(newPlan);
     };
 
