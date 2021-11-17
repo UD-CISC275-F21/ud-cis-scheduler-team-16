@@ -1,9 +1,12 @@
 import React, { useState, Fragment } from "react";
-import { Accordion } from "react-bootstrap";
+import { Accordion, Dropdown } from "react-bootstrap";
 import { nanoid } from "nanoid";
 import "./App.css";
-import data from "./components/class-list.json";
+//import courseData from "./components/class-list.json";
+//import semesterData from "./components/semester-list.json";
 import { Course } from "./components/course";
+import { Semester } from "./components/semester";
+//import { Plan } from "./components/plan";
 import ReadOnlyRow from "./components/ReadOnlyRow";
 import MutableRow from "./components/MutableRow";
 import  Modal from "react-modal";
@@ -21,38 +24,32 @@ import { loadSidebar } from "./components/sidebar";
 */
 
 const App = () : JSX.Element => {
-    const [courses, setCourse] = useState(data);
-    const [modalOpen, setOpen] = React.useState(true);
+    const [plan, setPlan] = useState<Semester[]>([]);
+    const [currentSemesterID, setCurrentSemesterID]= useState("");
+    const [currentSemester, setCurrentSemester] = useState<Semester>();
+    const [courses, setCourse] = useState<Course[]>([]);
+    const [modalOpen, setOpen] = useState(true); // For welcome message
+    const [semNum, setSemNum] = useState(1);
     const [addCourseData, setAddFormData] = useState<Course>({
         ID: "",
         School: "",
-        ClassID: 108,
+        ClassID: 0,
         CourseName: "",
         Desc: "",
-        Credits: 3
+        Credits: 0
     });
 
     const[editCourseData, setEditCourseData] = useState<Course>
     ({
         ID: "",
         School: "",
-        ClassID: 108,
+        ClassID: 0,
         CourseName: "",
         Desc: "",
-        Credits: 3
+        Credits: 0
     });
 
     const [editCourseId, setEditCourseId] = useState("");
-
-    const handleAddCourseChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        event.preventDefault();
-
-        const fieldName = event.target.name;
-        const fieldValue = event.target.value;
-        const newCourseData = { ...addCourseData, [fieldName]: fieldValue};
-
-        setAddFormData(newCourseData);
-    };
 
     const handleEditCourseChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         event.preventDefault();
@@ -63,6 +60,16 @@ const App = () : JSX.Element => {
         const newCourseData = {...editCourseData, [fieldName]: fieldValue};
 
         setEditCourseData(newCourseData);
+    };
+
+    const handleAddCourseChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        event.preventDefault();
+
+        const fieldName = event.target.name;
+        const fieldValue = event.target.value;
+        const newCourseData = { ...addCourseData, [fieldName]: fieldValue};
+
+        setAddFormData(newCourseData);
     };
 
     const handleAddCourseSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -76,7 +83,6 @@ const App = () : JSX.Element => {
             Desc: addCourseData.Desc,
             Credits: addCourseData.Credits
         };
-
         const newCourses = [...courses, newCourse];
         setCourse(newCourses);
     };
@@ -126,7 +132,7 @@ const App = () : JSX.Element => {
     const handleDeleteClick = (courseID: string) => {
         const newCourses = [...courses];
 
-        const index = courses.findIndex((course: Course) => course.ID = courseID);
+        const index = courses.findIndex((course: Course) => course.ID === courseID);
 
         newCourses.splice(index, 1);
 
@@ -142,6 +148,37 @@ const App = () : JSX.Element => {
         window.location.reload();
     };
 
+    function addSemester(plan : Semester[]){
+        const newSemester ={
+            ID: nanoid(),
+            SemesterName: "Semester" + semNum,
+            Courses: []
+        };
+
+        setSemNum(semNum + 1);
+        setPlan([...plan, newSemester]);
+    }
+
+    function deleteSemester(plan : Semester[]){
+        const newPlan = [...plan];
+        const index = plan.findIndex((semester: Semester) => semester.ID === currentSemesterID);
+
+        //Note for later, add something in here that updates the other semester number when this is called
+
+        newPlan.splice(index, 1);
+        setPlan(newPlan);
+    }
+
+    function clearSemesters(plan : Semester[]){
+        const newPlan = [...plan];
+        newPlan.splice(0, newPlan.length);
+        setPlan(newPlan);
+    }
+
+    function clearClasses(plan : Semester[]){
+        //I DONT KNOW WHAT TO FUCKING PUT HERE
+        
+    }
     return <div className= "app-container">
         <Modal
             isOpen={modalOpen}
@@ -155,86 +192,96 @@ const App = () : JSX.Element => {
         <div className="row">
             <div className="col-8">
                 <h1 className="header"><button className="refresh-logo" onClick={refreshPage}></button> UD CIS Scheduler</h1>
-                <Accordion>
-                    <Accordion.Item eventKey = "0">
-                        <Accordion.Header>Semester 1</Accordion.Header>
-                        <Accordion.Body>
-                            <form onSubmit={handleEditCourseSubmit}>
-                                <table>
-                                    <thead>
-                                        <tr>
-                                            <th>School</th>
-                                            <th>ClassID</th>
-                                            <th>Course Name</th>
-                                            <th>Desc</th>
-                                            <th>Credits</th>
-                                            <th>Actions</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {courses.map(course=>  
-                                            <Fragment key={course.ID}>
-                                                { editCourseId === course.ID ? 
-                                                    <MutableRow 
-                                                        editCourseData = {editCourseData} 
-                                                        handleEditCourseChange = {handleEditCourseChange}
-                                                        handleCancelClick = {handleCancelClick}
-                                                    /> 
-                                                    :  
-                                                    <ReadOnlyRow 
-                                                        course={course} 
-                                                        handleEditClick={handleEditClick}
-                                                        handleDeleteClick={handleDeleteClick}
-                                                    />
-                                                } 
-                                            </Fragment>
-                                        )}
-                                    </tbody>
-                                </table>
-                            </form>
-                            <h2>Add another Class</h2>
-                            <form onSubmit={handleAddCourseSubmit}>
-                                <input 
-                                    type ="text"
-                                    name = "School"
-                                    required= {true}
-                                    placeholder = "Enter a School."
-                                    onChange={handleAddCourseChange}
-                                />
-                                <input 
-                                    type = "number"
-                                    name = "ClassID"
-                                    required = {true}
-                                    placeholder = "Enter a Class ID."
-                                    onChange={handleAddCourseChange}
-                                />
-                                <input 
-                                    type ="text"
-                                    name = "CourseName"
-                                    required = {true}
-                                    placeholder = "Enter a Course Name."
-                                    onChange={handleAddCourseChange}
-                                />
-                                <input 
-                                    type ="text"
-                                    name = "Desc"
-                                    required = {true}
-                                    placeholder = "Enter a Class Description."
-                                    onChange={handleAddCourseChange}
-                                />
-                                <input 
-                                    type ="number"
-                                    name = "Credits"
-                                    required = {true}
-                                    placeholder = "Enter a Credit Amount."
-                                    onChange={handleAddCourseChange}
-                                />
-                                <button type="submit">Add Course</button>
-                            </form>       
-                        </Accordion.Body>
-                    </Accordion.Item>
-                </Accordion>
+                <p>Current Semester: {currentSemesterID}</p>
+                { plan.map ( (sem: Semester) => 
+                    <div key= {sem.ID} onClick= {() => setCurrentSemesterID(sem.ID)}>
+                        {sem.SemesterName} <br />
+                        { sem.Courses.map ( (cour: Course) => cour.School)}
+                        { sem.Courses.map ( (cour: Course) => cour.ClassID)}
+                        { sem.Courses.map ( (cour: Course) => cour.CourseName)}
+                        { sem.Courses.map ( (cour: Course) => cour.Desc)}
+                        { sem.Courses.map ( (cour: Course) => cour.Credits)}
+                        <form onSubmit={handleEditCourseSubmit}>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>School</th>
+                                        <th>ClassID</th>
+                                        <th>Course Name</th>
+                                        <th>Desc</th>
+                                        <th>Credits</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {courses.map(course=>  
+                                        <Fragment key={course.ID}>
+                                            { editCourseId === course.ID ? 
+                                                <MutableRow 
+                                                    editCourseData = {editCourseData} 
+                                                    handleEditCourseChange = {handleEditCourseChange}
+                                                    handleCancelClick = {handleCancelClick}
+                                                /> 
+                                                :  
+                                                <ReadOnlyRow 
+                                                    course={course} 
+                                                    handleEditClick={handleEditClick}
+                                                    handleDeleteClick={handleDeleteClick}
+                                                />
+                                            } 
+                                        </Fragment>
+                                    )}
+                                </tbody>
+                            </table>
+                        </form>
+                    </div>           
+                )}
             </div>
+            <button className = "add-semester" type = "button" 
+                onClick= {() => addSemester(plan)}>Add Semester</button>
+            <button className = "delete-semester" type = "button" 
+                onClick= {() => deleteSemester(plan)}>Delete Current Semester</button>
+            <button className = "clear-semesters" type = "button" 
+                onClick= {() => clearSemesters(plan)}>Clear All Semesters</button>
+            <form onSubmit={handleAddCourseSubmit}>
+
+                <input 
+                    type ="text"
+                    name = "School"
+                    required= {true}
+                    placeholder = "Enter a School."
+                    onChange={handleAddCourseChange}
+                />
+                <input 
+                    type = "number"
+                    name = "ClassID"
+                    required = {true}
+                    placeholder = "Enter a Class ID."
+                    onChange={handleAddCourseChange}
+                />
+                <input 
+                    type ="text"
+                    name = "CourseName"
+                    required = {true}
+                    placeholder = "Enter a Course Name."
+                    onChange={handleAddCourseChange}
+                />
+                <input 
+                    type ="text"
+                    name = "Desc"
+                    required = {true}
+                    placeholder = "Enter a Class Description."
+                    onChange={handleAddCourseChange}
+                />
+                <input 
+                    type ="number"
+                    name = "Credits"
+                    required = {true}
+                    placeholder = "Enter a Credit Amount."
+                    onChange={handleAddCourseChange}
+                />
+                <button type="submit">Add Course</button>
+            </form>
             <div className="col-4">
                 <div className="full-column">
                     <ProSidebar className="sidebar">
@@ -258,6 +305,5 @@ const App = () : JSX.Element => {
             </div>
         </div>  
     </div>;
-};
-
+}
 export default App;
