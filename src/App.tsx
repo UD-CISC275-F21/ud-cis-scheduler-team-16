@@ -134,15 +134,16 @@ const App = () : JSX.Element => {
         setEditCourseId("");
     };
 
-    const handleDeleteClick = (plan : Semester[]) => {
+    const handleDeleteClick = (course : Course) => {
         const newPlan = plan.map(inner =>{ 
             return {...inner}; 
         });
-        const semIndex = plan.findIndex((semester: Semester) => semester.ID === currentSemesterID);
-        const courIndex = plan[semIndex].Courses.findIndex((course: Course) => course.ID === currentCourseID);
+        const semIndex = plan.findIndex(semester => semester.ID === currentSemesterID);
+        const courIndex = plan[semIndex].Courses.findIndex(course => course.ID === currentCourseID);
 
 
         newPlan[semIndex].Courses.splice(courIndex, 1);
+        setCurrentCourseID("");
         setPlan(newPlan);
     };
 
@@ -176,6 +177,8 @@ const App = () : JSX.Element => {
 
         newPlan.splice(index, 1);
         setPlan(newPlan);
+        setCurrentSemesterID("");
+        setSemNum(semNum-1);
     }
 
     function clearSemesters(plan : Semester[]){
