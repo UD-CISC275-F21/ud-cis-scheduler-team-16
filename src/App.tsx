@@ -8,7 +8,6 @@ import "./App.css";
 //import semesterData from "./components/semester-list.json";
 import { Course } from "./components/course";
 import { Semester } from "./components/semester";
-//import { Plan } from "./components/plan";
 import ReadOnlyRow from "./components/ReadOnlyRow";
 import MutableRow from "./components/MutableRow";
 import { WriteMessage } from "./components/WelcomeMessage";
@@ -23,12 +22,17 @@ import { customModal } from "./components/WelcomeMessage";
 */
 
 const App = () : JSX.Element => {
+    //Const Var
+    const LOCAL_STORAGE_PLAN = "fouryearplanner_plan";
+    const INITIAL_PLAN: Semester[] = [
+        { ID: "0", SemesterName: "Semester 1", Courses: [] }
+    ];
     //Hooks
-    const [plan, setPlan] = useState<Semester[]>([]);
+    const [plan, setPlan] = useState<Semester[]>(load());
     const [currentSemesterID, setCurrentSemesterID]= useState("");
     const [currentCourseID, setCurrentCourseID] = useState("");
     const [modalOpen, setOpen] = useState(true); // For welcome message
-    const [semNum, setSemNum] = useState(1);
+    const [semNum, setSemNum] = useState(2);
     const [addCourseData, setAddFormData] = useState<Course>({
         ID: "aslkdjfldskjf",
         School: "CISC",
@@ -203,6 +207,23 @@ const App = () : JSX.Element => {
         setCurrentCourseID("");
     }
 
+    function save(){ 
+        localStorage.setItem(LOCAL_STORAGE_PLAN, JSON.stringify(plan));
+    }
+
+    function load() : Semester[] {
+        const rawPlan: string | null = localStorage.getItem(LOCAL_STORAGE_PLAN);
+        if (rawPlan === null) {
+            return [...INITIAL_PLAN];
+        } else {
+            return JSON.parse(rawPlan);
+        }
+    }
+
+    function clearSave(){
+        localStorage.setItem(LOCAL_STORAGE_PLAN, JSON.stringify(INITIAL_PLAN));
+    }
+
     return(
         <div className = "App">
             <Modal
@@ -224,7 +245,11 @@ const App = () : JSX.Element => {
                     <button className = "edit-semester" type = "button" 
                         onClick= {() => clearSemesters(plan)}>Clear All Semesters</button>
                     <button className = "edit-semester" type = "button" 
-                        onClick= {() => clearClasses(plan)}>Clear All Classes From Selected Semester</button><br />
+                        onClick= {() => clearClasses(plan)}>Clear All Classes From Selected Semester</button>
+                    <button className = "edit-semester" type = "button" 
+                        onClick= {() => save()}>Save Plan</button>
+                    <button className = "edit-semester" type = "button" 
+                        onClick= {() => clearSave()}>Clear Current Save state</button>
                     <br />
                 </div>
             </div>
