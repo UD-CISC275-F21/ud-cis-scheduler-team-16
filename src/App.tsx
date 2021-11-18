@@ -209,6 +209,7 @@ const App = () : JSX.Element => {
 
     function save(){ 
         localStorage.setItem(LOCAL_STORAGE_PLAN, JSON.stringify(plan));
+        alert("Plan saved! This plan will be loaded whenever you load back into this page.");
     }
 
     function load() : Semester[] {
@@ -222,6 +223,7 @@ const App = () : JSX.Element => {
 
     function clearSave(){
         localStorage.setItem(LOCAL_STORAGE_PLAN, JSON.stringify(INITIAL_PLAN));
+        alert("Save cleared! Refresh your page to start again.");
     }
 
     return(
@@ -249,8 +251,6 @@ const App = () : JSX.Element => {
                     <br />
                 </div>
             </div>
-            <p>Current Semester: {currentSemesterID}</p>
-            <p>Current Course: {currentCourseID}</p>
             <Accordion flush>
                 { plan.map ( (sem: Semester) =>
                     <Accordion.Item eventKey= {sem.ID}  key = {sem.ID}>
