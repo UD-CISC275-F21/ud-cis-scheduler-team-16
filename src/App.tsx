@@ -139,7 +139,7 @@ const App = () : JSX.Element => {
             return {...inner, Courses: [...inner.Courses]}; 
         });
         const semIndex = plan.findIndex(semester => semester.ID === currentSemesterID);
-        const courIndex = plan[semIndex].Courses.findIndex(course => course.ID === currentCourseID);
+        const courIndex = plan[semIndex].Courses.findIndex(course => course.ID === cour.ID);
 
 
         newPlan[semIndex].Courses.splice(courIndex, 1);        
