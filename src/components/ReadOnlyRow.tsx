@@ -1,19 +1,20 @@
 import React from "react";
 import { Course } from "./course";
 import "../App.css";
+import "../App.tsx";
 
-const ReadOnlyRow = ({ course, handleEditClick, handleDeleteClick }:
-    {course : Course , handleEditClick: (event: React.MouseEvent, course: Course) => void, handleDeleteClick: (courseId: string) => void}) : JSX.Element => {
-    return(
-        <tr key={course.ID}>
-            <td>{course.School}</td>
-            <td>{course.ClassID}</td>
-            <td>{course.CourseName}</td>
-            <td>{course.Desc}</td>
-            <td>{course.Credits}</td>
+const ReadOnlyRow = ({ cour, setCurrentCourseID, handleEditClick, handleDeleteClick }:
+    {cour: Course , setCurrentCourseID: (value: React.SetStateAction<string>) => void, handleEditClick: (event: React.MouseEvent, cour: Course) => void, handleDeleteClick: (event: React.MouseEvent, cour: Course) => void}) : JSX.Element => {
+    return( 
+        <tr key= {cour.ID} onClick= {() => setCurrentCourseID(cour.ID)}>
+            <td>{cour.School}</td>
+            <td>{cour.ClassID}</td>
+            <td>{cour.CourseName}</td>
+            <td>{cour.Desc}</td>
+            <td>{cour.Credits}</td>
             <td>
-                <button className= "edit-class" type= "button" onClick={(event) => handleEditClick(event, course)}></button>
-                <button className= "delete-class" type= "button" onClick={()=> handleDeleteClick(course.ID)}></button>
+                <button className= "edit-class" type= "button" onClick={(event) => handleEditClick(event, cour)}></button>
+                <button className= "delete-class" type= "button" onClick={(event)=> handleDeleteClick(event, cour)}></button>
             </td>
         </tr> 
     );
