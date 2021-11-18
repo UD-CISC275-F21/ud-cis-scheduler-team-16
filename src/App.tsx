@@ -59,7 +59,7 @@ const App = () : JSX.Element => {
     const handleEditClick = (event: React.MouseEvent, plan: Semester[])=> {
         event.preventDefault();
         const semIndex = plan.findIndex((semester: Semester) => semester.ID === currentSemesterID);
-        const courIndex = plan[semIndex].Courses.findIndex((course: Course) => course.ID === currentCourseID)
+        const courIndex = plan[semIndex].Courses.findIndex((course: Course) => course.ID === currentCourseID);
         setEditCourseId(plan[semIndex].Courses[courIndex].ID);
 
         const courseValues = {
@@ -131,7 +131,7 @@ const App = () : JSX.Element => {
         setEditCourseId("");
     };
 
-    const handleDeleteClick = (currentCourseID: String) => {
+    const handleDeleteClick = (currentCourseID: string) => {
         const newPlan = plan.map(inner =>{ 
             return {...inner}; 
         });
@@ -280,7 +280,7 @@ const App = () : JSX.Element => {
                 />
                 <button type="submit">Add Course</button>
                 <button className = "add-semester" type = "button" 
-                onClick= {() => addSemester(plan)}>Add Semester</button>
+                    onClick= {() => addSemester(plan)}>Add Semester</button>
                 <button className = "delete-semester" type = "button" 
                     onClick= {() => deleteSemester(plan)}>Delete Selected Semester</button>
                 <button className = "clear-semesters" type = "button" 

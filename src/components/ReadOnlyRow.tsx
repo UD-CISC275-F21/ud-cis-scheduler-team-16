@@ -1,11 +1,11 @@
 import React from "react";
-import { Semester } from "./semester"
-import { Course } from "./course"
+import { Semester } from "./semester";
+import { Course } from "./course";
 import "../App.css";
 import "../App.tsx";
 
 const ReadOnlyRow = ({ plan, currentCourseID, setCurrentSemesterID, handleEditClick, handleDeleteClick }:
-    {plan: Semester[] ,currentCourseID : String, setCurrentSemesterID: (value: React.SetStateAction<string>) => void, handleEditClick: (event: React.MouseEvent, plan: Semester[]) => void, handleDeleteClick: (currentCourseID: String) => void}) : JSX.Element => {
+    {plan: Semester[] ,currentCourseID : string, setCurrentSemesterID: (value: React.SetStateAction<string>) => void, handleEditClick: (event: React.MouseEvent, plan: Semester[]) => void, handleDeleteClick: (currentCourseID: string) => void}) : JSX.Element => {
     return(
         <>
             { plan.map ( (sem: Semester) => 
