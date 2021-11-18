@@ -1,4 +1,4 @@
-//import React from "react";
+import React from "react";
 import "../App.css";
 import { Accordion } from "react-bootstrap";
 import AccordionItem from "react-bootstrap/esm/AccordionItem";
