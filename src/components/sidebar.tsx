@@ -24,7 +24,7 @@ export const loadSidebarContent = (schoolName: string): JSX.Element => {
     );
 };
 
-const countCourses = (schoolName: string) => {
+/*const countCourses = (schoolName: string) => {
     let count = 0;
     const courses = JSON.parse("class-list");
     for(let tempID = 0; courses.length>=tempID; tempID++){
@@ -34,7 +34,7 @@ const countCourses = (schoolName: string) => {
     }
         
     return count;
-};
+};*/
 
 
 export const loadSidebar = (schoolName: string): JSX.Element => {

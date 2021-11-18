@@ -68,7 +68,7 @@ form * {
   width: 70px;
   height: 60px;
   border: transparent;
-  opacity: .6;
+  opacity: 0.6;
   background-repeat: no-repeat;
   background-position-y: center;
   background-position-x: center;
@@ -160,7 +160,7 @@ form * {
   text-align: center;
 }
 
-.welcome-message-header{
+.welcome-message-header {
   text-align: center;
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
@@ -264,4 +264,21 @@ padding-top: 15%;
 
 .delete-semester:hover{
   opacity: 1.0;
+}
+
+/*Below is for the accordion */
+.accordion { /* Default State */
+  background-color: rgb(230, 230, 230);
+  color:rgb(0, 0, 0);
+  cursor: crosshair;
+  padding: 2px;
+  width: 70%;
+  text-align: left;
+  border: 5px;
+  outline: 5px;
+  transition: 0.45s;
+}
+
+.active, .accordion:hover{ /*When the button is clicked, or a mouse is hovering over the button */
+  background-color: rgb(101, 145, 226);
 }
