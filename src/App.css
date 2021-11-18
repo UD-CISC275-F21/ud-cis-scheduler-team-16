@@ -68,7 +68,7 @@ form * {
   width: 70px;
   height: 60px;
   border: transparent;
-  opacity: .6;
+  opacity: 0.6;
   background-repeat: no-repeat;
   background-position-y: center;
   background-position-x: center;
@@ -160,7 +160,7 @@ form * {
   text-align: center;
 }
 
-.welcome-message-header{
+.welcome-message-header {
   text-align: center;
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
