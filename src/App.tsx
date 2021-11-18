@@ -61,8 +61,6 @@ const App = () : JSX.Element => {
 
     const handleEditClick = (event: React.MouseEvent, cour: Course)=> {
         event.preventDefault();
-        //const semIndex = plan.findIndex((semester: Semester) => semester.ID === currentSemesterID);
-        //const courIndex = plan[semIndex].Courses.findIndex((course: Course) => course.ID === currentCourseID);
 
         const courseValues = {
             ID: currentCourseID,
@@ -135,7 +133,8 @@ const App = () : JSX.Element => {
         setCurrentCourseID("");
     };
 
-    const handleDeleteClick = (cour: Course) => {
+    const handleDeleteClick = (event: React.MouseEvent, cour: Course) => {
+        event.preventDefault();
         const newPlan = plan.map(inner =>{ 
             return {...inner, Courses: [...inner.Courses]}; 
         });
@@ -143,9 +142,9 @@ const App = () : JSX.Element => {
         const courIndex = plan[semIndex].Courses.findIndex(course => course.ID === currentCourseID);
 
 
-        newPlan[semIndex].Courses.splice(courIndex, 1);
-        setCurrentCourseID("");
+        newPlan[semIndex].Courses.splice(courIndex, 1);        
         setPlan(newPlan);
+        setCurrentCourseID("");
     };
 
 
