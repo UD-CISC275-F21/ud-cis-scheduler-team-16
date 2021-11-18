@@ -1,12 +1,16 @@
 import React from "react";
-import "../App.css";
 import { Accordion } from "react-bootstrap";
 import AccordionItem from "react-bootstrap/esm/AccordionItem";
 import AccordionHeader from "react-bootstrap/esm/AccordionHeader";
 import AccordionBody from "react-bootstrap/esm/AccordionBody";
 import "../App.css";
+import App from "../App";
 
-export const loadSidebarContent = (schoolName: string): JSX.Element => {
+interface LoadSidebarProps {
+    schoolName: string
+}
+
+const LoadSidebarContent = ({schoolName}: LoadSidebarProps): JSX.Element => {
     return(
         <div className="card">
             <div className="card-body">
@@ -37,14 +41,7 @@ const countCourses = (schoolName: string) => {
 };
 
 
-export const loadSidebar = (schoolName: string): JSX.Element => {
-    /*
-    let courseNumber = {countCourses(schoolName): string};
-    let count = 0;
-    while(count === courseNumber){
-        count++;
-    }
-    */
+export const LoadSidebar = ({schoolName}: LoadSidebarProps): JSX.Element => {
 
     return(
         <div>
@@ -52,7 +49,7 @@ export const loadSidebar = (schoolName: string): JSX.Element => {
                 <AccordionItem eventKey= "0">
                     <AccordionHeader>{schoolName}</AccordionHeader>
                     <AccordionBody>
-                        {loadSidebarContent(schoolName)}
+                        <LoadSidebarContent schoolName={schoolName}></LoadSidebarContent>
                     </AccordionBody>
                 </AccordionItem>
             </Accordion>

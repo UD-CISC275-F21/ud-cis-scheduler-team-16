@@ -13,7 +13,7 @@ import  Modal from "react-modal";
 import { WriteMessage } from "./components/WelcomeMessage";
 import { customModal } from "./components/WelcomeMessage";
 import { ProSidebar, Menu, SidebarHeader, SidebarFooter, SidebarContent } from "react-pro-sidebar";
-import { loadSidebar } from "./components/sidebar";
+import { LoadSidebar } from "./components/sidebar";
 
 /* Resources that assisted in the making of this:
 1. Basis of the semester table: https://youtu.be/dYjdzpZv5yc
@@ -292,16 +292,9 @@ const App = () : JSX.Element => {
                         </SidebarHeader>
                         <SidebarContent>
                             <Menu iconShape="square">
-                                {loadSidebar("MATH")}
-                                {loadSidebar("CISC")}
-                                {loadSidebar("EGGG")}
-                                {loadSidebar("HIST")}
-                                {loadSidebar("ENGL")}
+                                <LoadSidebar schoolName="CISC" ></LoadSidebar>
                             </Menu>
                         </SidebarContent>
-                        <SidebarFooter>
-
-                        </SidebarFooter>
                     </ProSidebar>
                 </div>
             </div>
