@@ -1,4 +1,5 @@
 import React, { useState, Fragment } from "react";
+import { Accordion } from "react-bootstrap";
 import  Modal from "react-modal";
 import { nanoid } from "nanoid";
 import "./App.css";
@@ -209,39 +210,45 @@ const App = () : JSX.Element => {
             <button className="refresh-logo" onClick={refreshPage}></button> 
             <h1 className="header">UD CIS Scheduler</h1>
             <h2>Current Semester: {currentSemesterID}</h2>
-            <form onSubmit={handleEditCourseSubmit}>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>School</th>
-                            <th>ClassID</th>
-                            <th>Course Name</th>
-                            <th>Desc</th>
-                            <th>Credits</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <Fragment key={currentSemesterID}>
-                            { editCourseId === currentCourseID ? 
-                                <MutableRow 
-                                    editCourseData = {editCourseData} 
-                                    handleEditCourseChange = {handleEditCourseChange}
-                                    handleCancelClick = {handleCancelClick}
-                                /> 
-                                :  
-                                <ReadOnlyRow 
-                                    plan={plan} 
-                                    handleEditClick={handleEditClick}
-                                    handleDeleteClick={handleDeleteClick}
-                                    currentCourseID={currentCourseID}
-                                    setCurrentSemesterID={setCurrentSemesterID}
-                                />
-                            } 
-                        </Fragment>
-                    </tbody>
-                </table>
-            </form>
+            { plan.map ( (sem: Semester) => 
+                <form key= {sem.ID} onClick= {() => setCurrentSemesterID(sem.ID)} onSubmit={handleEditCourseSubmit}>
+                    {sem.SemesterName} <br />
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>School</th>
+                                <th>ClassID</th>
+                                <th>Course Name</th>
+                                <th>Desc</th>
+                                <th>Credits</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            { sem.Courses.map ( (cour: Course) =>
+                                <Fragment key={currentSemesterID}>
+                                    { editCourseId === currentCourseID ? 
+                                        <MutableRow 
+                                            editCourseData = {editCourseData} 
+                                            handleEditCourseChange = {handleEditCourseChange}
+                                            handleCancelClick = {handleCancelClick}
+                                        /> 
+                                        :  
+                                        <ReadOnlyRow 
+                                            cour = {cour}
+                                            handleEditClick={handleEditClick}
+                                            handleDeleteClick={handleDeleteClick}
+                                            currentCourseID={currentCourseID}
+                                            setCurrentSemesterID={setCurrentSemesterID}
+                                            plan = {plan}
+                                        />
+                                    } 
+                                </Fragment>
+                            )}
+                        </tbody>
+                    </table>
+                </form>
+            )}
             <form onSubmit={handleAddCourseSubmit}>
                 <input 
                     type ="text"
@@ -279,15 +286,15 @@ const App = () : JSX.Element => {
                     onChange={handleAddCourseChange}
                 />
                 <button type="submit">Add Course</button>
-                <button className = "add-semester" type = "button" 
-                    onClick= {() => addSemester(plan)}>Add Semester</button>
-                <button className = "delete-semester" type = "button" 
-                    onClick= {() => deleteSemester(plan)}>Delete Selected Semester</button>
-                <button className = "clear-semesters" type = "button" 
-                    onClick= {() => clearSemesters(plan)}>Clear All Semesters</button>
-                <button className = "clear-classes" type = "button" 
-                    onClick= {() => clearClasses(plan)}>Clear All Classes From Selected Semester</button>
-            </form>
+            </form><br /><br />
+            <button className = "add-semester" type = "button" 
+                onClick= {() => addSemester(plan)}>Add Semester</button><br />
+            <button className = "delete-semester" type = "button" 
+                onClick= {() => deleteSemester(plan)}>Delete Selected Semester</button><br />
+            <button className = "clear-semesters" type = "button" 
+                onClick= {() => clearSemesters(plan)}>Clear All Semesters</button><br />
+            <button className = "clear-classes" type = "button" 
+                onClick= {() => clearClasses(plan)}>Clear All Classes From Selected Semester</button><br />
         </div>
         
     );
