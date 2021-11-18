@@ -13,7 +13,7 @@ import MutableRow from "./components/MutableRow";
 import { WriteMessage } from "./components/WelcomeMessage";
 import { customModal } from "./components/WelcomeMessage";
 //import { ProSidebar, Menu, SidebarHeader, SidebarFooter, SidebarContent } from "react-pro-sidebar";
-import { loadSidebar } from "./components/sidebar";
+//import { loadSidebar } from "./components/sidebar";
 
 /* Resources that assisted in the making of this:
 1. Basis of the semester table: https://youtu.be/dYjdzpZv5yc
@@ -134,7 +134,7 @@ const App = () : JSX.Element => {
         setEditCourseId("");
     };
 
-    const handleDeleteClick = (currentCourseID: string) => {
+    const handleDeleteClick = (plan : Semester[]) => {
         const newPlan = plan.map(inner =>{ 
             return {...inner}; 
         });
@@ -197,6 +197,7 @@ const App = () : JSX.Element => {
         
         newPlan[index].Courses = [];
         setPlan(newPlan);
+        setCurrentCourseID("");
     }
 
     return(
@@ -209,17 +210,29 @@ const App = () : JSX.Element => {
             >
                 <WriteMessage closeModal={closeModal}></WriteMessage>
             </Modal>
-            <button className="refresh-logo" onClick={refreshPage}></button> 
-            <h1 className="header">UD CIS Scheduler</h1>
-            <h2>Current Semester: {currentSemesterID}</h2>
-            <h2>Current Course: {currentCourseID}</h2>
+            <div className="row">
+                <div className="col-8">
+                    <h1 className="header"><button className="refresh-logo" onClick={refreshPage}></button> UD CIS Scheduler</h1>
+                    <br />
+                    <button className = "edit-semester" type = "button" 
+                        onClick= {() => addSemester(plan)}>Add Semester</button>
+                    <button className = "edit-semester" type = "button" 
+                        onClick= {() => deleteSemester(plan)}>Delete Current Semester</button>
+                    <button className = "edit-semester" type = "button" 
+                        onClick= {() => clearSemesters(plan)}>Clear All Semesters</button>
+                    <button className = "edit-semester" type = "button" 
+                        onClick= {() => clearClasses(plan)}>Clear All Classes From Selected Semester</button><br />
+                    <br />
+                </div>
+            </div>
+            <p>Current Semester: {currentSemesterID}</p>
+            <p>Current Course: {currentCourseID}</p>
             <Accordion flush>
                 { plan.map ( (sem: Semester) =>
                     <Accordion.Item eventKey= {sem.ID}  key = {sem.ID}>
                         <Accordion.Header onClick= {() => setCurrentSemesterID(sem.ID)}>{sem.SemesterName}</Accordion.Header>
                         <Accordion.Body>
                             <form onSubmit={handleEditCourseSubmit}>
-                                {sem.SemesterName} <br />
                                 <table>
                                     <thead>
                                         <tr>
@@ -243,11 +256,10 @@ const App = () : JSX.Element => {
                                                     :  
                                                     <ReadOnlyRow 
                                                         cour = {cour}
+                                                        plan = {plan}
                                                         handleEditClick={handleEditClick}
                                                         handleDeleteClick={handleDeleteClick}
-                                                        currentCourseID={currentCourseID}
                                                         setCurrentSemesterID={setCurrentSemesterID}
-                                                        plan = {plan}
                                                     />
                                                 } 
                                             </Fragment>
@@ -296,15 +308,7 @@ const App = () : JSX.Element => {
                     onChange={handleAddCourseChange}
                 />
                 <button type="submit">Add Course</button>
-            </form><br /><br />
-            <button className = "add-semester" type = "button" 
-                onClick= {() => addSemester(plan)}>Add Semester</button><br />
-            <button className = "delete-semester" type = "button" 
-                onClick= {() => deleteSemester(plan)}>Delete Selected Semester</button><br />
-            <button className = "clear-semesters" type = "button" 
-                onClick= {() => clearSemesters(plan)}>Clear All Semesters</button><br />
-            <button className = "clear-classes" type = "button" 
-                onClick= {() => clearClasses(plan)}>Clear All Classes From Selected Semester</button><br />
+            </form>
         </div>
         
     );
