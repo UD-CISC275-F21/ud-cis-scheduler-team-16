@@ -49,14 +49,14 @@ form * {
   width: 70px;
   height: 60px;
   border: transparent;
-  opacity: 60%;
+  opacity: .6;
   background-repeat: no-repeat;
   background-position-y: center;
   background-position-x: center;
 }
 
 .delete-class:hover {
-  opacity: 100%
+  opacity: 1.0;
 }
 
 .edit-class {
@@ -68,14 +68,14 @@ form * {
   width: 70px;
   height: 60px;
   border: transparent;
-  opacity: 60%;
+  opacity: .6;
   background-repeat: no-repeat;
   background-position-y: center;
   background-position-x: center;
 }
 
 .edit-class:hover {
-  opacity: 100%
+  opacity: 1.0;
 }
 
 .save-class {
@@ -87,14 +87,14 @@ form * {
   width: 70px;
   height: 60px;
   border: transparent;
-  opacity: 60%;
+  opacity: .6;;
   background-repeat: no-repeat;
   background-position-y: center;
   background-position-x: center;
 }
 
 .save-class:hover {
-  opacity: 100%
+  opacity: 1.0;
 }
 
 .cancel-class{
@@ -106,14 +106,14 @@ form * {
   width: 70px;
   height: 60px;
   border: transparent;
-  opacity: 60%;
+  opacity: .6;
   background-repeat: no-repeat;
   background-position-y: center;
   background-position-x: center;
 }
 
 .cancel-class:hover{
-  opacity: 100%;
+  opacity: 1.0;
 }
 
 .modal-close {
@@ -125,13 +125,13 @@ form * {
   width: 50px;
   height: 35px;
   border: transparent;
-  opacity: 60%;
+  opacity: .6;
   background-repeat: no-repeat;
   background-position-y: 5px;
 }
 
 .modal-close:hover {
-  opacity: 100%;
+  opacity: 1.0;
 }
 
 .refresh-logo {
@@ -145,7 +145,7 @@ form * {
 }
 
 .header {
-  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-weight: bold;
 }
 
 .welcome-message{
@@ -169,4 +169,61 @@ input{
   border-radius: 15px;
   padding: 4px; 
   margin-right: 3px;
+}
+
+.sidebar-header{
+  text-align: center;
+font-weight: bold;
+padding-bottom: 10px;
+padding-top: 15%;
+
+}
+
+.full-column{
+  border-style: solid;
+  border-left-color: rgba(10, 10, 10, .3);
+  border-right-color: transparent;
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+  height: 100%;
+  background-color: rgba(23, 1, 50, .05);
+}
+
+.add-class{
+  float: right;
+  background-color: transparent;
+  background-image: url("components/add.png");
+  background-size: 30px;
+  font-family:sans-serif;
+  width: 50px;
+  height: 35px;
+  border: transparent;
+  opacity: .6;
+  background-repeat: no-repeat;
+  background-position-y: center;
+  background-position-x: center;
+}
+
+.add-class:hover {
+  opacity: 1.0;
+
+}
+
+
+.edit-semester{
+  padding: 0.3em 1.2em;
+  margin:0 0.3em 0.3em 0;
+  border-radius: 25px;
+  text-decoration:none;
+  font-family:'Roboto',sans-serif;
+  font-weight:300;
+  color:black;
+  font-weight: bold;
+  background-color:#4eb5f1;
+  text-align:center;
+  border-color: transparent;
+}
+
+.edit-semester:hover{
+  background-color: #4095c6;
 }
