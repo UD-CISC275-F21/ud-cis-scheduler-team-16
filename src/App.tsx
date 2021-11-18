@@ -225,27 +225,23 @@ const App = () : JSX.Element => {
                         </tr>
                     </thead>
                     <tbody>
-                        {plan.map((sem: Semester)=>  
-                            <div key= {sem.ID} onClick= {() => setCurrentSemesterID(sem.ID)}>
-                                <Fragment key={currentSemesterID}>
-                                    { editCourseId === currentCourseID ? 
-                                        <MutableRow 
-                                            editCourseData = {editCourseData} 
-                                            handleEditCourseChange = {handleEditCourseChange}
-                                            handleCancelClick = {handleCancelClick}
-                                        /> 
-                                        :  
-                                        <ReadOnlyRow 
-                                            plan={plan} 
-                                            handleEditClick={handleEditClick}
-                                            handleDeleteClick={handleDeleteClick}
-                                            currentCourseID={currentCourseID}
-                                            setCurrentSemesterID={setCurrentSemesterID}
-                                        />
-                                    } 
-                                </Fragment>
-                            </div>
-                        )}
+                        <Fragment key={currentSemesterID}>
+                            { editCourseId === currentCourseID ? 
+                                <MutableRow 
+                                    editCourseData = {editCourseData} 
+                                    handleEditCourseChange = {handleEditCourseChange}
+                                    handleCancelClick = {handleCancelClick}
+                                /> 
+                                :  
+                                <ReadOnlyRow 
+                                    plan={plan} 
+                                    handleEditClick={handleEditClick}
+                                    handleDeleteClick={handleDeleteClick}
+                                    currentCourseID={currentCourseID}
+                                    setCurrentSemesterID={setCurrentSemesterID}
+                                />
+                            } 
+                        </Fragment>
                     </tbody>
                 </table>
             </form>
