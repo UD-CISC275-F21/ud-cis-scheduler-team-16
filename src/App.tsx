@@ -1,5 +1,5 @@
 import React, { useState, Fragment } from "react";
-import { Table } from "react-bootstrap";
+import  Modal from "react-modal";
 import { nanoid } from "nanoid";
 import "./App.css";
 //import courseData from "./components/class-list.json";
@@ -9,16 +9,13 @@ import { Semester } from "./components/semester";
 //import { Plan } from "./components/plan";
 import ReadOnlyRow from "./components/ReadOnlyRow";
 import MutableRow from "./components/MutableRow";
-import  Modal from "react-modal";
 import { WriteMessage } from "./components/WelcomeMessage";
 import { customModal } from "./components/WelcomeMessage";
 
 /* Resources that assisted in the making of this:
 1. Basis of the semester table: https://youtu.be/dYjdzpZv5yc
 2. NanoID description: https://www.npmjs.com/package/nanoid
-3. React-bootstrap accordion: https://react-bootstrap.github.io/components/accordion/
-4. Modal: https://www.npmjs.com/package/react-modal
-
+3. Modal: https://www.npmjs.com/package/react-modal
 */
 
 const App = () : JSX.Element => {

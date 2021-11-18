@@ -1,5 +1,4 @@
 import React from "react";
-import { Plan } from "./plan";
 import { Semester } from "./semester"
 import { Course } from "./course"
 import "../App.css";
