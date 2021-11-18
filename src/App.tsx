@@ -12,8 +12,8 @@ import { WriteMessage } from "./components/WelcomeMessage";
 import { customModal } from "./components/WelcomeMessage";
 //import courseData from "./components/class-list.json";
 //import semesterData from "./components/semester-list.json";
-//import { ProSidebar, Menu, SidebarHeader, SidebarFooter, SidebarContent } from "react-pro-sidebar";
-//import { loadSidebar } from "./components/sidebar";
+import { ProSidebar, Menu, SidebarHeader, SidebarFooter, SidebarContent } from "react-pro-sidebar";
+import { loadSidebar } from "./components/sidebar";
 
 /* Resources that assisted in the making of this:
 1. Basis of the semester table: https://youtu.be/dYjdzpZv5yc
@@ -341,7 +341,25 @@ const App = () : JSX.Element => {
                     </form>
                 </div>
                 <div className="col-4">
+                    <div className="full-column">
+                        <ProSidebar className="sidebar">
+                            <SidebarHeader className="sidebar-header">
+                            COURSE LIST
+                            </SidebarHeader>
+                            <SidebarContent>
+                                <Menu iconShape="square">
+                                    {loadSidebar("MATH")}
+                                    {loadSidebar("CISC")}
+                                    {loadSidebar("EGGG")}
+                                    {loadSidebar("HIST")}
+                                    {loadSidebar("ENGL")}
+                                </Menu>
+                            </SidebarContent>
+                            <SidebarFooter>
 
+                            </SidebarFooter>
+                        </ProSidebar>
+                    </div>
                 </div>
             </div>
         </div>
