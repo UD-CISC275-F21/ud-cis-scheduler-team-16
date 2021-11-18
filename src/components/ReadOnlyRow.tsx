@@ -7,20 +7,22 @@ import "../App.tsx";
 const ReadOnlyRow = ({ plan, currentCourseID, setCurrentSemesterID, handleEditClick, handleDeleteClick }:
     {plan: Semester[] ,currentCourseID : String, setCurrentSemesterID: (value: React.SetStateAction<string>) => void, handleEditClick: (event: React.MouseEvent, plan: Semester[]) => void, handleDeleteClick: (currentCourseID: String) => void}) : JSX.Element => {
     return(
-        { plan.map ( (sem: Semester) => 
-            <div key= {sem.ID} onClick= {() => setCurrentSemesterID(sem.ID)}>
-                {sem.SemesterName} <br />
-                <td>{ sem.Courses.map ( (cour: Course) => cour.School)}</td>
-                <td>{ sem.Courses.map ( (cour: Course) => cour.ClassID)}</td>
-                <td>{ sem.Courses.map ( (cour: Course) => cour.CourseName)}</td>
-                <td>{ sem.Courses.map ( (cour: Course) => cour.Desc)}</td>
-                <td>{ sem.Courses.map ( (cour: Course) => cour.Credits)}</td>
-                <td>
-                    <button className= "edit-class" type= "button" onClick={(event) => handleEditClick(event, plan)}></button>
-                    <button className= "delete-class" type= "button" onClick={()=> handleDeleteClick(currentCourseID)}></button>
-                </td>
-            </div> 
-        )}
+        <>
+            { plan.map ( (sem: Semester) => 
+                <div key= {sem.ID} onClick= {() => setCurrentSemesterID(sem.ID)}>
+                    {sem.SemesterName} <br />
+                    <td>{ sem.Courses.map ( (cour: Course) => cour.School)}</td>
+                    <td>{ sem.Courses.map ( (cour: Course) => cour.ClassID)}</td>
+                    <td>{ sem.Courses.map ( (cour: Course) => cour.CourseName)}</td>
+                    <td>{ sem.Courses.map ( (cour: Course) => cour.Desc)}</td>
+                    <td>{ sem.Courses.map ( (cour: Course) => cour.Credits)}</td>
+                    <td>
+                        <button className= "edit-class" type= "button" onClick={(event) => handleEditClick(event, plan)}></button>
+                        <button className= "delete-class" type= "button" onClick={()=> handleDeleteClick(currentCourseID)}></button>
+                    </td>
+                </div> 
+            )}
+        </>
     );
 };
 

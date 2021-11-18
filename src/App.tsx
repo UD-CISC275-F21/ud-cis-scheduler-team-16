@@ -122,7 +122,7 @@ const App = () : JSX.Element => {
             Credits: addCourseData.Credits
         };
 
-        newPlan = [...newPlan, newPlan[semIndex].Courses.push(newCourse)];
+        newPlan[semIndex].Courses.push(newCourse);
         setPlan(newPlan);
         setCurrentCourseID(newCourse.ID);
     };
