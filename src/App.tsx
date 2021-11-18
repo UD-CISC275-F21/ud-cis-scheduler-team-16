@@ -210,45 +210,53 @@ const App = () : JSX.Element => {
             <button className="refresh-logo" onClick={refreshPage}></button> 
             <h1 className="header">UD CIS Scheduler</h1>
             <h2>Current Semester: {currentSemesterID}</h2>
-            { plan.map ( (sem: Semester) => 
-                <form key= {sem.ID} onClick= {() => setCurrentSemesterID(sem.ID)} onSubmit={handleEditCourseSubmit}>
-                    {sem.SemesterName} <br />
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>School</th>
-                                <th>ClassID</th>
-                                <th>Course Name</th>
-                                <th>Desc</th>
-                                <th>Credits</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            { sem.Courses.map ( (cour: Course) =>
-                                <Fragment key={currentSemesterID}>
-                                    { editCourseId === currentCourseID ? 
-                                        <MutableRow 
-                                            editCourseData = {editCourseData} 
-                                            handleEditCourseChange = {handleEditCourseChange}
-                                            handleCancelClick = {handleCancelClick}
-                                        /> 
-                                        :  
-                                        <ReadOnlyRow 
-                                            cour = {cour}
-                                            handleEditClick={handleEditClick}
-                                            handleDeleteClick={handleDeleteClick}
-                                            currentCourseID={currentCourseID}
-                                            setCurrentSemesterID={setCurrentSemesterID}
-                                            plan = {plan}
-                                        />
-                                    } 
-                                </Fragment>
-                            )}
-                        </tbody>
-                    </table>
-                </form>
-            )}
+            <h2>Current Course: {currentCourseID}</h2>
+            <Accordion flush>
+                { plan.map ( (sem: Semester) =>
+                    <Accordion.Item eventKey= {sem.ID}  key = {sem.ID}>
+                        <Accordion.Header onClick= {() => setCurrentSemesterID(sem.ID)}>{sem.SemesterName}</Accordion.Header>
+                        <Accordion.Body>
+                            <form onSubmit={handleEditCourseSubmit}>
+                                {sem.SemesterName} <br />
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>School</th>
+                                            <th>ClassID</th>
+                                            <th>Course Name</th>
+                                            <th>Desc</th>
+                                            <th>Credits</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        { sem.Courses.map ( (cour: Course) =>
+                                            <Fragment key={currentSemesterID}>
+                                                { editCourseId === currentCourseID ? 
+                                                    <MutableRow 
+                                                        editCourseData = {editCourseData} 
+                                                        handleEditCourseChange = {handleEditCourseChange}
+                                                        handleCancelClick = {handleCancelClick}
+                                                    /> 
+                                                    :  
+                                                    <ReadOnlyRow 
+                                                        cour = {cour}
+                                                        handleEditClick={handleEditClick}
+                                                        handleDeleteClick={handleDeleteClick}
+                                                        currentCourseID={currentCourseID}
+                                                        setCurrentSemesterID={setCurrentSemesterID}
+                                                        plan = {plan}
+                                                    />
+                                                } 
+                                            </Fragment>
+                                        )}
+                                    </tbody>
+                                </table>
+                            </form>
+                        </Accordion.Body>
+                    </Accordion.Item>
+                )}
+            </Accordion>
             <form onSubmit={handleAddCourseSubmit}>
                 <input 
                     type ="text"
