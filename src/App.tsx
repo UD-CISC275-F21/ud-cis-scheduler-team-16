@@ -249,9 +249,6 @@ const App = () : JSX.Element => {
                     <button className = "edit-semester" type = "button" 
                         onClick= {() => clearSave()}>Clear Current Save state</button>
                     <br />
-                
-                    <p>Current Semester: {currentSemesterID}</p>
-                    <p>Current Course: {currentCourseID}</p>
                     <Accordion flush>
                         { plan.map ( (sem: Semester) =>
                             <Accordion.Item eventKey= {sem.ID}  key = {sem.ID}>

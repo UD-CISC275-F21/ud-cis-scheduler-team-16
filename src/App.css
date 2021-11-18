@@ -270,7 +270,7 @@ padding-top: 15%;
 .accordion { /* Default State */
   background-color: rgb(230, 230, 230);
   color:rgb(0, 0, 0);
-  cursor: crosshair;
+  cursor: cursor;
   padding: 2px;
   width: 70%;
   text-align: left;
