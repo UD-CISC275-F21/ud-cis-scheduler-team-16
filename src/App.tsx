@@ -241,11 +241,7 @@ const App = () : JSX.Element => {
                     <button className = "edit-semester" type = "button" 
                         onClick= {() => addSemester(plan)}>Add Semester</button>
                     <button className = "edit-semester" type = "button" 
-                        onClick= {() => deleteSemester(plan)}>Delete Current Semester</button>
-                    <button className = "edit-semester" type = "button" 
                         onClick= {() => clearSemesters(plan)}>Clear All Semesters</button>
-                    <button className = "edit-semester" type = "button" 
-                        onClick= {() => clearClasses(plan)}>Clear All Classes From Selected Semester</button>
                     <button className = "edit-semester" type = "button" 
                         onClick= {() => save()}>Save Plan</button>
                     <button className = "edit-semester" type = "button" 
@@ -293,6 +289,10 @@ const App = () : JSX.Element => {
                                         )}
                                     </tbody>
                                 </table>
+                                <button className = "clear-classes" type = "button" 
+                                    onClick= {() => clearClasses(plan)}></button>
+                                <button className = "delete-semester" type = "button" 
+                                    onClick= {() => deleteSemester(plan)}></button>
                             </form>
                         </Accordion.Body>
                     </Accordion.Item>
@@ -345,4 +345,27 @@ const App = () : JSX.Element => {
         
     );
 };
+
+/* sidebar in progress
+<div className="full-column">
+    <ProSidebar className="sidebar">
+        <SidebarHeader className="sidebar-header">
+        COURSE LIST
+        </SidebarHeader>
+        <SidebarContent>
+            <Menu iconShape="square">
+                {loadSidebar("MATH")}
+                {loadSidebar("CISC")}
+                {loadSidebar("EGGG")}
+                {loadSidebar("HIST")}
+                {loadSidebar("ENGL")}
+            </Menu>
+        </SidebarContent>
+        <SidebarFooter>
+
+        </SidebarFooter>
+    </ProSidebar>
+</div>
+
+*/
 export default App;
