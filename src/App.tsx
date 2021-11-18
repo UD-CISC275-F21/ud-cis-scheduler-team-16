@@ -4,14 +4,14 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import  Modal from "react-modal";
 import { nanoid } from "nanoid";
 import "./App.css";
-//import courseData from "./components/class-list.json";
-//import semesterData from "./components/semester-list.json";
 import { Course } from "./components/course";
 import { Semester } from "./components/semester";
 import ReadOnlyRow from "./components/ReadOnlyRow";
 import MutableRow from "./components/MutableRow";
 import { WriteMessage } from "./components/WelcomeMessage";
 import { customModal } from "./components/WelcomeMessage";
+//import courseData from "./components/class-list.json";
+//import semesterData from "./components/semester-list.json";
 //import { ProSidebar, Menu, SidebarHeader, SidebarFooter, SidebarContent } from "react-pro-sidebar";
 //import { loadSidebar } from "./components/sidebar";
 
@@ -289,10 +289,10 @@ const App = () : JSX.Element => {
                                         )}
                                     </tbody>
                                 </table>
-                                <button className = "clear-classes" type = "button" 
-                                    onClick= {() => clearClasses(plan)}></button>
-                                <button className = "delete-semester" type = "button" 
-                                    onClick= {() => deleteSemester(plan)}></button>
+                                <button className = "edit-semester" type = "button" 
+                                    onClick= {() => clearClasses(plan)}>Clear Classes</button>
+                                <button className = "edit-semester" type = "button" 
+                                    onClick= {() => deleteSemester(plan)}>Delete Semester</button>
                             </form>
                         </Accordion.Body>
                     </Accordion.Item>
