@@ -164,3 +164,9 @@ form * {
   text-align: center;
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
+input{
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  border-radius: 15px;
+  padding: 4px; 
+  margin-right: 3px;
+}
