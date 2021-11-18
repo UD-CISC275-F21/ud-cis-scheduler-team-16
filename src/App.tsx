@@ -28,7 +28,6 @@ const App = () : JSX.Element => {
     const [currentCourseID, setCurrentCourseID] = useState("");
     const [modalOpen, setOpen] = useState(true); // For welcome message
     const [semNum, setSemNum] = useState(1);
-    const [courNum, setCourNum] = useState(1);
     const [editCourseId, setEditCourseId] = useState("");
     const [addCourseData, setAddFormData] = useState<Course>({
         ID: "",
@@ -128,6 +127,7 @@ const App = () : JSX.Element => {
 
         newPlan = [...newPlan, newPlan[semIndex].Courses.push(newCourse)];
         setPlan(newPlan);
+        setCurrentCourseID(newCourse.ID);
     };
 
     const handleCancelClick = () => {
@@ -211,19 +211,7 @@ const App = () : JSX.Element => {
             </Modal>
             <button className="refresh-logo" onClick={refreshPage}></button> 
             <h1 className="header">UD CIS Scheduler</h1>
-            <div> 
-                <p>Current Semester: {currentSemesterID}</p>
-                { plan.map ( (sem: Semester) => 
-                    <div key= {sem.ID} onClick= {() => setCurrentSemesterID(sem.ID)}>
-                        {sem.SemesterName} <br />
-                        { sem.Courses.map ( (cour: Course) => cour.School)}
-                        { sem.Courses.map ( (cour: Course) => cour.ClassID)}
-                        { sem.Courses.map ( (cour: Course) => cour.CourseName)}
-                        { sem.Courses.map ( (cour: Course) => cour.Desc)}
-                        { sem.Courses.map ( (cour: Course) => cour.Credits)}
-                    </div>           
-                )}
-            </div>
+            <h2>Current Semester: {currentSemesterID}</h2>
             <form onSubmit={handleEditCourseSubmit}>
                 <table>
                     <thead>
