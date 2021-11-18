@@ -239,6 +239,8 @@ const App = () : JSX.Element => {
                                             plan={plan} 
                                             handleEditClick={handleEditClick}
                                             handleDeleteClick={handleDeleteClick}
+                                            currentCourseID={currentCourseID}
+                                            setCurrentSemesterID={setCurrentSemesterID}
                                         />
                                     } 
                                 </Fragment>

@@ -6,7 +6,7 @@ import "../App.css";
 import "../App.tsx";
 
 const ReadOnlyRow = ({ plan, currentCourseID, setCurrentSemesterID, handleEditClick, handleDeleteClick }:
-    {plan: Plan ,currentCourseID : String, setCurrentSemesterID: (value: React.SetStateAction<string>) => void, handleEditClick: (event: React.MouseEvent, plan: Semester[]) => void, handleDeleteClick: (currentCourseID: String) => void}) : JSX.Element => {
+    {plan: Semester[] ,currentCourseID : String, setCurrentSemesterID: (value: React.SetStateAction<string>) => void, handleEditClick: (event: React.MouseEvent, plan: Semester[]) => void, handleDeleteClick: (currentCourseID: String) => void}) : JSX.Element => {
     return(
         { plan.map ( (sem: Semester) => 
             <div key= {sem.ID} onClick= {() => setCurrentSemesterID(sem.ID)}>
