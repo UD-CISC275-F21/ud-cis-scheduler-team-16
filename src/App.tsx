@@ -212,127 +212,133 @@ const App = () : JSX.Element => {
             <div className="col-8">
                 <h1 className="header"><button className="refresh-logo" onClick={refreshPage}></button> UD CIS Scheduler</h1>
 
-                <button className = "add-semester" type = "button" 
-                onClick= {() => addSemester(plan)}>Add Semester</button><br />
-            <button className = "delete-semester" type = "button" 
-                onClick= {() => deleteSemester(plan)}>Delete Selected Semester</button><br />
-            <button className = "clear-semesters" type = "button" 
-                onClick= {() => clearSemesters(plan)}>Clear All Semesters</button><br />
-            <button className = "clear-classes" type = "button" 
-                onClick= {() => clearClasses(plan)}>Clear All Classes From Selected Semester</button><br />
-
-
-            <h2>Current Semester: {currentSemesterID}</h2>
-            <h2>Current Course: {currentCourseID}</h2>
-            <Accordion flush>
-                { plan.map ( (sem: Semester) =>
-                    <Accordion.Item eventKey= {sem.ID}  key = {sem.ID}>
-                        <Accordion.Header onClick= {() => setCurrentSemesterID(sem.ID)}>{sem.SemesterName}</Accordion.Header>
-                        <Accordion.Body>
-                            <form onSubmit={handleEditCourseSubmit}>
-                                {sem.SemesterName} <br />
-                                <table>
-                                    <thead>
-                                        <tr>
-                                            <th>School</th>
-                                            <th>ClassID</th>
-                                            <th>Course Name</th>
-                                            <th>Desc</th>
-                                            <th>Credits</th>
-                                            <th>Actions</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        { sem.Courses.map ( (cour: Course) =>
-                                            <Fragment key={currentSemesterID}>
-                                                { editCourseId === currentCourseID ? 
-                                                    <MutableRow 
-                                                        editCourseData = {editCourseData} 
-                                                        handleEditCourseChange = {handleEditCourseChange}
-                                                        handleCancelClick = {handleCancelClick}
-                                                    /> 
-                                                    :  
-                                                    <ReadOnlyRow 
-                                                        cour = {cour}
-                                                        handleEditClick={handleEditClick}
-                                                        handleDeleteClick={handleDeleteClick}
-                                                        currentCourseID={currentCourseID}
-                                                        setCurrentSemesterID={setCurrentSemesterID}
-                                                        plan = {plan}
-                                                    />
-                                                } 
-                                            </Fragment>
-                                        )}
-                                    </tbody>
-                                </table>
-                            </form>
-                        </Accordion.Body>
-                    </Accordion.Item>
-                )}
-            </Accordion>
-            <form onSubmit={handleAddCourseSubmit}>
-                <input 
-                    type ="text"
-                    name = "School"
-                    required= {true}
-                    placeholder = "Enter a School."
-                    onChange={handleAddCourseChange}
-                />
-                <input 
-                    type = "number"
-                    name = "ClassID"
-                    required = {true}
-                    placeholder = "Enter a Class ID."
-                    onChange={handleAddCourseChange}
-                />
-                <input 
-                    type ="text"
-                    name = "CourseName"
-                    required = {true}
-                    placeholder = "Enter a Course Name."
-                    onChange={handleAddCourseChange}
-                />
-                <input 
-                    type ="text"
-                    name = "Desc"
-                    required = {true}
-                    placeholder = "Enter a Class Description."
-                    onChange={handleAddCourseChange}
-                />
-                <input 
-                    type ="number"
-                    name = "Credits"
-                    required = {true}
-                    placeholder = "Enter a Credit Amount."
-                    onChange={handleAddCourseChange}
-                />
-                <button type="submit">Add Course</button>
-            </form><br /><br />
-            
+                <button className = "edit-semester" type = "button" 
+                    onClick= {() => addSemester(plan)}>Add Semester</button>
+                <button className = "edit-semester" type = "button" 
+                    onClick= {() => clearSemesters(plan)}>Clear All Semesters</button><br />
+                
+                <h2>Current Semester: {currentSemesterID}</h2>
+                <h2>Current Course: {currentCourseID}</h2>
+                <Accordion flush>
+                    { plan.map ( (sem: Semester) =>
+                        <Accordion.Item eventKey= {sem.ID}  key = {sem.ID}>
+                            <Accordion.Header onClick= {() => setCurrentSemesterID(sem.ID)}>{sem.SemesterName}
+                            
+                            </Accordion.Header>
+                            <Accordion.Body>
+                                <form onSubmit={handleEditCourseSubmit}>
+                                    {sem.SemesterName} <br />
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th>School</th>
+                                                <th>ClassID</th>
+                                                <th>Course Name</th>
+                                                <th>Desc</th>
+                                                <th>Credits</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            { sem.Courses.map ( (cour: Course) =>
+                                                <Fragment key={currentSemesterID}>
+                                                    { editCourseId === currentCourseID ? 
+                                                        <MutableRow 
+                                                            editCourseData = {editCourseData} 
+                                                            handleEditCourseChange = {handleEditCourseChange}
+                                                            handleCancelClick = {handleCancelClick}
+                                                        /> 
+                                                        :  
+                                                        <ReadOnlyRow 
+                                                            cour = {cour}
+                                                            handleEditClick={handleEditClick}
+                                                            handleDeleteClick={handleDeleteClick}
+                                                            currentCourseID={currentCourseID}
+                                                            setCurrentSemesterID={setCurrentSemesterID}
+                                                            plan = {plan}
+                                                        />
+                                                    } 
+                                                </Fragment>
+                                            )}
+                                        </tbody>
+                                    </table>
+                                </form>
+                                <button className = "clear-classes" type = "button" 
+                                    onClick= {() => clearClasses(plan)}></button>
+                                <button className = "delete-semester" type = "button" 
+                                    onClick= {() => deleteSemester(plan)}></button>
+                                
+                            </Accordion.Body>
+                        </Accordion.Item>
+                    )}
+                </Accordion>
+                <form onSubmit={handleAddCourseSubmit}>
+                    <input 
+                        type ="text"
+                        name = "School"
+                        required= {true}
+                        placeholder = "Enter a School."
+                        onChange={handleAddCourseChange}
+                    />
+                    <input 
+                        type = "number"
+                        name = "ClassID"
+                        required = {true}
+                        placeholder = "Enter a Class ID."
+                        onChange={handleAddCourseChange}
+                    />
+                    <input 
+                        type ="text"
+                        name = "CourseName"
+                        required = {true}
+                        placeholder = "Enter a Course Name."
+                        onChange={handleAddCourseChange}
+                    />
+                    <input 
+                        type ="text"
+                        name = "Desc"
+                        required = {true}
+                        placeholder = "Enter a Class Description."
+                        onChange={handleAddCourseChange}
+                    />
+                    <input 
+                        type ="number"
+                        name = "Credits"
+                        required = {true}
+                        placeholder = "Enter a Credit Amount."
+                        onChange={handleAddCourseChange}
+                    />
+                    <button type="submit">Add Course</button>
+                </form><br /><br />
+                
             </div>
             <div className="col-4">
-                <div className="full-column">
-                    <ProSidebar className="sidebar">
-                        <SidebarHeader className="sidebar-header">
-                        COURSE LIST
-                        </SidebarHeader>
-                        <SidebarContent>
-                            <Menu iconShape="square">
-                                {loadSidebar("MATH")}
-                                {loadSidebar("CISC")}
-                                {loadSidebar("EGGG")}
-                                {loadSidebar("HIST")}
-                                {loadSidebar("ENGL")}
-                            </Menu>
-                        </SidebarContent>
-                        <SidebarFooter>
-
-                        </SidebarFooter>
-                    </ProSidebar>
-                </div>
+                
             </div>
         </div>  
     </div>;
-
 };
+
+/* sidebar in progress
+<div className="full-column">
+    <ProSidebar className="sidebar">
+        <SidebarHeader className="sidebar-header">
+        COURSE LIST
+        </SidebarHeader>
+        <SidebarContent>
+            <Menu iconShape="square">
+                {loadSidebar("MATH")}
+                {loadSidebar("CISC")}
+                {loadSidebar("EGGG")}
+                {loadSidebar("HIST")}
+                {loadSidebar("ENGL")}
+            </Menu>
+        </SidebarContent>
+        <SidebarFooter>
+
+        </SidebarFooter>
+    </ProSidebar>
+</div>
+
+*/
 export default App;
