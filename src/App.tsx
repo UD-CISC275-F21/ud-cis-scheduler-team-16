@@ -248,104 +248,104 @@ const App = () : JSX.Element => {
                         onClick= {() => clearSave()}>Clear Current Save state</button>
                     <br />
                 
-            <p>Current Semester: {currentSemesterID}</p>
-            <p>Current Course: {currentCourseID}</p>
-            <Accordion flush>
-                { plan.map ( (sem: Semester) =>
-                    <Accordion.Item eventKey= {sem.ID}  key = {sem.ID}>
-                        <Accordion.Header onClick= {() => setCurrentSemesterID(sem.ID)}>{sem.SemesterName}</Accordion.Header>
-                        <Accordion.Body>
-                            <form onSubmit={handleEditCourseSubmit}>
-                                <table>
-                                    <thead>
-                                        <tr>
-                                            <th>School</th>
-                                            <th>ClassID</th>
-                                            <th>Course Name</th>
-                                            <th>Desc</th>
-                                            <th>Credits</th>
-                                            <th>Actions</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        { sem.Courses.map ( (cour: Course) =>
-                                            <Fragment key={cour.ID}>
-                                                { cour.ID === currentCourseID ? 
-                                                    <MutableRow 
-                                                        editCourseData = {editCourseData} 
-                                                        handleEditCourseChange = {handleEditCourseChange}
-                                                        handleCancelClick = {handleCancelClick}
-                                                    /> 
-                                                    :  
-                                                    <ReadOnlyRow 
-                                                        cour = {cour}
-                                                        handleEditClick={handleEditClick}
-                                                        handleDeleteClick={handleDeleteClick}
-                                                        setCurrentCourseID={setCurrentCourseID}
-                                                    />
-                                                } 
-                                            </Fragment>
-                                        )}
-                                    </tbody>
-                                </table>
-                                <button className = "edit-semester" type = "button" 
-                                    onClick= {() => clearClasses(plan)}>Clear Classes</button>
-                                <button className = "edit-semester" type = "button" 
-                                    onClick= {() => deleteSemester(plan)}>Delete Semester</button>
-                            </form>
-                        </Accordion.Body>
-                    </Accordion.Item>
-                )}
-            </Accordion>
-            <form onSubmit={handleAddCourseSubmit}>
-                <input 
-                    type ="text"
-                    name = "School"
-                    defaultValue={addCourseData.School}
-                    required= {true}
-                    placeholder = "Enter a School."
-                    onChange={handleAddCourseChange}
-                />
-                <input 
-                    type = "number"
-                    name = "ClassID"
-                    defaultValue={addCourseData.ClassID}
-                    required = {true}
-                    placeholder = "Enter a Class ID."
-                    onChange={handleAddCourseChange}
-                />
-                <input 
-                    type ="text"
-                    name = "CourseName"
-                    defaultValue={addCourseData.CourseName}
-                    required = {true}
-                    placeholder = "Enter a Course Name."
-                    onChange={handleAddCourseChange}
-                />
-                <input 
-                    type ="text"
-                    name = "Desc"
-                    defaultValue={addCourseData.Desc}
-                    required = {true}
-                    placeholder = "Enter a Class Description."
-                    onChange={handleAddCourseChange}
-                />
-                <input 
-                    type ="number"
-                    name = "Credits"
-                    defaultValue={addCourseData.Credits}
-                    required = {true}
-                    placeholder = "Enter a Credit Amount."
-                    onChange={handleAddCourseChange}
-                />
-                <button type="submit">Add Course</button>
-            </form>
-            </div>
-            <div className="col-4">
+                    <p>Current Semester: {currentSemesterID}</p>
+                    <p>Current Course: {currentCourseID}</p>
+                    <Accordion flush>
+                        { plan.map ( (sem: Semester) =>
+                            <Accordion.Item eventKey= {sem.ID}  key = {sem.ID}>
+                                <Accordion.Header onClick= {() => setCurrentSemesterID(sem.ID)}>{sem.SemesterName}</Accordion.Header>
+                                <Accordion.Body>
+                                    <form onSubmit={handleEditCourseSubmit}>
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th>School</th>
+                                                    <th>ClassID</th>
+                                                    <th>Course Name</th>
+                                                    <th>Desc</th>
+                                                    <th>Credits</th>
+                                                    <th>Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                { sem.Courses.map ( (cour: Course) =>
+                                                    <Fragment key={cour.ID}>
+                                                        { cour.ID === currentCourseID ? 
+                                                            <MutableRow 
+                                                                editCourseData = {editCourseData} 
+                                                                handleEditCourseChange = {handleEditCourseChange}
+                                                                handleCancelClick = {handleCancelClick}
+                                                            /> 
+                                                            :  
+                                                            <ReadOnlyRow 
+                                                                cour = {cour}
+                                                                handleEditClick={handleEditClick}
+                                                                handleDeleteClick={handleDeleteClick}
+                                                                setCurrentCourseID={setCurrentCourseID}
+                                                            />
+                                                        } 
+                                                    </Fragment>
+                                                )}
+                                            </tbody>
+                                        </table>
+                                        <button className = "edit-semester" type = "button" 
+                                            onClick= {() => clearClasses(plan)}>Clear Classes</button>
+                                        <button className = "edit-semester" type = "button" 
+                                            onClick= {() => deleteSemester(plan)}>Delete Semester</button>
+                                    </form>
+                                </Accordion.Body>
+                            </Accordion.Item>
+                        )}
+                    </Accordion>
+                    <form onSubmit={handleAddCourseSubmit}>
+                        <input 
+                            type ="text"
+                            name = "School"
+                            defaultValue={addCourseData.School}
+                            required= {true}
+                            placeholder = "Enter a School."
+                            onChange={handleAddCourseChange}
+                        />
+                        <input 
+                            type = "number"
+                            name = "ClassID"
+                            defaultValue={addCourseData.ClassID}
+                            required = {true}
+                            placeholder = "Enter a Class ID."
+                            onChange={handleAddCourseChange}
+                        />
+                        <input 
+                            type ="text"
+                            name = "CourseName"
+                            defaultValue={addCourseData.CourseName}
+                            required = {true}
+                            placeholder = "Enter a Course Name."
+                            onChange={handleAddCourseChange}
+                        />
+                        <input 
+                            type ="text"
+                            name = "Desc"
+                            defaultValue={addCourseData.Desc}
+                            required = {true}
+                            placeholder = "Enter a Class Description."
+                            onChange={handleAddCourseChange}
+                        />
+                        <input 
+                            type ="number"
+                            name = "Credits"
+                            defaultValue={addCourseData.Credits}
+                            required = {true}
+                            placeholder = "Enter a Credit Amount."
+                            onChange={handleAddCourseChange}
+                        />
+                        <button type="submit">Add Course</button>
+                    </form>
+                </div>
+                <div className="col-4">
 
+                </div>
             </div>
         </div>
-    </div>
         
     );
 };
