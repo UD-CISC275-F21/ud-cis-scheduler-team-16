@@ -1,5 +1,6 @@
 import React, { useState, Fragment } from "react";
 import { Accordion } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
 import  Modal from "react-modal";
 import { nanoid } from "nanoid";
 import "./App.css";
@@ -28,14 +29,13 @@ const App = () : JSX.Element => {
     const [currentCourseID, setCurrentCourseID] = useState("");
     const [modalOpen, setOpen] = useState(true); // For welcome message
     const [semNum, setSemNum] = useState(1);
-    const [editCourseId, setEditCourseId] = useState("");
     const [addCourseData, setAddFormData] = useState<Course>({
-        ID: "",
-        School: "",
-        ClassID: 0,
-        CourseName: "",
-        Desc: "",
-        Credits: 0
+        ID: "aslkdjfldskjf",
+        School: "CISC",
+        ClassID: 30,
+        CourseName: "Automata",
+        Desc: "Whatever",
+        Credits: 3
     });
     const[editCourseData, setEditCourseData] = useState<Course>
     ({
@@ -59,33 +59,33 @@ const App = () : JSX.Element => {
         setEditCourseData(newCourseData);
     };
 
-    const handleEditClick = (event: React.MouseEvent, plan: Semester[])=> {
+    const handleEditClick = (event: React.MouseEvent, cour: Course)=> {
         event.preventDefault();
-        const semIndex = plan.findIndex((semester: Semester) => semester.ID === currentSemesterID);
-        const courIndex = plan[semIndex].Courses.findIndex((course: Course) => course.ID === currentCourseID);
-        setEditCourseId(plan[semIndex].Courses[courIndex].ID);
+        //const semIndex = plan.findIndex((semester: Semester) => semester.ID === currentSemesterID);
+        //const courIndex = plan[semIndex].Courses.findIndex((course: Course) => course.ID === currentCourseID);
 
         const courseValues = {
-            ID: plan[semIndex].Courses[courIndex].ID,
-            School: plan[semIndex].Courses[courIndex].School,
-            ClassID: plan[semIndex].Courses[courIndex].ClassID,
-            CourseName: plan[semIndex].Courses[courIndex].CourseName,
-            Desc: plan[semIndex].Courses[courIndex].Desc,
-            Credits: plan[semIndex].Courses[courIndex].Credits
+            ID: currentCourseID,
+            School: cour.School,
+            ClassID: cour.ClassID,
+            CourseName: cour.CourseName,
+            Desc: cour.Desc,
+            Credits: cour.Credits
         };
 
         setEditCourseData(courseValues);
+        setCurrentCourseID("");
     };
 
     const handleEditCourseSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const newPlan = plan.map(inner =>{ 
-            return {...inner}; 
+            return {...inner, Courses: [...inner.Courses]}; 
         });
         const semIndex = plan.findIndex((semester: Semester) => semester.ID === currentSemesterID);
 
         const editedCourse:Course = {
-            ID: editCourseId,
+            ID: currentCourseID,
             School: editCourseData.School,
             ClassID: editCourseData.ClassID,
             CourseName: editCourseData.CourseName,
@@ -93,9 +93,10 @@ const App = () : JSX.Element => {
             Credits: editCourseData.Credits
         };
 
-        const courseIndex = plan[semIndex].Courses.findIndex((course: Course)=> course.ID === editCourseId);
+        const courseIndex = plan[semIndex].Courses.findIndex((course: Course)=> course.ID === currentCourseID);
         newPlan[semIndex].Courses[courseIndex] = editedCourse;
-        setEditCourseId("");
+        setPlan(newPlan);
+        setCurrentCourseID("");
     };
 
     const handleAddCourseChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -111,7 +112,7 @@ const App = () : JSX.Element => {
     const handleAddCourseSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const newPlan = plan.map(inner =>{ 
-            return {...inner}; 
+            return {...inner, Courses: [...inner.Courses]}; 
         });
 
         const semIndex = plan.findIndex((semester: Semester) => semester.ID === currentSemesterID);
@@ -127,16 +128,16 @@ const App = () : JSX.Element => {
 
         newPlan[semIndex].Courses.push(newCourse);
         setPlan(newPlan);
-        setCurrentCourseID(newCourse.ID);
+        setCurrentCourseID("");
     };
 
     const handleCancelClick = () => {
-        setEditCourseId("");
+        setCurrentCourseID("");
     };
 
-    const handleDeleteClick = (course : Course) => {
+    const handleDeleteClick = (cour: Course) => {
         const newPlan = plan.map(inner =>{ 
-            return {...inner}; 
+            return {...inner, Courses: [...inner.Courses]}; 
         });
         const semIndex = plan.findIndex(semester => semester.ID === currentSemesterID);
         const courIndex = plan[semIndex].Courses.findIndex(course => course.ID === currentCourseID);
@@ -249,8 +250,8 @@ const App = () : JSX.Element => {
                                     </thead>
                                     <tbody>
                                         { sem.Courses.map ( (cour: Course) =>
-                                            <Fragment key={currentSemesterID}>
-                                                { editCourseId === currentCourseID ? 
+                                            <Fragment key={cour.ID}>
+                                                { cour.ID === currentCourseID ? 
                                                     <MutableRow 
                                                         editCourseData = {editCourseData} 
                                                         handleEditCourseChange = {handleEditCourseChange}
@@ -259,10 +260,9 @@ const App = () : JSX.Element => {
                                                     :  
                                                     <ReadOnlyRow 
                                                         cour = {cour}
-                                                        plan = {plan}
                                                         handleEditClick={handleEditClick}
                                                         handleDeleteClick={handleDeleteClick}
-                                                        setCurrentSemesterID={setCurrentSemesterID}
+                                                        setCurrentCourseID={setCurrentCourseID}
                                                     />
                                                 } 
                                             </Fragment>
@@ -278,6 +278,7 @@ const App = () : JSX.Element => {
                 <input 
                     type ="text"
                     name = "School"
+                    defaultValue={addCourseData.School}
                     required= {true}
                     placeholder = "Enter a School."
                     onChange={handleAddCourseChange}
@@ -285,6 +286,7 @@ const App = () : JSX.Element => {
                 <input 
                     type = "number"
                     name = "ClassID"
+                    defaultValue={addCourseData.ClassID}
                     required = {true}
                     placeholder = "Enter a Class ID."
                     onChange={handleAddCourseChange}
@@ -292,6 +294,7 @@ const App = () : JSX.Element => {
                 <input 
                     type ="text"
                     name = "CourseName"
+                    defaultValue={addCourseData.CourseName}
                     required = {true}
                     placeholder = "Enter a Course Name."
                     onChange={handleAddCourseChange}
@@ -299,6 +302,7 @@ const App = () : JSX.Element => {
                 <input 
                     type ="text"
                     name = "Desc"
+                    defaultValue={addCourseData.Desc}
                     required = {true}
                     placeholder = "Enter a Class Description."
                     onChange={handleAddCourseChange}
@@ -306,6 +310,7 @@ const App = () : JSX.Element => {
                 <input 
                     type ="number"
                     name = "Credits"
+                    defaultValue={addCourseData.Credits}
                     required = {true}
                     placeholder = "Enter a Credit Amount."
                     onChange={handleAddCourseChange}
