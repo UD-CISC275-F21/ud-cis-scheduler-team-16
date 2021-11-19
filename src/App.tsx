@@ -34,12 +34,12 @@ const App = () : JSX.Element => {
     const [modalOpen, setOpen] = useState(true); // For welcome message
     const [semNum, setSemNum] = useState(2);
     const [addCourseData, setAddFormData] = useState<Course>({
-        ID: "aslkdjfldskjf",
-        School: "CISC",
-        ClassID: 30,
-        CourseName: "Automata",
-        Desc: "Whatever",
-        Credits: 3
+        ID: "someid",
+        School: "Department",
+        ClassID: 0,
+        CourseName: "Course Name",
+        Desc: "Some Description",
+        Credits: 0
     });
     const[editCourseData, setEditCourseData] = useState<Course>
     ({
