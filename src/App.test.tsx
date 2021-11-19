@@ -13,7 +13,7 @@ test("renders UD CIS Scheduler text", () => {
 
 test("renders Accordion", () => {
     render(<App />);
-    const linkElement = screen.getByText(/<Accordion>/i);
+    const linkElement = screen.getByLabelText(/<Accordion>/i);
     expect(linkElement).toBeInTheDocument();
 });
 
