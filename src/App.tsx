@@ -240,18 +240,18 @@ const App = () : JSX.Element => {
                 <div className="col-8">
                     <h1 className="header"><button className="refresh-logo" onClick={refreshPage}></button> UD CIS Scheduler</h1>
                     <br />
-                    <button className = "edit-semester" type = "button" 
+                    <button role = "add-semester" className = "edit-semester" type = "button" 
                         onClick= {() => addSemester(plan)}>Add Semester</button>
-                    <button className = "edit-semester" type = "button" 
+                    <button role = "clear-semesters" className = "edit-semester" type = "button" 
                         onClick= {() => clearSemesters(plan)}>Clear All Semesters</button>
-                    <button className = "edit-semester" type = "button" 
+                    <button role = "save-plan" className = "edit-semester" type = "button" 
                         onClick= {() => save()}>Save Plan</button>
-                    <button className = "edit-semester" type = "button" 
+                    <button role = "clear-plan" className = "edit-semester" type = "button" 
                         onClick= {() => clearSave()}>Clear Current Save state</button>
                     <br />
                 </div>
             </div>
-            <Accordion flush>
+            <Accordion role= "semester-display" flush>
                 { plan.map ( (sem: Semester) =>
                     <Accordion.Item eventKey= {sem.ID}  key = {sem.ID}>
                         <Accordion.Header onClick= {() => setCurrentSemesterID(sem.ID)}>{sem.SemesterName}</Accordion.Header>
@@ -289,16 +289,16 @@ const App = () : JSX.Element => {
                                         )}
                                     </tbody>
                                 </table>
-                                <button className = "edit-semester" type = "button" 
+                                <button role= "clear-classes" className = "edit-semester" type = "button" 
                                     onClick= {() => clearClasses(plan)}>Clear Classes</button>
-                                <button className = "edit-semester" type = "button" 
+                                <button role= "delete-semester" className = "edit-semester" type = "button" 
                                     onClick= {() => deleteSemester(plan)}>Delete Semester</button>
                             </form>
                         </Accordion.Body>
                     </Accordion.Item>
                 )}
             </Accordion>
-            <form onSubmit={handleAddCourseSubmit}>
+            <form role = "add-course" onSubmit={handleAddCourseSubmit}>
                 <input 
                     type ="text"
                     name = "School"

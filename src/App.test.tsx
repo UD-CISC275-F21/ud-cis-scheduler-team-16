@@ -13,36 +13,36 @@ test("renders UD CIS Scheduler text", () => {
 
 test("renders Accordion", () => {
     render(<App />);
-    const linkElement = screen.getByLabelText(/<Accordion>/i);
+    const linkElement = screen.getByRole("semester-display");
     expect(linkElement).toBeInTheDocument();
 });
 
 test("renders Save Button", () => {
     render(<App />);
-    const linkElement = screen.getByText(/<button className = "edit-semester" type = "button" onClick= {() => save()}>/i);
+    const linkElement = screen.getByRole("save-plan");
     expect(linkElement).toBeInTheDocument();
 });
 
 test("renders Add Semester Button", () => {
     render(<App />);
-    const linkElement = screen.getByText(/<button className = "edit-semester" type = "button" onClick= {() => addSemester(plan)}>/i);
+    const linkElement = screen.getByRole("add-semester");
     expect(linkElement).toBeInTheDocument();
 });
 
 test("renders Clear All Semesters Button", () => {
     render(<App />);
-    const linkElement = screen.getByText(/<button className = "edit-semester" type = "button" onClick= {() => clearSemesters(plan)}>/i);
+    const linkElement = screen.getByRole("clear-semesters");
     expect(linkElement).toBeInTheDocument();
 });
 
 test("renders Clear Save State Button", () => {
     render(<App />);
-    const linkElement = screen.getByText(/<button className = "edit-semester" type = "button" onClick= {() => clearSave()}>/i);
+    const linkElement = screen.getByRole("clear-plan");
     expect(linkElement).toBeInTheDocument();
 });
 
 test("renders Add Class Form", () => {
     render(<App />);
-    const linkElement = screen.getByText(/<form onSubmit={handleAddCourseSubmit}>/i);
+    const linkElement = screen.getByRole("add-course");
     expect(linkElement).toBeInTheDocument();
 });

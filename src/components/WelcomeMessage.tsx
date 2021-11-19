@@ -27,7 +27,7 @@ export const WriteMessage = ({closeModal}: {closeModal: VoidFunction}): JSX.Elem
                 <li>You can choose to add semesters, clear all semesters from your plan, save plans, and clear your save state.</li>
                 <li>Once expanding a semester, you can add classes manually through the form at the below the accordion.</li>
                 <li>Once you have courses, you can edit or delete singular courses, clear all courses from your semester, or delete semesters.</li>
-                <li>Remember that everyone's academic journey is unique. One size never fits all in college, don't get discouraged! Your plan is your path to your future, no matter how long or short it is.</li>
+                <li>Remember that everyones academic journey is unique. One size never fits all in college, dont get discouraged! Your plan is your path to your future, no matter how long or short it is.</li>
             </ol>
         </p>
         <button className= "modal-close" onClick={closeModal}></button>
