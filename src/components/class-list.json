@@ -38,5 +38,32 @@
       "CourseName": "Europe and the World to 1648",
       "Desc": "Test",
       "Credits": 3
-    }
+    },
+    { "ID": 5,
+      "School": "ECON", 
+      "ClassID": 101, 
+      "CourseName": "Microeconomics",
+      "Desc": "Test",
+      "Credits": 3
+    },
+    {"ID": 6, 
+    "School": "CHEM",
+    "ClassID": 111, 
+    "CourseName": "General Chemistry",
+    "Desc": "Test",
+    "Credits": 4
+  },
+  {"ID": 7, 
+  "School": "PHYS",
+  "ClassID": 201, 
+  "CourseName": "Introduction to Physics",
+  "Desc": "Test",
+  "Credits": 4
+    }, 
+  {"ID": 8,
+  "School": "ACCT", 
+  "ClassID": 207, 
+  "CourseName": "Accounting I", 
+  "Desc": "Test", 
+  "Credits": 3}
   ]
