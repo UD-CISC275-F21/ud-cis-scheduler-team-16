@@ -10,7 +10,7 @@ const REQUIRED_CLASSES : Course[] {
         preReq: "N/A";
         coReq: "MATH 115, MATH 117, or higher math course or math placement.";
         credits: 3;
-    };
+    }
     {
         school: "CISC";
         id: 181;
@@ -19,7 +19,7 @@ const REQUIRED_CLASSES : Course[] {
         preReq: "Grade of C- or better in CISC 108 or CISC 106";
         coReq: "MATH 221, MATH 241, or a higher level math course or math placement.";
         credits: 3;
-    };
+    }
     {
         school: "CISC";
         id: 210;
