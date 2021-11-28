@@ -2,7 +2,8 @@ import React from "react";
 import "../App.css";
 import { Course } from "./course";
 const REQUIRED_CLASSES : Course[] {
-
+/* adding the courses that are required in a Comp Sci BS major, starting with the courses that have to absolutely be taken and then figuring 
+out how to implement optional courses that have to be  */
     {
         school: "CISC";
         id: 108;
@@ -100,6 +101,15 @@ const REQUIRED_CLASSES : Course[] {
         desc: "Elements of sets and logic. Relations, functions. Integers. Induction and recursion. Principles and techniques of counting. Graphs. Paths and circuits";
         preReq: "N/A";
         coReq: "MATH 241, MATH 242, or MATH 232";
+        credits: 3
+    }
+    {
+        school: "CISC";
+        id: 304;
+        name: "Logic for Programming";
+        desc: "Propositional and predicate logic for general reasoning and advanced applications in knowledge representation in artificial intelligence and database, program correctness and programming semantics. Models, resolution, logic programming, and natural deduction.";
+        preReq: "CISC 220, MATH 210 (with minimum C- grade in both).";
+        coReq: "N/A";
         credits: 3
     }
   };
