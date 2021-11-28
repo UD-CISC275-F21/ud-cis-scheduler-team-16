@@ -2,6 +2,7 @@ import React from "react";
 import "../App.css";
 import { Course } from "./course";
 const REQUIRED_CLASSES : Course[] {
+
     {
         school: "CISC";
         id: 108;
@@ -65,4 +66,40 @@ const REQUIRED_CLASSES : Course[] {
         coReq: "N/A";
         credits: 4
     }
-  }
+    {
+        school: "CISC";
+        id: 303;
+        name: "Automata Theory";
+        desc: "Automata and formal language theory. Background for advanced applications in compilers, computer networks, operating systems, and natural language processing. Finite automata and regular languages. Push down automata and context free grammars. Turing machines.";
+        preReq: "A minimum grade of C- in both MATH 210 and CISC 220";
+        coReq: "N/A";
+        credits: 3
+    }
+    {
+        school: "CISC";
+        id: 320;
+        name: "Introduction to Algorithms";
+        desc: "Design and analysis of algorithms: worst/average case analysis, proofs for correctness and performance of algorithms. Algorithmic strategies (divide and conquer, greedy methods, dynamic programming, etc.). Algorithms for searching, forming and traversal of strings, trees and graphs. Categorization of computational problems: classes P and NP. NP completeness.";
+        preReq: " MATH 210 and a minimum grade of C- in CISC 220";
+        coReq: "N/A";
+        credits: 3
+    }
+    {
+        school: "MATH";
+        id: 242;
+        name: "Analytic Geometry and Calculus B";
+        desc: "Brief review of MATH 241; evaluation of limits by L’Hospital’s rule; applications of integration; integration techniques; parametric curves; polar coordinates; infinite sequences and series. Includes use of computers to perform symbolic, numerical and graphical analysis.";
+        preReq: " MATH 241 or MATH 232";
+        coReq: "N/A";
+        credits: 4
+    }
+    {
+        school: "MATH";
+        id: 210;
+        name: "Discrete Mathematics I";
+        desc: "Elements of sets and logic. Relations, functions. Integers. Induction and recursion. Principles and techniques of counting. Graphs. Paths and circuits";
+        preReq: "N/A";
+        coReq: "MATH 241, MATH 242, or MATH 232";
+        credits: 3
+    }
+  };

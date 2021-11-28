@@ -457,5 +457,14 @@
         "preReq": "MATH 242",
         "coReq": "N/A",
         "credits": 4
+    },
+    {
+        "school": "ENGL",
+        "id": 110,
+        "name": "Seminar in Composition",
+        "desc": "Introduction to the process of academic writing that centers on the composition of analytical, research-based essays.",
+        "preReq": "N/A",
+        "coReq": "N/A",
+        "credits": 3
     }
 ]
