@@ -21,7 +21,7 @@ out how to implement optional courses that have to be  */
         Credits: 3
     },
     {
-        ID = nanoid(),
+        ID : nanoid(),
         School: "CISC",
         ClassID: 210,
         CourseName: "Introduction to Systems Programming",
@@ -29,7 +29,7 @@ out how to implement optional courses that have to be  */
         Credits: 3
     },
     {
-        ID = nanoid(),
+        ID : nanoid(),
         School: "CISC",
         ClassID: 220,
         CourseName: "Data Structures",
@@ -37,7 +37,7 @@ out how to implement optional courses that have to be  */
         Credits: 3
     },
     {
-        ID = nanoid(), 
+        ID :nanoid(), 
         School: "CISC",
         ClassID: 260,
         CourseName: "Machine Organization and Assembly Language",
@@ -45,7 +45,7 @@ out how to implement optional courses that have to be  */
         Credits: 3
     },
     {
-        ID = nanoid(), 
+        ID : nanoid(), 
         School: "CISC",
         ClassID: 275,
         CourseName: "Introduction to Software Engineering",
@@ -53,7 +53,7 @@ out how to implement optional courses that have to be  */
         Credits: 3
     },
     {
-        ID = nanoid(), 
+        ID : nanoid(), 
         School: "MATH",
         ClassID: 241,
         CourseName: "Analytic Geometry and Calculus A",
@@ -61,7 +61,7 @@ out how to implement optional courses that have to be  */
         Credits: 4
     },
     {
-        ID = nanoid(), 
+        ID : nanoid(), 
         School: "CISC",
         ClassID: 303,
         CourseName: "Automata Theory",
@@ -69,7 +69,7 @@ out how to implement optional courses that have to be  */
         Credits: 3
     },
     {
-        ID = nanoid(), 
+        ID : nanoid(), 
         School: "CISC",
         ClassID: 320,
         CourseName: "Introduction to Algorithms",
@@ -77,39 +77,48 @@ out how to implement optional courses that have to be  */
         Credits: 3
     },
     {
-        ID = nanoid(), 
+        ID : nanoid(), 
         School: "MATH",
         ClassID: 242,
         CourseName: "Analytic Geometry and Calculus B",
         Desc: "Brief review of MATH 241; evaluation of limits by L’Hospital’s rule; applications of integration; integration techniques; parametric curves; polar coordinates; infinite sequences and series. Includes use of computers to perform symbolic, numerical and graphical analysis.",
         Credits: 4
-    }
+    },
     {
-        ID = nanoid(), 
+        ID : nanoid(), 
         School: "MATH",
         ClassID: 210,
         CourseName: "Discrete Mathematics I",
         Desc: "Elements of sets and logic. Relations, functions. Integers. Induction and recursion. Principles and techniques of counting. Graphs. Paths and circuits",
         Credits: 3
     },
+   
     {
-        ID = nanoid(), 
-        School: "CISC",
-        ClassID: 304,
-        CourseName: "Logic for Programming",
-        Desc: "Propositional and predicate logic for general reasoning and advanced applications in knowledge representation in artificial intelligence and database, program correctness and programming semantics. Models, resolution, logic programming, and natural deduction.",
-        Credits: 3
-    },
-    {
-        ID = nanoid(), 
+        ID : nanoid(), 
         School: "CISC",
         ClassID: 355,
         CourseName: "Computers, Ethics and Society",
         Desc: "Explains relationships among information technology, society and ethics by examining issues raised by increasingly widespread use of computers. Topics include ethics for computer professionals, computer impact on factory work, office work, personal privacy and social power distribution.",
         Credits: 3
-    }
+    },
     {
-        ID = nanoid(),
+        ID: nanoid(),
+        School: "CISC",
+        ClassID: 361,
+        CourseName: "Operating Systems",
+        Desc: "Principles and techniques employed in the development of operating systems and their control programs. Includes management of memory, processors, I/O devices.",
+        Credits: 3
+    },
+    {
+        ID: nanoid(),
+        School: "CISC",
+        ClassID: 372,
+        CourseName: "Parallel Computing",
+        Desc : "Introduction to parallel computing concepts, methodologies, and tools. Programming and algorithmic techniques for code that will run simultaneously on parallel computing architectures. Topics include: single and multi-core parallelism, shared and distributed memory architectures, concurrency, program decomposition, data distribution, communication, load balancing, scalability, locality, granularity, debugging, performance evaluation.",
+        Credits: 3
+    },
+    {
+        ID : nanoid(),
         School: "ENGL",
         ClassID: 110,
         CourseName: "Seminar in Composition",
