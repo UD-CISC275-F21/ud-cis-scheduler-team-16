@@ -108,4 +108,12 @@ out how to implement optional courses that have to be  */
         Desc: "Explains relationships among information technology, society and ethics by examining issues raised by increasingly widespread use of computers. Topics include ethics for computer professionals, computer impact on factory work, office work, personal privacy and social power distribution.",
         Credits: 3
     }
+    {
+        ID = nanoid(),
+        School: "ENGL",
+        ClassID: 110,
+        CourseName: "Seminar in Composition",
+        Desc: "Introduction to the process of academic writing that centers on the composition of analytical, research-based essays.", 
+        Credits: 3
+    },
 ];

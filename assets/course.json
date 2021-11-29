@@ -331,7 +331,7 @@
         "coReq": "PHYS 208", 
         "credits": 3 
     },
-    
+
     {
         "school": "MATH",
         "id": 10,
@@ -511,6 +511,27 @@
         "preReq": "N/A",
         "coReq": "N/A",
         "credits": 3
+    },
+    {
+        "school": "ENGL",
+        "id": 312,
+        "name": "Written Communications in Business",
+        "desc": "Examines the role of written communication in corporate decision making. Students write memos, letters, proposals and reports that simulate on-the-job communication tasks, and are encouraged to use materials from their fields of specialization.",
+        "preReq": "ENGL 110",
+        "coReq": "N/A",
+        "credits": 3
+    }, 
+    {
+        "school": "ENGL",
+        "id": 410, 
+        "name": "Technical Writing", 
+        "desc": "Selected problems in technical communications, the preparation of reports and technical editing.",
+        "preReq": "ENGL 110", 
+        "coReq": "N/A", 
+        "credits": 3 
+    },
+    {
+        
     }
 
 ]
