@@ -166,7 +166,7 @@ const App = () : JSX.Element => {
                     <button role = "clear-semesters" className = "edit-semester" type = "button" 
                         onClick= {() => clearSemesters(plan)}>Clear All Semesters</button>
                     <button role = "save-plan" className = "edit-semester" type = "button" 
-                        onClick= {() => save()}>Save Plan</button>
+                        onClick= {() => save(plan)}>Save Plan</button>
                     <button role = "clear-plan" className = "edit-semester" type = "button" 
                         onClick= {() => clearSave()}>Clear Current Save state</button>
                     <br />

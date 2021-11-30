@@ -1,14 +1,12 @@
 import { useState } from "react";
 import { Semester } from "../interfaces/semester";
 
-export const [plan, setPlan] = useState<Semester[]>(load());
-
 export const LOCAL_STORAGE_PLAN = "fouryearplanner_plan";
 export const INITIAL_PLAN: Semester[] = [
     { ID: "0", SemesterName: "Semester 1", Courses: [] }
 ];
 
-export function save(){ 
+export function save(plan : Semester[]){ 
     localStorage.setItem(LOCAL_STORAGE_PLAN, JSON.stringify(plan));
     alert("Plan saved! This plan will be loaded whenever you load back into this page.");
 }
