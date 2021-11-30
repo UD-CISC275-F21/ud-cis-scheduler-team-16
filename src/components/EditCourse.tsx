@@ -1,8 +1,12 @@
 import React, { useState } from "react";
 import { Semester } from "../interfaces/semester";
 import { Course } from "../interfaces/course";
+import { load } from "./SaveAndLoad";
 
-export const[editCourseData, setEditCourseData] = useState<Course>
+export const [plan, setPlan] = useState<Semester[]>(load());
+export const [currentSemesterID, setCurrentSemesterID]= useState("");
+export const [currentCourseID, setCurrentCourseID] = useState("");
+export const [editCourseData, setEditCourseData] = useState<Course>
 ({
     ID: "",
     School: "",
@@ -11,7 +15,6 @@ export const[editCourseData, setEditCourseData] = useState<Course>
     Desc: "",
     Credits: 0
 });
-
 
 export const handleEditCourseChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
