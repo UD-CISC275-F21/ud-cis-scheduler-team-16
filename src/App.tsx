@@ -1,18 +1,20 @@
 import React, { useState, Fragment } from "react";
+import { Accordion } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
 import  Modal from "react-modal";
 import { nanoid } from "nanoid";
 import "./App.css";
-//import courseData from "./components/class-list.json";
-//import semesterData from "./components/semester-list.json";
 import { Course } from "./components/course";
 import { Semester } from "./components/semester";
-//import { Plan } from "./components/plan";
 import ReadOnlyRow from "./components/ReadOnlyRow";
 import MutableRow from "./components/MutableRow";
 import { WriteMessage } from "./components/WelcomeMessage";
 import { customModal } from "./components/WelcomeMessage";
+//import courseData from "./components/class-list.json";
+//import semesterData from "./components/semester-list.json";
 import { ProSidebar, Menu, SidebarHeader, SidebarFooter, SidebarContent } from "react-pro-sidebar";
 import { LoadSidebar } from "./components/sidebar";
+import { LoadSidebarProps } from "./components/sidebar";
 
 /* Resources that assisted in the making of this:
 1. Basis of the semester table: https://youtu.be/dYjdzpZv5yc
@@ -21,20 +23,24 @@ import { LoadSidebar } from "./components/sidebar";
 */
 
 const App = () : JSX.Element => {
+    //Const Var
+    const LOCAL_STORAGE_PLAN = "fouryearplanner_plan";
+    const INITIAL_PLAN: Semester[] = [
+        { ID: "0", SemesterName: "Semester 1", Courses: [] }
+    ];
     //Hooks
-    const [plan, setPlan] = useState<Semester[]>([]);
+    const [plan, setPlan] = useState<Semester[]>(load());
     const [currentSemesterID, setCurrentSemesterID]= useState("");
     const [currentCourseID, setCurrentCourseID] = useState("");
     const [modalOpen, setOpen] = useState(true); // For welcome message
-    const [semNum, setSemNum] = useState(1);
-    const [editCourseId, setEditCourseId] = useState("");
+    const [semNum, setSemNum] = useState(2);
     const [addCourseData, setAddFormData] = useState<Course>({
-        ID: "",
-        School: "",
-        ClassID: 0,
-        CourseName: "",
-        Desc: "",
-        Credits: 0
+        ID: "aslkdjfldskjf",
+        School: "CISC",
+        ClassID: 30,
+        CourseName: "Automata",
+        Desc: "Whatever",
+        Credits: 3
     });
     const[editCourseData, setEditCourseData] = useState<Course>
     ({
@@ -58,33 +64,31 @@ const App = () : JSX.Element => {
         setEditCourseData(newCourseData);
     };
 
-    const handleEditClick = (event: React.MouseEvent, plan: Semester[])=> {
+    const handleEditClick = (event: React.MouseEvent, cour: Course)=> {
         event.preventDefault();
-        const semIndex = plan.findIndex((semester: Semester) => semester.ID === currentSemesterID);
-        const courIndex = plan[semIndex].Courses.findIndex((course: Course) => course.ID === currentCourseID);
-        setEditCourseId(plan[semIndex].Courses[courIndex].ID);
 
         const courseValues = {
-            ID: plan[semIndex].Courses[courIndex].ID,
-            School: plan[semIndex].Courses[courIndex].School,
-            ClassID: plan[semIndex].Courses[courIndex].ClassID,
-            CourseName: plan[semIndex].Courses[courIndex].CourseName,
-            Desc: plan[semIndex].Courses[courIndex].Desc,
-            Credits: plan[semIndex].Courses[courIndex].Credits
+            ID: currentCourseID,
+            School: cour.School,
+            ClassID: cour.ClassID,
+            CourseName: cour.CourseName,
+            Desc: cour.Desc,
+            Credits: cour.Credits
         };
 
         setEditCourseData(courseValues);
+        setCurrentCourseID("");
     };
 
     const handleEditCourseSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const newPlan = plan.map(inner =>{ 
-            return {...inner}; 
+            return {...inner, Courses: [...inner.Courses]}; 
         });
         const semIndex = plan.findIndex((semester: Semester) => semester.ID === currentSemesterID);
 
         const editedCourse:Course = {
-            ID: editCourseId,
+            ID: currentCourseID,
             School: editCourseData.School,
             ClassID: editCourseData.ClassID,
             CourseName: editCourseData.CourseName,
@@ -92,9 +96,10 @@ const App = () : JSX.Element => {
             Credits: editCourseData.Credits
         };
 
-        const courseIndex = plan[semIndex].Courses.findIndex((course: Course)=> course.ID === editCourseId);
+        const courseIndex = plan[semIndex].Courses.findIndex((course: Course)=> course.ID === currentCourseID);
         newPlan[semIndex].Courses[courseIndex] = editedCourse;
-        setEditCourseId("");
+        setPlan(newPlan);
+        setCurrentCourseID("");
     };
 
     const handleAddCourseChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -110,7 +115,7 @@ const App = () : JSX.Element => {
     const handleAddCourseSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const newPlan = plan.map(inner =>{ 
-            return {...inner}; 
+            return {...inner, Courses: [...inner.Courses]}; 
         });
 
         const semIndex = plan.findIndex((semester: Semester) => semester.ID === currentSemesterID);
@@ -126,23 +131,25 @@ const App = () : JSX.Element => {
 
         newPlan[semIndex].Courses.push(newCourse);
         setPlan(newPlan);
-        setCurrentCourseID(newCourse.ID);
+        setCurrentCourseID("");
     };
 
     const handleCancelClick = () => {
-        setEditCourseId("");
+        setCurrentCourseID("");
     };
 
-    const handleDeleteClick = (currentCourseID: string) => {
+    const handleDeleteClick = (event: React.MouseEvent, cour: Course) => {
+        event.preventDefault();
         const newPlan = plan.map(inner =>{ 
-            return {...inner}; 
+            return {...inner, Courses: [...inner.Courses]}; 
         });
-        const semIndex = plan.findIndex((semester: Semester) => semester.ID === currentSemesterID);
-        const courIndex = plan[semIndex].Courses.findIndex((course: Course) => course.ID === currentCourseID);
+        const semIndex = plan.findIndex(semester => semester.ID === currentSemesterID);
+        const courIndex = plan[semIndex].Courses.findIndex(course => course.ID === cour.ID);
 
 
-        newPlan[semIndex].Courses.splice(courIndex, 1);
+        newPlan[semIndex].Courses.splice(courIndex, 1);        
         setPlan(newPlan);
+        setCurrentCourseID("");
     };
 
 
@@ -175,6 +182,8 @@ const App = () : JSX.Element => {
 
         newPlan.splice(index, 1);
         setPlan(newPlan);
+        setCurrentSemesterID("");
+        setSemNum(semNum-1);
     }
 
     function clearSemesters(plan : Semester[]){
@@ -196,117 +205,163 @@ const App = () : JSX.Element => {
         
         newPlan[index].Courses = [];
         setPlan(newPlan);
+        setCurrentCourseID("");
     }
-    return <div className= "app-container">
-        <Modal
-            isOpen={modalOpen}
-            onRequestClose={closeModal}
-            contentLabel="Welcome Message"
-            style={customModal}
-        >
-            <WriteMessage closeModal={closeModal}></WriteMessage>
-        </Modal>
-    
-        <div className="row">
-            <div className="col-8">
-                <h1 className="header"><button className="refresh-logo" onClick={refreshPage}></button> UD CIS Scheduler</h1>
 
-                <button className = "edit-semester" type = "button" 
-                    onClick= {() => addSemester(plan)}>Add Semester</button>
-                <button className = "edit-semester" type = "button" 
-                    onClick= {() => deleteSemester(plan)}>Delete Current Semester</button>
-                <button className = "edit-semester" type = "button" 
-                    onClick= {() => clearSemesters(plan)}>Clear All Semesters</button>
-                <br /><br /><br />
-                
-                <form onSubmit={handleEditCourseSubmit}>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>School</th>
-                                <th>ClassID</th>
-                                <th>Course Name</th>
-                                <th>Desc</th>
-                                <th>Credits</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <Fragment key={currentSemesterID}>
-                                { editCourseId === currentCourseID ? 
-                                    <MutableRow 
-                                        editCourseData = {editCourseData} 
-                                        handleEditCourseChange = {handleEditCourseChange}
-                                        handleCancelClick = {handleCancelClick}
-                                    /> 
-                                    :  
-                                    <ReadOnlyRow 
-                                        plan={plan} 
-                                        handleEditClick={handleEditClick}
-                                        handleDeleteClick={handleDeleteClick}
-                                        currentCourseID={currentCourseID}
-                                        setCurrentSemesterID={setCurrentSemesterID}
-                                    />
-                                } 
-                            </Fragment>
-                        </tbody>
-                    </table>
-                </form>
-                <form onSubmit={handleAddCourseSubmit}>
-                    <input 
-                        type ="text"
-                        name = "School"
-                        required= {true}
-                        placeholder = "Enter a School."
-                        onChange={handleAddCourseChange}
-                    />
-                    <input 
-                        type = "number"
-                        name = "ClassID"
-                        required = {true}
-                        placeholder = "Enter a Class ID."
-                        onChange={handleAddCourseChange}
-                    />
-                    <input 
-                        type ="text"
-                        name = "CourseName"
-                        required = {true}
-                        placeholder = "Enter a Course Name."
-                        onChange={handleAddCourseChange}
-                    />
-                    <input 
-                        type ="text"
-                        name = "Desc"
-                        required = {true}
-                        placeholder = "Enter a Class Description."
-                        onChange={handleAddCourseChange}
-                    />
-                    <input 
-                        type ="number"
-                        name = "Credits"
-                        required = {true}
-                        placeholder = "Enter a Credit Amount."
-                        onChange={handleAddCourseChange}
-                    />
-                    <button type="submit">Add Course</button>
-                </form>
-            </div>
-            <div className="col-4">
-                <div className="full-column">
-                    <ProSidebar className="sidebar">
-                        <SidebarHeader className="sidebar-header">
-                        COURSE LIST
-                        </SidebarHeader>
-                        <SidebarContent>
-                            <Menu iconShape="square">
-                                <LoadSidebar schoolName="CISC" ></LoadSidebar>
-                            </Menu>
-                        </SidebarContent>
-                    </ProSidebar>
+    function save(){ 
+        localStorage.setItem(LOCAL_STORAGE_PLAN, JSON.stringify(plan));
+        alert("Plan saved! This plan will be loaded whenever you load back into this page.");
+    }
+
+    function load() : Semester[] {
+        const rawPlan: string | null = localStorage.getItem(LOCAL_STORAGE_PLAN);
+        if (rawPlan === null) {
+            return [...INITIAL_PLAN];
+        } else {
+            return JSON.parse(rawPlan);
+        }
+    }
+
+    function clearSave(){
+        localStorage.setItem(LOCAL_STORAGE_PLAN, JSON.stringify(INITIAL_PLAN));
+        alert("Save cleared! Refresh your page to start again.");
+    }
+
+    return(
+        <div className = "App">
+            <Modal
+                isOpen={modalOpen}
+                onRequestClose={closeModal}
+                contentLabel="Welcome Message"
+                style={customModal}
+            >
+                <WriteMessage closeModal={closeModal}></WriteMessage>
+            </Modal>
+            <div className="row">
+                <div className="col-8">
+                    <h1 className="header"><button className="refresh-logo" onClick={refreshPage}></button> UD CIS Scheduler</h1>
+                    <br />
+                    <button className = "edit-semester" type = "button" 
+                        onClick= {() => addSemester(plan)}>Add Semester</button>
+                    <button className = "edit-semester" type = "button" 
+                        onClick= {() => clearSemesters(plan)}>Clear All Semesters</button>
+                    <button className = "edit-semester" type = "button" 
+                        onClick= {() => save()}>Save Plan</button>
+                    <button className = "edit-semester" type = "button" 
+                        onClick= {() => clearSave()}>Clear Current Save state</button>
+                    <br />
+                    <Accordion flush>
+                        { plan.map ( (sem: Semester) =>
+                            <Accordion.Item eventKey= {sem.ID}  key = {sem.ID}>
+                                <Accordion.Header onClick= {() => setCurrentSemesterID(sem.ID)}>{sem.SemesterName}</Accordion.Header>
+                                <Accordion.Body>
+                                    <form onSubmit={handleEditCourseSubmit}>
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th>School</th>
+                                                    <th>ClassID</th>
+                                                    <th>Course Name</th>
+                                                    <th>Desc</th>
+                                                    <th>Credits</th>
+                                                    <th>Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                { sem.Courses.map ( (cour: Course) =>
+                                                    <Fragment key={cour.ID}>
+                                                        { cour.ID === currentCourseID ? 
+                                                            <MutableRow 
+                                                                editCourseData = {editCourseData} 
+                                                                handleEditCourseChange = {handleEditCourseChange}
+                                                                handleCancelClick = {handleCancelClick}
+                                                            /> 
+                                                            :  
+                                                            <ReadOnlyRow 
+                                                                cour = {cour}
+                                                                handleEditClick={handleEditClick}
+                                                                handleDeleteClick={handleDeleteClick}
+                                                                setCurrentCourseID={setCurrentCourseID}
+                                                            />
+                                                        } 
+                                                    </Fragment>
+                                                )}
+                                            </tbody>
+                                        </table>
+                                        <button className = "edit-semester" type = "button" 
+                                            onClick= {() => clearClasses(plan)}>Clear Classes</button>
+                                        <button className = "edit-semester" type = "button" 
+                                            onClick= {() => deleteSemester(plan)}>Delete Semester</button>
+                                    </form>
+                                </Accordion.Body>
+                            </Accordion.Item>
+                        )}
+                    </Accordion>
+                    <form onSubmit={handleAddCourseSubmit}>
+                        <input 
+                            type ="text"
+                            name = "School"
+                            defaultValue={addCourseData.School}
+                            required= {true}
+                            placeholder = "Enter a School."
+                            onChange={handleAddCourseChange}
+                        />
+                        <input 
+                            type = "number"
+                            name = "ClassID"
+                            defaultValue={addCourseData.ClassID}
+                            required = {true}
+                            placeholder = "Enter a Class ID."
+                            onChange={handleAddCourseChange}
+                        />
+                        <input 
+                            type ="text"
+                            name = "CourseName"
+                            defaultValue={addCourseData.CourseName}
+                            required = {true}
+                            placeholder = "Enter a Course Name."
+                            onChange={handleAddCourseChange}
+                        />
+                        <input 
+                            type ="text"
+                            name = "Desc"
+                            defaultValue={addCourseData.Desc}
+                            required = {true}
+                            placeholder = "Enter a Class Description."
+                            onChange={handleAddCourseChange}
+                        />
+                        <input 
+                            type ="number"
+                            name = "Credits"
+                            defaultValue={addCourseData.Credits}
+                            required = {true}
+                            placeholder = "Enter a Credit Amount."
+                            onChange={handleAddCourseChange}
+                        />
+                        <button type="submit">Add Course</button>
+                    </form>
+                </div>
+                <div className="col-4">
+                    <div className="full-column">
+                        <ProSidebar className="sidebar">
+                            <SidebarHeader className="sidebar-header">
+                            COURSE LIST
+                            </SidebarHeader>
+                            <SidebarContent>
+                                <Menu iconShape="square">
+                                    {LoadSidebar}
+                                </Menu>
+                            </SidebarContent>
+                            <SidebarFooter>
+
+                            </SidebarFooter>
+                        </ProSidebar>
+                    </div>
                 </div>
             </div>
-        </div>  
-    </div>;
+        </div>
+        
+    );
 };
 
 export default App;

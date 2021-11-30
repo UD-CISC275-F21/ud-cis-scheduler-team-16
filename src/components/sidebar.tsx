@@ -6,7 +6,7 @@ import AccordionBody from "react-bootstrap/esm/AccordionBody";
 import "../App.css";
 import App from "../App";
 
-interface LoadSidebarProps {
+export interface LoadSidebarProps {
     schoolName: string
 }
 
@@ -28,7 +28,7 @@ const LoadSidebarContent = ({schoolName}: LoadSidebarProps): JSX.Element => {
     );
 };
 
-const countCourses = (schoolName: string) => {
+/*const countCourses = (schoolName: string) => {
     let count = 0;
     const courses = JSON.parse("class-list");
     for(let tempID = 0; courses.length>=tempID; tempID++){
@@ -38,7 +38,7 @@ const countCourses = (schoolName: string) => {
     }
         
     return count;
-};
+};*/
 
 
 export const LoadSidebar = ({schoolName}: LoadSidebarProps): JSX.Element => {

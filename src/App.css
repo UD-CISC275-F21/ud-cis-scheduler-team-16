@@ -68,7 +68,7 @@ form * {
   width: 70px;
   height: 60px;
   border: transparent;
-  opacity: .6;
+  opacity: 0.6;
   background-repeat: no-repeat;
   background-position-y: center;
   background-position-x: center;
@@ -160,16 +160,23 @@ form * {
   text-align: center;
 }
 
-.welcome-message-header{
+.welcome-message-header {
   text-align: center;
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+input{
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  border-radius: 15px;
+  padding: 4px; 
+  margin-right: 3px;
 }
 
 .sidebar-header{
   text-align: center;
-  font-weight: bold;
-  padding-bottom: 10px;
-  padding-top: 15%;
+font-weight: bold;
+padding-bottom: 10px;
+padding-top: 15%;
+
 }
 
 .full-column{
@@ -217,4 +224,59 @@ form * {
 
 .edit-semester:hover{
   background-color: #4095c6;
+}
+
+.clear-classes{
+  float: right;
+  background-color: transparent;
+  background-image: url("components/trash.jpeg");
+  background-size: 30px;
+  font-family:sans-serif;
+  width: 50px;
+  height: 35px;
+  border: transparent;
+  opacity: .6;
+  background-repeat: no-repeat;
+  background-position-y: center;
+  background-position-x: center;
+}
+
+.clear-classes:hover{
+  opacity: 1.0;
+}
+
+.delete-semester{
+  float: right;
+  background-color: transparent;
+  background-image: url("components/delete.jpeg");
+  background-size: 30px;
+  font-family:sans-serif;
+  width: 50px;
+  height: 35px;
+  border: transparent;
+  opacity: .6;
+  background-repeat: no-repeat;
+  background-position-y: center;
+  background-position-x: center;
+}
+
+.delete-semester:hover{
+  opacity: 1.0;
+}
+
+/*Below is for the accordion */
+.accordion { /* Default State */
+  background-color: rgb(230, 230, 230);
+  color:rgb(0, 0, 0);
+  cursor: cursor;
+  padding: 2px;
+  width: 70%;
+  text-align: left;
+  border: 5px;
+  outline: 5px;
+  transition: 0.45s;
+}
+
+.active, .accordion:hover{ /*When the button is clicked, or a mouse is hovering over the button */
+  background-color: rgb(101, 145, 226);
 }
