@@ -1,5 +1,5 @@
 import React from "react";
-import { Course } from "./course";
+import { Course } from "../../interfaces/course";
 import "../App.css";
 import "../App.tsx";
 
