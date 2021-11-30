@@ -64,6 +64,3 @@ export const handleEditCourseSubmit = (event: React.FormEvent<HTMLFormElement>, 
     setCurrentCourseID("");
 };
 
-export const handleCancelClick = (setCurrentCourseID: React.Dispatch<React.SetStateAction<string>>) => {
-    setCurrentCourseID("");
-};

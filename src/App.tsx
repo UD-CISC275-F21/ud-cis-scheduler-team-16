@@ -45,25 +45,29 @@ const App = () : JSX.Element => {
         setPlan(newPlan);
         setCurrentCourseID("");
     };
+    
+    const handleCancelClick = () => {
+        setCurrentCourseID("");
+    };
 
     return(
         <div className = "App">
             <Modal
                 isOpen={modalOpen}
-                onRequestClose={closeModal(setOpen(modalOpen))}
+                onRequestClose={closeModal(setOpen)}
                 contentLabel="Welcome Message"
                 style={customModal}
             >
-                <WriteMessage closeModal={closeModal(setOpen(modalOpen))}></WriteMessage>
+                <WriteMessage closeModal={closeModal(setOpen)}></WriteMessage>
             </Modal>
             <div className="row">
                 <div className="col-8">
                     <h1 className="header"><button className="refresh-logo" onClick={refreshPage}></button> UD CIS Scheduler</h1>
                     <br />
                     <button role = "add-semester" className = "edit-semester" type = "button" 
-                        onClick= {() => addSemester(plan, setPlan(plan))}>Add Semester</button>
+                        onClick= {() => addSemester(plan, setPlan)}>Add Semester</button>
                     <button role = "clear-semesters" className = "edit-semester" type = "button" 
-                        onClick= {() => clearSemesters(plan, setPlan(plan), setCurrentSemesterID(currentSemesterID))}>Clear All Semesters</button>
+                        onClick= {() => clearSemesters(plan, setPlan, setCurrentSemesterID)}>Clear All Semesters</button>
                     <button role = "save-plan" className = "edit-semester" type = "button" 
                         onClick= {() => save(plan)}>Save Plan</button>
                     <button role = "clear-plan" className = "edit-semester" type = "button" 
@@ -96,12 +100,12 @@ const App = () : JSX.Element => {
                                                     <MutableRow 
                                                         editCourseData = {editCourseData} 
                                                         handleEditCourseChange = {handleEditCourseChange}
-                                                        handleCancelClick = {handleCancelClick(setCurrentCourseID(currentCourseID))}
+                                                        handleCancelClick = {handleCancelClick}
                                                     /> 
                                                     :  
                                                     <ReadOnlyRow 
                                                         cour = {cour}
-                                                        handleEditClick={handleEditClick(event, cour, currentCourseID, setCurrentCourseID(currentCourseID))}
+                                                        handleEditClick={handleEditClick(event, cour, currentCourseID, setCurrentCourseID)}
                                                         handleDeleteClick={handleDeleteClick}
                                                         setCurrentCourseID={setCurrentCourseID}
                                                     />
@@ -111,15 +115,15 @@ const App = () : JSX.Element => {
                                     </tbody>
                                 </table>
                                 <button role= "clear-classes" className = "edit-semester" type = "button" 
-                                    onClick= {() => clearClasses(plan, setPlan(plan), currentSemesterID, setCurrentSemesterID(currentSemesterID))}>Clear Classes</button>
+                                    onClick= {() => clearClasses(plan, setPlan, currentSemesterID, setCurrentSemesterID)}>Clear Classes</button>
                                 <button role= "delete-semester" className = "edit-semester" type = "button" 
-                                    onClick= {() => deleteSemester(plan, setPlan(plan), currentSemesterID, setCurrentSemesterID(currentSemesterID))}>Delete Semester</button>
+                                    onClick= {() => deleteSemester(plan, setPlan, currentSemesterID, setCurrentSemesterID)}>Delete Semester</button>
                             </form>
                         </Accordion.Body>
                     </Accordion.Item>
                 )}
             </Accordion>
-            <form role = "add-course" onSubmit={handleAddCourseSubmit(event, plan, setPlan(plan), currentSemesterID, 
+            <form role = "add-course" onSubmit={handleAddCourseSubmit(event, plan, setPlan, currentSemesterID, 
                 setCurrentCourseID(nanoid()))}>
                 <input 
                     type ="text"
