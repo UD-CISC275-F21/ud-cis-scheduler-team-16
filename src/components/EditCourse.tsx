@@ -41,8 +41,8 @@ export const handleEditClick = (event: React.MouseEvent, cour: Course, currentCo
 };
 
 export const handleEditCourseSubmit = (event: React.FormEvent<HTMLFormElement>, currentSemesterID: string,
-     currentCourseID: string, plan: Semester[], setPlan: React.Dispatch<React.SetStateAction<Semester[]>>, 
-     setCurrentCourseID: React.Dispatch<React.SetStateAction<string>>) => {
+    currentCourseID: string, plan: Semester[], setPlan: React.Dispatch<React.SetStateAction<Semester[]>>, 
+    setCurrentCourseID: React.Dispatch<React.SetStateAction<string>>) => {
     event.preventDefault();
     const newPlan = plan.map(inner =>{ 
         return {...inner, Courses: [...inner.Courses]}; 

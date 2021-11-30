@@ -12,7 +12,13 @@ export const customModal = {
         transform: "translate(-50%, -50%)",
     },
 };
+export function closeModal(setOpen: React.Dispatch<React.SetStateAction<boolean>>){
+    setOpen(false);
+}
 
+export function refreshPage(){
+    window.location.reload();
+}
 export const WriteMessage = ({closeModal}: {closeModal: VoidFunction}): JSX.Element => {
     return <div className="welcome-message">
         <h2 className= "welcome-message-header">Welcome to the UDEL Plan Creater!</h2>
