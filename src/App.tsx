@@ -1,11 +1,11 @@
 import React, { useState, Fragment } from "react";
 import { Accordion } from "react-bootstrap";
-import "bootstrap/dist/css/bootstrap.min.css";
 import  Modal from "react-modal";
 import { nanoid } from "nanoid";
 import { editCourseData, handleEditCourseChange, handleEditClick, handleEditCourseSubmit} from "./components/EditCourse";
 import { save, load, clearSave } from "./components/SaveAndLoad";
-import "./App.css";
+import { addSemester, deleteSemester, clearSemesters, clearClasses } from "./components/SemesterFunctions";
+import { addCourseData, handleAddCourseChange, handleAddCourseSubmit } from "./components/AddCourse";
 import { Course } from "./interfaces/course";
 import { Semester } from "./interfaces/semester";
 import ReadOnlyRow from "./components/ReadOnlyRow";
@@ -14,6 +14,8 @@ import { WriteMessage } from "./components/WelcomeMessage";
 import { customModal } from "./components/WelcomeMessage";
 //import { ProSidebar, Menu, SidebarHeader, SidebarFooter, SidebarContent } from "react-pro-sidebar";
 //import { loadSidebar } from "./components/sidebar";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.css";
 
 /* Resources that assisted in the making of this:
 1. Basis of the semester table: https://youtu.be/dYjdzpZv5yc
@@ -28,49 +30,8 @@ const App = () : JSX.Element => {
     const [currentSemesterID, setCurrentSemesterID]= useState("");
     const [currentCourseID, setCurrentCourseID] = useState("");
     const [modalOpen, setOpen] = useState(true); // For welcome message
-    const [semNum, setSemNum] = useState(2);
-    const [addCourseData, setAddFormData] = useState<Course>({
-        ID: "someid",
-        School: "Department",
-        ClassID: 0,
-        CourseName: "Course Name",
-        Desc: "Some Description",
-        Credits: 0
-    });
 
     //Functions
-
-    const handleAddCourseChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        event.preventDefault();
-
-        const fieldName = event.target.name;
-        const fieldValue = event.target.value;
-        const newCourseData = { ...addCourseData, [fieldName]: fieldValue};
-
-        setAddFormData(newCourseData);
-    };
-
-    const handleAddCourseSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-        const newPlan = plan.map(inner =>{ 
-            return {...inner, Courses: [...inner.Courses]}; 
-        });
-
-        const semIndex = plan.findIndex((semester: Semester) => semester.ID === currentSemesterID);
-        
-        const newCourse = {
-            ID: nanoid(),
-            School: addCourseData.School,
-            ClassID: addCourseData.ClassID,
-            CourseName: addCourseData.CourseName,
-            Desc: addCourseData.Desc,
-            Credits: addCourseData.Credits
-        };
-
-        newPlan[semIndex].Courses.push(newCourse);
-        setPlan(newPlan);
-        setCurrentCourseID("");
-    };
 
     const handleCancelClick = () => {
         setCurrentCourseID("");
@@ -90,7 +51,6 @@ const App = () : JSX.Element => {
         setCurrentCourseID("");
     };
 
-
     const closeModal = () => {
         setOpen(false);
     };
@@ -98,54 +58,6 @@ const App = () : JSX.Element => {
     const refreshPage = () => {
         window.location.reload();
     };
-
-    function addSemester(plan : Semester[]){
-        const newSemester ={
-            ID: nanoid(),
-            SemesterName: "Semester" + semNum,
-            Courses: []
-        };
-
-        setSemNum(semNum + 1);
-        setPlan([...plan, newSemester]);
-    }
-
-    function deleteSemester(plan : Semester[]){
-        const newPlan = plan.map(inner =>{ 
-            return {...inner}; 
-        });
-        const index = plan.findIndex((semester: Semester) => semester.ID === currentSemesterID);
-
-        //Note for later, add something in here that updates the other semester number when this is called
-
-        newPlan.splice(index, 1);
-        setPlan(newPlan);
-        setCurrentSemesterID("");
-        setSemNum(semNum-1);
-    }
-
-    function clearSemesters(plan : Semester[]){
-        const newPlan = plan.map(inner =>{ 
-            return {...inner}; 
-        });
-        newPlan.splice(0, newPlan.length);
-        
-        setPlan(newPlan);
-        setCurrentSemesterID("");
-        setSemNum(1);
-    }
-
-    function clearClasses(plan : Semester[]){
-        const newPlan = plan.map(inner =>{ 
-            return {...inner}; 
-        });
-        const index = plan.findIndex((semester: Semester) => semester.ID === currentSemesterID);
-        
-        newPlan[index].Courses = [];
-        setPlan(newPlan);
-        setCurrentCourseID("");
-    }
-
 
     return(
         <div className = "App">
@@ -162,9 +74,9 @@ const App = () : JSX.Element => {
                     <h1 className="header"><button className="refresh-logo" onClick={refreshPage}></button> UD CIS Scheduler</h1>
                     <br />
                     <button role = "add-semester" className = "edit-semester" type = "button" 
-                        onClick= {() => addSemester(plan)}>Add Semester</button>
+                        onClick= {() => addSemester(plan, setPlan(plan))}>Add Semester</button>
                     <button role = "clear-semesters" className = "edit-semester" type = "button" 
-                        onClick= {() => clearSemesters(plan)}>Clear All Semesters</button>
+                        onClick= {() => clearSemesters(plan, setPlan(plan), setCurrentSemesterID(currentSemesterID))}>Clear All Semesters</button>
                     <button role = "save-plan" className = "edit-semester" type = "button" 
                         onClick= {() => save(plan)}>Save Plan</button>
                     <button role = "clear-plan" className = "edit-semester" type = "button" 
@@ -212,15 +124,16 @@ const App = () : JSX.Element => {
                                     </tbody>
                                 </table>
                                 <button role= "clear-classes" className = "edit-semester" type = "button" 
-                                    onClick= {() => clearClasses(plan)}>Clear Classes</button>
+                                    onClick= {() => clearClasses(plan, setPlan(plan), currentSemesterID, setCurrentSemesterID(currentSemesterID))}>Clear Classes</button>
                                 <button role= "delete-semester" className = "edit-semester" type = "button" 
-                                    onClick= {() => deleteSemester(plan)}>Delete Semester</button>
+                                    onClick= {() => deleteSemester(plan, setPlan(plan), currentSemesterID, setCurrentSemesterID(currentSemesterID))}>Delete Semester</button>
                             </form>
                         </Accordion.Body>
                     </Accordion.Item>
                 )}
             </Accordion>
-            <form role = "add-course" onSubmit={handleAddCourseSubmit}>
+            <form role = "add-course" onSubmit={handleAddCourseSubmit(event, plan, setPlan(plan), currentSemesterID, 
+                setCurrentCourseID(nanoid()))}>
                 <input 
                     type ="text"
                     name = "School"
