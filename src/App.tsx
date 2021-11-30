@@ -2,7 +2,7 @@ import React, { useState, Fragment } from "react";
 import { Accordion } from "react-bootstrap";
 import  Modal from "react-modal";
 import { nanoid } from "nanoid";
-import { editCourseData, handleEditCourseChange, handleEditClick, handleEditCourseSubmit} from "./components/EditCourse";
+import { editCourseData, handleEditCourseChange, handleEditClick, handleEditCourseSubmit, handleCancelClick} from "./components/EditCourse";
 import { save, load, clearSave } from "./components/SaveAndLoad";
 import { addSemester, deleteSemester, clearSemesters, clearClasses } from "./components/SemesterFunctions";
 import { addCourseData, handleAddCourseChange, handleAddCourseSubmit } from "./components/AddCourse";
@@ -31,10 +31,6 @@ const App = () : JSX.Element => {
     const [modalOpen, setOpen] = useState(true); // For welcome message
 
     //Functions
-
-    const handleCancelClick = () => {
-        setCurrentCourseID("");
-    };
 
     const handleDeleteClick = (event: React.MouseEvent, cour: Course) => {
         event.preventDefault();
@@ -100,7 +96,7 @@ const App = () : JSX.Element => {
                                                     <MutableRow 
                                                         editCourseData = {editCourseData} 
                                                         handleEditCourseChange = {handleEditCourseChange}
-                                                        handleCancelClick = {handleCancelClick}
+                                                        handleCancelClick = {handleCancelClick(setCurrentCourseID(currentCourseID))}
                                                     /> 
                                                     :  
                                                     <ReadOnlyRow 
