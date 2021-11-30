@@ -6,12 +6,12 @@ import { editCourseData, handleEditCourseChange, handleEditClick, handleEditCour
 import { save, load, clearSave } from "./components/SaveAndLoad";
 import { addSemester, deleteSemester, clearSemesters, clearClasses } from "./components/SemesterFunctions";
 import { addCourseData, handleAddCourseChange, handleAddCourseSubmit } from "./components/AddCourse";
-import { Course } from "./interfaces/course";
-import { Semester } from "./interfaces/semester";
 import ReadOnlyRow from "./components/ReadOnlyRow";
 import MutableRow from "./components/MutableRow";
 import { WriteMessage } from "./components/WelcomeMessage";
 import { customModal } from "./components/WelcomeMessage";
+import { Course } from "./interfaces/course";
+import { Semester } from "./interfaces/semester";
 //import { ProSidebar, Menu, SidebarHeader, SidebarFooter, SidebarContent } from "react-pro-sidebar";
 //import { loadSidebar } from "./components/sidebar";
 import "bootstrap/dist/css/bootstrap.min.css";
