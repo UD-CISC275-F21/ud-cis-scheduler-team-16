@@ -177,7 +177,8 @@ const App = () : JSX.Element => {
                     <Accordion.Item eventKey= {sem.ID}  key = {sem.ID}>
                         <Accordion.Header onClick= {() => setCurrentSemesterID(sem.ID)}>{sem.SemesterName}</Accordion.Header>
                         <Accordion.Body>
-                            <form onSubmit={handleEditCourseSubmit}>
+                            <form onSubmit={handleEditCourseSubmit(event, currentSemesterID, currentCourseID, 
+                                plan, setPlan(plan), setCurrentCourseID(currentCourseID))}>
                                 <table>
                                     <thead>
                                         <tr>
@@ -201,7 +202,7 @@ const App = () : JSX.Element => {
                                                     :  
                                                     <ReadOnlyRow 
                                                         cour = {cour}
-                                                        handleEditClick={handleEditClick}
+                                                        handleEditClick={handleEditClick(event, cour, currentCourseID, setCurrentCourseID(currentCourseID))}
                                                         handleDeleteClick={handleDeleteClick}
                                                         setCurrentCourseID={setCurrentCourseID}
                                                     />

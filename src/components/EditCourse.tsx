@@ -1,11 +1,7 @@
 import React, { useState } from "react";
 import { Semester } from "../interfaces/semester";
 import { Course } from "../interfaces/course";
-import { load } from "./SaveAndLoad";
 
-export const [plan, setPlan] = useState<Semester[]>(load());
-export const [currentSemesterID, setCurrentSemesterID]= useState("");
-export const [currentCourseID, setCurrentCourseID] = useState("");
 export const [editCourseData, setEditCourseData] = useState<Course>
 ({
     ID: "",
@@ -27,7 +23,8 @@ export const handleEditCourseChange = (event: React.ChangeEvent<HTMLInputElement
     setEditCourseData(newCourseData);
 };
 
-export const handleEditClick = (event: React.MouseEvent, cour: Course)=> {
+export const handleEditClick = (event: React.MouseEvent, cour: Course, currentCourseID : string, 
+    setCurrentCourseID: React.Dispatch<React.SetStateAction<string>>)=> {
     event.preventDefault();
 
     const courseValues = {
@@ -43,7 +40,9 @@ export const handleEditClick = (event: React.MouseEvent, cour: Course)=> {
     setCurrentCourseID("");
 };
 
-export const handleEditCourseSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+export const handleEditCourseSubmit = (event: React.FormEvent<HTMLFormElement>, currentSemesterID: string,
+     currentCourseID: string, plan: Semester[], setPlan: React.Dispatch<React.SetStateAction<Semester[]>>, 
+     setCurrentCourseID: React.Dispatch<React.SetStateAction<string>>) => {
     event.preventDefault();
     const newPlan = plan.map(inner =>{ 
         return {...inner, Courses: [...inner.Courses]}; 
