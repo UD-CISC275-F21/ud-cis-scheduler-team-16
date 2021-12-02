@@ -36,6 +36,6 @@ export const WriteMessage = (setOpen: React.Dispatch<React.SetStateAction<boolea
                 <li>Remember that everyones academic journey is unique. One size never fits all in college, dont get discouraged! Your plan is your path to your future, no matter how long or short it is.</li>
             </ol>
         </p>
-        <button className= "modal-close" onClick={closeModal(setOpen)}></button>
+        <button className= "modal-close" onClick={() => closeModal(setOpen)}></button>
     </div>;
 };
