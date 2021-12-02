@@ -124,7 +124,7 @@ const App = () : JSX.Element => {
                     </Accordion.Item>
                 )}
             </Accordion>
-            <form role = "add-course" onSubmit={(event: React.FormEvent<HTMLFormElement>) => handleAddCourseSubmit(event, plan, setPlan, currentSemesterID, setCurrentCourseID}>
+            <form role = "add-course" onSubmit={(event: React.FormEvent<HTMLFormElement>) => handleAddCourseSubmit(event, plan, setPlan, currentSemesterID, setCurrentCourseID)}>
                 <input 
                     type ="text"
                     name = "School"
