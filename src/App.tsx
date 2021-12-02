@@ -1,7 +1,6 @@
 import React, { useState, Fragment } from "react";
 import { Accordion } from "react-bootstrap";
 import  Modal from "react-modal";
-import { nanoid } from "nanoid";
 import { editCourseData, handleEditCourseChange, handleEditClick, handleEditCourseSubmit} from "./components/EditCourse";
 import { save, load, clearSave } from "./components/SaveAndLoad";
 import { addSemester, deleteSemester, clearSemesters, clearClasses } from "./components/SemesterFunctions";
@@ -58,7 +57,7 @@ const App = () : JSX.Element => {
                 contentLabel="Welcome Message"
                 style={customModal}
             >
-                <WriteMessage closeModal={setOpen(modalOpen)} ></WriteMessage>
+                <WriteMessage closeModal = {setOpen(modalOpen)} ></WriteMessage>
             </Modal>
             <div className="row">
                 <div className="col-8">
