@@ -2,7 +2,7 @@ import React, { useState, Fragment } from "react";
 import { Accordion } from "react-bootstrap";
 import  Modal from "react-modal";
 import { nanoid } from "nanoid";
-import { editCourseData, handleEditCourseChange, handleEditClick, handleEditCourseSubmit, handleCancelClick} from "./components/EditCourse";
+import { editCourseData, handleEditCourseChange, handleEditClick, handleEditCourseSubmit} from "./components/EditCourse";
 import { save, load, clearSave } from "./components/SaveAndLoad";
 import { addSemester, deleteSemester, clearSemesters, clearClasses } from "./components/SemesterFunctions";
 import { addCourseData, handleAddCourseChange, handleAddCourseSubmit } from "./components/AddCourse";
@@ -54,11 +54,11 @@ const App = () : JSX.Element => {
         <div className = "App">
             <Modal
                 isOpen={modalOpen}
-                onRequestClose={closeModal(setOpen)}
+                onRequestClose={() => closeModal(setOpen)}
                 contentLabel="Welcome Message"
                 style={customModal}
             >
-                <WriteMessage closeModal={closeModal(setOpen)}></WriteMessage>
+                <WriteMessage closeModal={setOpen(modalOpen)} ></WriteMessage>
             </Modal>
             <div className="row">
                 <div className="col-8">
@@ -80,8 +80,9 @@ const App = () : JSX.Element => {
                     <Accordion.Item eventKey= {sem.ID}  key = {sem.ID}>
                         <Accordion.Header onClick= {() => setCurrentSemesterID(sem.ID)}>{sem.SemesterName}</Accordion.Header>
                         <Accordion.Body>
-                            <form onSubmit={handleEditCourseSubmit(event, currentSemesterID, currentCourseID, 
-                                plan, setPlan(plan), setCurrentCourseID(currentCourseID))}>
+                            <form onSubmit={(event: React.FormEvent<HTMLFormElement>) => 
+                            handleEditCourseSubmit(event, currentSemesterID, currentCourseID, 
+                                plan, setPlan, setCurrentCourseID)}>
                                 <table>
                                     <thead>
                                         <tr>
@@ -105,7 +106,7 @@ const App = () : JSX.Element => {
                                                     :  
                                                     <ReadOnlyRow 
                                                         cour = {cour}
-                                                        handleEditClick={handleEditClick(event, cour, currentCourseID, setCurrentCourseID)}
+                                                        handleEditClick={(event: React.MouseEvent) => handleEditClick(event, cour, currentCourseID, setCurrentCourseID)}
                                                         handleDeleteClick={handleDeleteClick}
                                                         setCurrentCourseID={setCurrentCourseID}
                                                     />
@@ -123,8 +124,7 @@ const App = () : JSX.Element => {
                     </Accordion.Item>
                 )}
             </Accordion>
-            <form role = "add-course" onSubmit={handleAddCourseSubmit(event, plan, setPlan, currentSemesterID, 
-                setCurrentCourseID(nanoid()))}>
+            <form role = "add-course" onSubmit={(event: React.FormEvent<HTMLFormElement>) => handleAddCourseSubmit(event, plan, setPlan, currentSemesterID, setCurrentCourseID}>
                 <input 
                     type ="text"
                     name = "School"
