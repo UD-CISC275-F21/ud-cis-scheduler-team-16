@@ -1,10 +1,9 @@
 import { Semester } from "../interfaces/semester";
 import { nanoid } from "nanoid";
-import { useState } from "react";
 
-const [semNum, setSemNum] = useState(2);
 
-export function addSemester(plan : Semester[], setPlan: React.Dispatch<React.SetStateAction<Semester[]>>){
+export function addSemester(plan : Semester[], setPlan: React.Dispatch<React.SetStateAction<Semester[]>>, 
+    semNum: number, setSemNum : React.Dispatch<React.SetStateAction<number>>){
     const newSemester ={
         ID: nanoid(),
         SemesterName: "Semester" + semNum,
@@ -16,7 +15,8 @@ export function addSemester(plan : Semester[], setPlan: React.Dispatch<React.Set
 }
 
 export function deleteSemester(plan : Semester[], setPlan : React.Dispatch<React.SetStateAction<Semester[]>>,
-    currentSemesterID: string, setCurrentSemesterID: React.Dispatch<React.SetStateAction<string>>){
+    currentSemesterID: string, setCurrentSemesterID: React.Dispatch<React.SetStateAction<string>>, 
+    semNum: number, setSemNum : React.Dispatch<React.SetStateAction<number>>){
     const newPlan = plan.map(inner =>{ 
         return {...inner}; 
     });
@@ -31,7 +31,7 @@ export function deleteSemester(plan : Semester[], setPlan : React.Dispatch<React
 }
 
 export function clearSemesters(plan : Semester[], setPlan: React.Dispatch<React.SetStateAction<Semester[]>>, 
-    setCurrentSemesterID: React.Dispatch<React.SetStateAction<string>> ){
+    setCurrentSemesterID: React.Dispatch<React.SetStateAction<string>>, setSemNum : React.Dispatch<React.SetStateAction<number>> ){
     const newPlan = plan.map(inner =>{ 
         return {...inner}; 
     });

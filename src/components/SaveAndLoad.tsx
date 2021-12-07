@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Semester } from "../interfaces/semester";
 
 export const LOCAL_STORAGE_PLAN = "fouryearplanner_plan";

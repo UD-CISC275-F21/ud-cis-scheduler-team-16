@@ -28,6 +28,7 @@ const App = () : JSX.Element => {
     const [currentSemesterID, setCurrentSemesterID]= useState("");
     const [currentCourseID, setCurrentCourseID] = useState("");
     const [modalOpen, setOpen] = useState(true); // For welcome message
+    const [semNum, setSemNum] = useState(2);
 
     //Functions
 
@@ -64,9 +65,9 @@ const App = () : JSX.Element => {
                     <h1 className="header"><button className="refresh-logo" onClick={refreshPage}></button> UD CIS Scheduler</h1>
                     <br />
                     <button role = "add-semester" className = "edit-semester" type = "button" 
-                        onClick= {() => addSemester(plan, setPlan)}>Add Semester</button>
+                        onClick= {() => addSemester(plan, setPlan, semNum, setSemNum)}>Add Semester</button>
                     <button role = "clear-semesters" className = "edit-semester" type = "button" 
-                        onClick= {() => clearSemesters(plan, setPlan, setCurrentSemesterID)}>Clear All Semesters</button>
+                        onClick= {() => clearSemesters(plan, setPlan, setCurrentSemesterID, setSemNum)}>Clear All Semesters</button>
                     <button role = "save-plan" className = "edit-semester" type = "button" 
                         onClick= {() => save(plan)}>Save Plan</button>
                     <button role = "clear-plan" className = "edit-semester" type = "button" 
@@ -80,8 +81,8 @@ const App = () : JSX.Element => {
                         <Accordion.Header onClick= {() => setCurrentSemesterID(sem.ID)}>{sem.SemesterName}</Accordion.Header>
                         <Accordion.Body>
                             <form onSubmit={(event: React.FormEvent<HTMLFormElement>) => 
-                            handleEditCourseSubmit(event, currentSemesterID, currentCourseID, 
-                                plan, setPlan, setCurrentCourseID)}>
+                                handleEditCourseSubmit(event, currentSemesterID, currentCourseID, 
+                                    plan, setPlan, setCurrentCourseID)}>
                                 <table>
                                     <thead>
                                         <tr>
@@ -117,7 +118,7 @@ const App = () : JSX.Element => {
                                 <button role= "clear-classes" className = "edit-semester" type = "button" 
                                     onClick= {() => clearClasses(plan, setPlan, currentSemesterID, setCurrentSemesterID)}>Clear Classes</button>
                                 <button role= "delete-semester" className = "edit-semester" type = "button" 
-                                    onClick= {() => deleteSemester(plan, setPlan, currentSemesterID, setCurrentSemesterID)}>Delete Semester</button>
+                                    onClick= {() => deleteSemester(plan, setPlan, currentSemesterID, setCurrentSemesterID, semNum, setSemNum)}>Delete Semester</button>
                             </form>
                         </Accordion.Body>
                     </Accordion.Item>
