@@ -3,7 +3,7 @@ import { nanoid } from "nanoid";
 
 
 export function addSemester(plan : Semester[], setPlan: React.Dispatch<React.SetStateAction<Semester[]>>, 
-    semNum: number, setSemNum : React.Dispatch<React.SetStateAction<number>>){
+    semNum: number, setSemNum : React.Dispatch<React.SetStateAction<number>>): void{
     const newSemester ={
         ID: nanoid(),
         SemesterName: "Semester" + semNum,
@@ -16,7 +16,7 @@ export function addSemester(plan : Semester[], setPlan: React.Dispatch<React.Set
 
 export function deleteSemester(plan : Semester[], setPlan : React.Dispatch<React.SetStateAction<Semester[]>>,
     currentSemesterID: string, setCurrentSemesterID: React.Dispatch<React.SetStateAction<string>>, 
-    semNum: number, setSemNum : React.Dispatch<React.SetStateAction<number>>){
+    semNum: number, setSemNum : React.Dispatch<React.SetStateAction<number>>): void{
     const newPlan = plan.map(inner =>{ 
         return {...inner}; 
     });
@@ -31,7 +31,7 @@ export function deleteSemester(plan : Semester[], setPlan : React.Dispatch<React
 }
 
 export function clearSemesters(plan : Semester[], setPlan: React.Dispatch<React.SetStateAction<Semester[]>>, 
-    setCurrentSemesterID: React.Dispatch<React.SetStateAction<string>>, setSemNum : React.Dispatch<React.SetStateAction<number>> ){
+    setCurrentSemesterID: React.Dispatch<React.SetStateAction<string>>, setSemNum : React.Dispatch<React.SetStateAction<number>> ): void{
     const newPlan = plan.map(inner =>{ 
         return {...inner}; 
     });
@@ -43,7 +43,7 @@ export function clearSemesters(plan : Semester[], setPlan: React.Dispatch<React.
 }
 
 export function clearClasses(plan : Semester[], setPlan : React.Dispatch<React.SetStateAction<Semester[]>>,
-    currentSemesterID: string, setCurrentCourseID: React.Dispatch<React.SetStateAction<string>>){ // Clears all classes from a semester
+    currentSemesterID: string, setCurrentCourseID: React.Dispatch<React.SetStateAction<string>>): void { // Clears all classes from a semester
     const newPlan = plan.map(inner =>{ 
         return {...inner}; 
     });

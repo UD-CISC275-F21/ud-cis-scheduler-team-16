@@ -5,7 +5,7 @@ export const INITIAL_PLAN: Semester[] = [
     { ID: "0", SemesterName: "Semester 1", Courses: [] }
 ];
 
-export function save(plan : Semester[]){ 
+export function save(plan : Semester[]): void{ 
     localStorage.setItem(LOCAL_STORAGE_PLAN, JSON.stringify(plan));
     alert("Plan saved! This plan will be loaded whenever you load back into this page.");
 }
@@ -19,7 +19,7 @@ export function load() : Semester[] {
     }
 }
 
-export function clearSave(){
+export function clearSave(): void{
     localStorage.setItem(LOCAL_STORAGE_PLAN, JSON.stringify(INITIAL_PLAN));
     alert("Save cleared! Refresh your page to start again.");
 }

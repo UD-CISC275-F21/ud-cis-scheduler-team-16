@@ -13,7 +13,7 @@ export const customModal = {
     },
 };
 
-export function refreshPage(){
+export function refreshPage(): void{
     window.location.reload();
 }
 export const WriteMessage = ({closeModal}:{closeModal : () => void}): JSX.Element => {
