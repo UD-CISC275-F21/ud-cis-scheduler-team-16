@@ -1,4 +1,4 @@
-import React, { Dispatch, Fragment } from "react";
+import React, { Fragment } from "react";
 import { Accordion } from "react-bootstrap";
 import { handleEditCourseChange, handleEditClick, handleEditCourseSubmit} from "./EditCourse";
 import { addSemester, deleteSemester, clearSemesters, clearClasses } from "./SemesterFunctions";
