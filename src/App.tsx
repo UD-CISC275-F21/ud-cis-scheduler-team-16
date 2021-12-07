@@ -57,7 +57,7 @@ const App = () : JSX.Element => {
                 contentLabel="Welcome Message"
                 style={customModal}
             >
-                <WriteMessage closeModal = {setOpen(modalOpen)} ></WriteMessage>
+                <WriteMessage closeModal = {() => closeModal} ></WriteMessage>
             </Modal>
             <div className="row">
                 <div className="col-8">
