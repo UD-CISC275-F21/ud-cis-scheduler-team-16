@@ -1,5 +1,6 @@
-import React, { useState} from "react";
+import React, { useState } from "react";
 import  Modal from "react-modal";
+import { PlanViewer } from "./components/PlanViewer";
 import { load } from "./components/SaveAndLoad";
 import { handleAddCourseChange, handleAddCourseSubmit } from "./components/AddCourse";
 import { WriteMessage, customModal} from "./components/WelcomeMessage";
@@ -54,6 +55,19 @@ const App = () : JSX.Element => {
             >
                 <WriteMessage closeModal = {() => setOpen(false)} ></WriteMessage>
             </Modal> 
+            <PlanViewer
+                plan = {plan}
+                setPlan = {setPlan}
+                currentSemesterID = {currentSemesterID}
+                setCurrentSemesterID = {setCurrentSemesterID}
+                currentCourseID = {currentCourseID}
+                setCurrentCourseID = {setCurrentCourseID}
+                editCourseData = {editCourseData}
+                setEditCourseData = {setEditCourseData}
+                semNum ={semNum}
+                setSemNum = {setSemNum}
+            >
+            </PlanViewer>
             
             <form role = "add-course" onSubmit={(event: React.FormEvent<HTMLFormElement>) => handleAddCourseSubmit(event, plan, setPlan, currentSemesterID, setCurrentCourseID, addCourseData)}>
                 <input 
