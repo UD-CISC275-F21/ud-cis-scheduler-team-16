@@ -150,7 +150,7 @@ const App = () : JSX.Element => {
                     defaultValue={addCourseData.School}
                     required= {true}
                     placeholder = "Enter a School."
-                    onChange={() => handleAddCourseChange}
+                    onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleAddCourseChange(event, addCourseData, setAddFormData)}
                 />
                 <input 
                     type = "number"
@@ -158,7 +158,7 @@ const App = () : JSX.Element => {
                     defaultValue={addCourseData.ClassID}
                     required = {true}
                     placeholder = "Enter a Class ID."
-                    onChange={() => handleAddCourseChange}
+                    onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleAddCourseChange(event, addCourseData, setAddFormData)}
                 />
                 <input 
                     type ="text"
@@ -166,7 +166,7 @@ const App = () : JSX.Element => {
                     defaultValue={addCourseData.CourseName}
                     required = {true}
                     placeholder = "Enter a Course Name."
-                    onChange={() => handleAddCourseChange}
+                    onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleAddCourseChange(event, addCourseData, setAddFormData)}
                 />
                 <input 
                     type ="text"
@@ -174,7 +174,7 @@ const App = () : JSX.Element => {
                     defaultValue={addCourseData.Desc}
                     required = {true}
                     placeholder = "Enter a Class Description."
-                    onChange={() => handleAddCourseChange}
+                    onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleAddCourseChange(event, addCourseData, setAddFormData)}
                 />
                 <input 
                     type ="number"
@@ -182,7 +182,7 @@ const App = () : JSX.Element => {
                     defaultValue={addCourseData.Credits}
                     required = {true}
                     placeholder = "Enter a Credit Amount."
-                    onChange={() => handleAddCourseChange}
+                    onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleAddCourseChange(event, addCourseData, setAddFormData)}
                 />
                 <button type="submit">Add Course</button>
             </form>
