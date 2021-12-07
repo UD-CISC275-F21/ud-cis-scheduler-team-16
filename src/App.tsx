@@ -4,7 +4,7 @@ import  Modal from "react-modal";
 import { editCourseData, handleEditCourseChange, handleEditClick, handleEditCourseSubmit} from "./components/EditCourse";
 import { save, load, clearSave } from "./components/SaveAndLoad";
 import { addSemester, deleteSemester, clearSemesters, clearClasses } from "./components/SemesterFunctions";
-import { addCourseData, handleAddCourseChange, handleAddCourseSubmit } from "./components/AddCourse";
+import { handleAddCourseChange, handleAddCourseSubmit } from "./components/AddCourse";
 import ReadOnlyRow from "./components/ReadOnlyRow";
 import MutableRow from "./components/MutableRow";
 import { WriteMessage, customModal, refreshPage } from "./components/WelcomeMessage";
@@ -29,6 +29,14 @@ const App = () : JSX.Element => {
     const [currentCourseID, setCurrentCourseID] = useState("");
     const [modalOpen, setOpen] = useState(true); // For welcome message
     const [semNum, setSemNum] = useState(2);
+    const [addCourseData, setAddFormData] = useState<Course>({
+        ID: "someid",
+        School: "Department",
+        ClassID: 0,
+        CourseName: "Course Name",
+        Desc: "Some Description",
+        Credits: 0
+    });
 
     //Functions
 
@@ -124,14 +132,14 @@ const App = () : JSX.Element => {
                     </Accordion.Item>
                 )}
             </Accordion>
-            <form role = "add-course" onSubmit={(event: React.FormEvent<HTMLFormElement>) => handleAddCourseSubmit(event, plan, setPlan, currentSemesterID, setCurrentCourseID)}>
+            <form role = "add-course" onSubmit={(event: React.FormEvent<HTMLFormElement>) => handleAddCourseSubmit(event, plan, setPlan, currentSemesterID, setCurrentCourseID, addCourseData)}>
                 <input 
                     type ="text"
                     name = "School"
                     defaultValue={addCourseData.School}
                     required= {true}
                     placeholder = "Enter a School."
-                    onChange={handleAddCourseChange}
+                    onChange={() => handleAddCourseChange}
                 />
                 <input 
                     type = "number"
@@ -139,7 +147,7 @@ const App = () : JSX.Element => {
                     defaultValue={addCourseData.ClassID}
                     required = {true}
                     placeholder = "Enter a Class ID."
-                    onChange={handleAddCourseChange}
+                    onChange={() => handleAddCourseChange}
                 />
                 <input 
                     type ="text"
@@ -147,7 +155,7 @@ const App = () : JSX.Element => {
                     defaultValue={addCourseData.CourseName}
                     required = {true}
                     placeholder = "Enter a Course Name."
-                    onChange={handleAddCourseChange}
+                    onChange={() => handleAddCourseChange}
                 />
                 <input 
                     type ="text"
@@ -155,7 +163,7 @@ const App = () : JSX.Element => {
                     defaultValue={addCourseData.Desc}
                     required = {true}
                     placeholder = "Enter a Class Description."
-                    onChange={handleAddCourseChange}
+                    onChange={() => handleAddCourseChange}
                 />
                 <input 
                     type ="number"
@@ -163,7 +171,7 @@ const App = () : JSX.Element => {
                     defaultValue={addCourseData.Credits}
                     required = {true}
                     placeholder = "Enter a Credit Amount."
-                    onChange={handleAddCourseChange}
+                    onChange={() => handleAddCourseChange}
                 />
                 <button type="submit">Add Course</button>
             </form>
