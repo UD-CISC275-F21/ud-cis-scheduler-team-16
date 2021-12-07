@@ -12,14 +12,11 @@ export const customModal = {
         transform: "translate(-50%, -50%)",
     },
 };
-export function closeModal(setOpen: React.Dispatch<React.SetStateAction<boolean>>){
-    setOpen(false);
-}
 
 export function refreshPage(){
     window.location.reload();
 }
-export const WriteMessage = (setOpen: React.Dispatch<React.SetStateAction<boolean>>): JSX.Element => {
+export const WriteMessage = ({closeModal}:{closeModal : () => void}): JSX.Element => {
     return <div className="welcome-message">
         <h2 className= "welcome-message-header">Welcome to the UDEL Plan Creater!</h2>
         <p className = "welcome-message-body">
@@ -36,6 +33,6 @@ export const WriteMessage = (setOpen: React.Dispatch<React.SetStateAction<boolea
                 <li>Remember that everyones academic journey is unique. One size never fits all in college, dont get discouraged! Your plan is your path to your future, no matter how long or short it is.</li>
             </ol>
         </p>
-        <button className= "modal-close" onClick={() => closeModal(setOpen)}></button>
+        <button className= "modal-close" onClick={closeModal}></button>
     </div>;
 };

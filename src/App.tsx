@@ -7,7 +7,7 @@ import { addSemester, deleteSemester, clearSemesters, clearClasses } from "./com
 import { addCourseData, handleAddCourseChange, handleAddCourseSubmit } from "./components/AddCourse";
 import ReadOnlyRow from "./components/ReadOnlyRow";
 import MutableRow from "./components/MutableRow";
-import { WriteMessage, customModal, closeModal, refreshPage } from "./components/WelcomeMessage";
+import { WriteMessage, customModal, refreshPage } from "./components/WelcomeMessage";
 import { Course } from "./interfaces/course";
 import { Semester } from "./interfaces/semester";
 //import { ProSidebar, Menu, SidebarHeader, SidebarFooter, SidebarContent } from "react-pro-sidebar";
@@ -53,12 +53,12 @@ const App = () : JSX.Element => {
         <div className = "App">
             <Modal
                 isOpen={modalOpen}
-                onRequestClose={() => closeModal(setOpen)}
+                onRequestClose={() => setOpen(false)}
                 contentLabel="Welcome Message"
                 style={customModal}
             >
-                <WriteMessage closeModal = {() => closeModal} ></WriteMessage>
-            </Modal>
+                <WriteMessage closeModal = {() => setOpen(false)} ></WriteMessage>
+            </Modal> 
             <div className="row">
                 <div className="col-8">
                     <h1 className="header"><button className="refresh-logo" onClick={refreshPage}></button> UD CIS Scheduler</h1>
