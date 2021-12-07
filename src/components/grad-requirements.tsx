@@ -52,14 +52,7 @@ out how to implement optional courses that have to be  */
         Desc: "Object oriented software design and development through use of an object oriented programming language. Topics include team programming, design patterns, graphical user interfaces, software engineering tools (e.g., integrated development environments, version control, build management, bug tracking, automated testing).",
         Credits: 3
     },
-    {
-        ID : nanoid(), 
-        School: "MATH",
-        ClassID: 241,
-        CourseName: "Analytic Geometry and Calculus A",
-        Desc: "Functions, limits, continuity, derivatives. Polynomial, rational, exponential, hyperbolic, logarithmic, trigonometric and inverse trigonometric functions. Definite and indefinite integrals and the Fundamental Theorem of Calculus. Simple differential equations (separable ODE, linear ODE). ODE models leading to exponential growth and decay.",
-        Credits: 4
-    },
+    
     {
         ID : nanoid(), 
         School: "CISC",
@@ -76,23 +69,6 @@ out how to implement optional courses that have to be  */
         Desc: "Design and analysis of algorithms: worst/average case analysis, proofs for correctness and performance of algorithms. Algorithmic strategies (divide and conquer, greedy methods, dynamic programming, etc.). Algorithms for searching, forming and traversal of strings, trees and graphs. Categorization of computational problems: classes P and NP. NP completeness.",
         Credits: 3
     },
-    {
-        ID : nanoid(), 
-        School: "MATH",
-        ClassID: 242,
-        CourseName: "Analytic Geometry and Calculus B",
-        Desc: "Brief review of MATH 241; evaluation of limits by L’Hospital’s rule; applications of integration; integration techniques; parametric curves; polar coordinates; infinite sequences and series. Includes use of computers to perform symbolic, numerical and graphical analysis.",
-        Credits: 4
-    },
-    {
-        ID : nanoid(), 
-        School: "MATH",
-        ClassID: 210,
-        CourseName: "Discrete Mathematics I",
-        Desc: "Elements of sets and logic. Relations, functions. Integers. Induction and recursion. Principles and techniques of counting. Graphs. Paths and circuits",
-        Credits: 3
-    },
-   
     {
         ID : nanoid(), 
         School: "CISC",
@@ -118,6 +94,30 @@ out how to implement optional courses that have to be  */
         Credits: 3
     },
     {
+        ID : nanoid(), 
+        School: "MATH",
+        ClassID: 241,
+        CourseName: "Analytic Geometry and Calculus A",
+        Desc: "Functions, limits, continuity, derivatives. Polynomial, rational, exponential, hyperbolic, logarithmic, trigonometric and inverse trigonometric functions. Definite and indefinite integrals and the Fundamental Theorem of Calculus. Simple differential equations (separable ODE, linear ODE). ODE models leading to exponential growth and decay.",
+        Credits: 4
+    },
+    {
+        ID : nanoid(), 
+        School: "MATH",
+        ClassID: 242,
+        CourseName: "Analytic Geometry and Calculus B",
+        Desc: "Brief review of MATH 241; evaluation of limits by L’Hospital’s rule; applications of integration; integration techniques; parametric curves; polar coordinates; infinite sequences and series. Includes use of computers to perform symbolic, numerical and graphical analysis.",
+        Credits: 4
+    },
+    {
+        ID : nanoid(), 
+        School: "MATH",
+        ClassID: 210,
+        CourseName: "Discrete Mathematics I",
+        Desc: "Elements of sets and logic. Relations, functions. Integers. Induction and recursion. Principles and techniques of counting. Graphs. Paths and circuits",
+        Credits: 3
+    },
+    {
         ID : nanoid(),
         School: "ENGL",
         ClassID: 110,
@@ -125,4 +125,8 @@ out how to implement optional courses that have to be  */
         Desc: "Introduction to the process of academic writing that centers on the composition of analytical, research-based essays.", 
         Credits: 3
     },
+    
+    /* this is the end of the list of courses that are absolutely required for a basic Comp Sci BS major at UDEL, 
+    the classes above all have to be taken wheras the other classes can satisfy a requirement but don't have to be taken. 
+    */
 ];
