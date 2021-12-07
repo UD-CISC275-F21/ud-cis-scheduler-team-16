@@ -32,7 +32,7 @@ export const PlanViewer = (plan: Semester[], setPlan: React.Dispatch<React.SetSt
     currentSemesterID: string, setCurrentSemesterID: React.Dispatch<React.SetStateAction<string>>,
     currentCourseID: string, setCurrentCourseID: React.Dispatch<React.SetStateAction<string>>,
     editCourseData: Course, setEditCourseData: React.Dispatch<React.SetStateAction<Course>>,
-    semNum: number, setSemNum: React.Dispatch<React.SetStateAction<number>>) => {
+    semNum: number, setSemNum: React.Dispatch<React.SetStateAction<number>>): JSX.Element => {
     return(
         <div className = "plan-viewer">
             <div className="row">
