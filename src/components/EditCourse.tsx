@@ -2,6 +2,7 @@ import React from "react";
 import { Semester } from "../interfaces/semester";
 import { Course } from "../interfaces/course";
 
+
 export const handleEditCourseChange = (event: React.ChangeEvent<HTMLInputElement>, editCourseData: Course,
     setEditCourseData: React.Dispatch<React.SetStateAction<Course>>): void => {
     event.preventDefault();

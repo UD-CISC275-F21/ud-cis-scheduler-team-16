@@ -28,7 +28,11 @@ const handleCancelClick = (setCurrentCourseID: React.Dispatch<React.SetStateActi
     setCurrentCourseID("");
 };
 
-export const PlanViewer = () => {
+export const PlanViewer = (plan: Semester[], setPlan: React.Dispatch<React.SetStateAction<Semester[]>>,
+    currentSemesterID: string, setCurrentSemesterID: React.Dispatch<React.SetStateAction<string>>,
+    currentCourseID: string, setCurrentCourseID: React.Dispatch<React.SetStateAction<string>>,
+    editCourseData: Course, setEditCourseData: React.Dispatch<React.SetStateAction<Course>>,
+    semNum: number, setSemNum: React.Dispatch<React.SetStateAction<number>>) => {
     return(
         <div className = "plan-viewer">
             <div className="row">
@@ -36,26 +40,22 @@ export const PlanViewer = () => {
                     <h1 className="header"><button className="refresh-logo" onClick={refreshPage}></button> UD CIS Scheduler</h1>
                     <br />
                     <button role = "add-semester" className = "edit-semester" type = "button" 
-                        onClick= {(plan: Semester[], setPlan: React.Dispatch<React.SetStateAction<Semester[]>> , semNum: number, setSemNum: React.Dispatch<React.SetStateAction<number>> )=> 
-                        addSemester(plan, setPlan, semNum, setSemNum)}>Add Semester</button>
+                        onClick= {() => addSemester(plan, setPlan, semNum, setSemNum)}>Add Semester</button>
                     <button role = "clear-semesters" className = "edit-semester" type = "button" 
-                        onClick= {(plan: Semester[], setPlan: React.Dispatch<React.SetStateAction<Semester[]>>, setCurrentSemesterID:  React.Dispatch<React.SetStateAction<string>>, setSemNum: React.Dispatch<React.SetStateAction<number>>) => 
-                        clearSemesters(plan, setPlan, setCurrentSemesterID, setSemNum)}>Clear All Semesters</button>
+                        onClick= {() => clearSemesters(plan, setPlan, setCurrentSemesterID, setSemNum)}>Clear All Semesters</button>
                     <button role = "save-plan" className = "edit-semester" type = "button" 
-                        onClick= {(plan : Semester[]) => save(plan)}>Save Plan</button>
+                        onClick= {() => save(plan)}>Save Plan</button>
                     <button role = "clear-plan" className = "edit-semester" type = "button" 
                         onClick= {() => clearSave()}>Clear Current Save state</button>
                     <br />
                 </div>
             </div>
             <Accordion role= "semester-display" flush>
-                { (plan: Semester[]) => plan.map ( (sem: Semester) =>
+                { () => plan.map ( (sem: Semester) =>
                     <Accordion.Item eventKey= {sem.ID}  key = {sem.ID}>
-                        <Accordion.Header onClick= {(setCurrentSemesterID:  React.Dispatch<React.SetStateAction<string>>) =>
-                             setCurrentSemesterID(sem.ID)}>{sem.SemesterName}</Accordion.Header>
+                        <Accordion.Header onClick= {() => setCurrentSemesterID(sem.ID)}>{sem.SemesterName}</Accordion.Header>
                         <Accordion.Body>
-                            <form onSubmit={(event: React.FormEvent<HTMLFormElement>, currentSemesterID: string, currentCourseID: string, setPlan: React.Dispatch<React.SetStateAction<Semester[]>>, setCurrentCourseID: React.Dispatch<React.SetStateAction<string>>, editCourseData: Course) => 
-                                handleEditCourseSubmit(event, currentSemesterID, currentCourseID, 
+                            <form onSubmit={(event: React.FormEvent<HTMLFormElement>)=> handleEditCourseSubmit(event, currentSemesterID, currentCourseID, 
                                     plan, setPlan, setCurrentCourseID, editCourseData)}>
                                 <table>
                                     <thead>
@@ -71,7 +71,7 @@ export const PlanViewer = () => {
                                     <tbody>
                                         { sem.Courses.map ( (cour: Course) =>
                                             <Fragment key={cour.ID}>
-                                                { (currentCourseID: string, editCourseData: Course, setCurrentCourseID: React.Dispatch<React.SetStateAction<string>>, setEditCourseData: React.Dispatch<React.SetStateAction<Course>>) => 
+                                                { () => 
                                                 cour.ID === currentCourseID ? 
                                                     <MutableRow 
                                                         editCourseData = {editCourseData} 
@@ -94,11 +94,9 @@ export const PlanViewer = () => {
                                     </tbody>
                                 </table>
                                 <button role= "clear-classes" className = "edit-semester" type = "button" 
-                                    onClick= {(plan: Semester[], setPlan: React.Dispatch<React.SetStateAction<Semester[]>>, currentSemesterID: string, setCurrentSemesterID: React.Dispatch<React.SetStateAction<string>>) => 
-                                    clearClasses(plan, setPlan, currentSemesterID, setCurrentSemesterID)}>Clear Classes</button>
+                                    onClick= {() => clearClasses(plan, setPlan, currentSemesterID, setCurrentCourseID)}>Clear Classes</button>
                                 <button role= "delete-semester" className = "edit-semester" type = "button" 
-                                    onClick= {(plan: Semester[], setPlan: React.Dispatch<React.SetStateAction<Semester[]>>, currentSemesterID: string, setCurrentSemesterID: React.Dispatch<React.SetStateAction<string>>, semNum : number, setSemNum: React.Dispatch<React.SetStateAction<number>>) => 
-                                    deleteSemester(plan, setPlan, currentSemesterID, setCurrentSemesterID, semNum, setSemNum)}>Delete Semester</button>
+                                    onClick= {() => deleteSemester(plan, setPlan, currentSemesterID, setCurrentSemesterID, semNum, setSemNum)}>Delete Semester</button>
                             </form>
                         </Accordion.Body>
                     </Accordion.Item>
