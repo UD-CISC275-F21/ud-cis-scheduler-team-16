@@ -1,7 +1,7 @@
 import React, { useState, Fragment } from "react";
 import { Accordion } from "react-bootstrap";
 import  Modal from "react-modal";
-import { editCourseData, handleEditCourseChange, handleEditClick, handleEditCourseSubmit} from "./components/EditCourse";
+import { handleEditCourseChange, handleEditClick, handleEditCourseSubmit} from "./components/EditCourse";
 import { save, load, clearSave } from "./components/SaveAndLoad";
 import { addSemester, deleteSemester, clearSemesters, clearClasses } from "./components/SemesterFunctions";
 import { handleAddCourseChange, handleAddCourseSubmit } from "./components/AddCourse";
@@ -37,6 +37,15 @@ const App = () : JSX.Element => {
         Desc: "Some Description",
         Credits: 0
     });
+    const [editCourseData, setEditCourseData] = useState<Course>
+    ({
+        ID: "",
+        School: "",
+        ClassID: 0,
+        CourseName: "",
+        Desc: "",
+        Credits: 0
+    });
 
     //Functions
 
@@ -57,6 +66,8 @@ const App = () : JSX.Element => {
     const handleCancelClick = () => {
         setCurrentCourseID("");
     };
+
+    //Display 
 
     return(
         <div className = "App">
@@ -90,7 +101,7 @@ const App = () : JSX.Element => {
                         <Accordion.Body>
                             <form onSubmit={(event: React.FormEvent<HTMLFormElement>) => 
                                 handleEditCourseSubmit(event, currentSemesterID, currentCourseID, 
-                                    plan, setPlan, setCurrentCourseID)}>
+                                    plan, setPlan, setCurrentCourseID, editCourseData)}>
                                 <table>
                                     <thead>
                                         <tr>
@@ -108,13 +119,13 @@ const App = () : JSX.Element => {
                                                 { cour.ID === currentCourseID ? 
                                                     <MutableRow 
                                                         editCourseData = {editCourseData} 
-                                                        handleEditCourseChange = {handleEditCourseChange}
+                                                        handleEditCourseChange = {() => handleEditCourseChange}
                                                         handleCancelClick = {handleCancelClick}
                                                     /> 
                                                     :  
                                                     <ReadOnlyRow 
                                                         cour = {cour}
-                                                        handleEditClick={(event: React.MouseEvent) => handleEditClick(event, cour, currentCourseID, setCurrentCourseID)}
+                                                        handleEditClick={(event: React.MouseEvent) => handleEditClick(event, cour, currentCourseID, setCurrentCourseID, setEditCourseData)}
                                                         handleDeleteClick={handleDeleteClick}
                                                         setCurrentCourseID={setCurrentCourseID}
                                                     />
