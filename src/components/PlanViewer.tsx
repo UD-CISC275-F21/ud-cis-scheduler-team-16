@@ -28,11 +28,13 @@ const handleCancelClick = (setCurrentCourseID: React.Dispatch<React.SetStateActi
     setCurrentCourseID("");
 };
 
-export const PlanViewer = (plan: Semester[], setPlan: React.Dispatch<React.SetStateAction<Semester[]>>,
+export const PlanViewer = ({plan, setPlan, currentSemesterID, setCurrentSemesterID, currentCourseID, 
+    setCurrentCourseID, editCourseData, setEditCourseData, semNum, setSemNum}: 
+    {plan: Semester[], setPlan: React.Dispatch<React.SetStateAction<Semester[]>>,
     currentSemesterID: string, setCurrentSemesterID: React.Dispatch<React.SetStateAction<string>>,
     currentCourseID: string, setCurrentCourseID: React.Dispatch<React.SetStateAction<string>>,
     editCourseData: Course, setEditCourseData: React.Dispatch<React.SetStateAction<Course>>,
-    semNum: number, setSemNum: React.Dispatch<React.SetStateAction<number>>): JSX.Element => {
+    semNum: number, setSemNum: React.Dispatch<React.SetStateAction<number>>}): JSX.Element => {
     return(
         <div className = "plan-viewer">
             <div className="row">

@@ -3,9 +3,10 @@ import { Course } from "../interfaces/course";
 import { Semester } from "../interfaces/semester";
 import { handleAddCourseChange, handleAddCourseSubmit } from "./AddCourse";
 
-export const AddCourseBar = (plan: Semester[], setPlan: React.Dispatch<React.SetStateAction<Semester[]>>,
+export const AddCourseBar = ({plan, setPlan, currentSemesterID, addCourseData, setAddFormData, setCurrentCourseID} : 
+    {plan: Semester[], setPlan: React.Dispatch<React.SetStateAction<Semester[]>>,
     currentSemesterID: string, addCourseData: Course, setAddFormData: React.Dispatch<React.SetStateAction<Course>>,
-    setCurrentCourseID: React.Dispatch<React.SetStateAction<string>>): JSX.Element => {
+    setCurrentCourseID: React.Dispatch<React.SetStateAction<string>>}): JSX.Element => {
     return(
         <form role = "add-course" onSubmit={(event: React.FormEvent<HTMLFormElement>) => handleAddCourseSubmit(event, plan, setPlan, currentSemesterID, setCurrentCourseID, addCourseData)}>
             <input 
