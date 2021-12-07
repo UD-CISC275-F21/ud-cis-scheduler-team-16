@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import  Modal from "react-modal";
 import { PlanViewer } from "./components/PlanViewer";
 import { AddCourseBar } from "./components/AddCourseBar";
@@ -68,6 +68,8 @@ const App = () : JSX.Element => {
                     semNum ={semNum}
                     setSemNum = {setSemNum}
                 />
+            </div>
+            <div className = "display-add">
                 <AddCourseBar
                     plan = {plan}
                     setPlan = {setPlan}

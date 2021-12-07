@@ -53,12 +53,11 @@ export const PlanViewer = ({plan, setPlan, currentSemesterID, setCurrentSemester
                 </div>
             </div>
             <Accordion role= "semester-display" flush>
-                { () => plan.map ( (sem: Semester) =>
+                { plan.map ( (sem: Semester) =>
                     <Accordion.Item eventKey= {sem.ID}  key = {sem.ID}>
                         <Accordion.Header onClick= {() => setCurrentSemesterID(sem.ID)}>{sem.SemesterName}</Accordion.Header>
                         <Accordion.Body>
-                            <form onSubmit={(event: React.FormEvent<HTMLFormElement>)=> handleEditCourseSubmit(event, currentSemesterID, currentCourseID, 
-                                    plan, setPlan, setCurrentCourseID, editCourseData)}>
+                            <form onSubmit={(event: React.FormEvent<HTMLFormElement>)=> handleEditCourseSubmit(event, currentSemesterID, currentCourseID, plan, setPlan, setCurrentCourseID, editCourseData)}>
                                 <table>
                                     <thead>
                                         <tr>
@@ -74,22 +73,21 @@ export const PlanViewer = ({plan, setPlan, currentSemesterID, setCurrentSemester
                                         { sem.Courses.map ( (cour: Course) =>
                                             <Fragment key={cour.ID}>
                                                 { () => 
-                                                cour.ID === currentCourseID ? 
-                                                    <MutableRow 
-                                                        editCourseData = {editCourseData} 
-                                                        handleEditCourseChange = {() => handleEditCourseChange}
-                                                        handleCancelClick = {() => handleCancelClick}
-                                                    /> 
-                                                    :  
-                                                    <ReadOnlyRow 
-                                                        cour = {cour}
-                                                        handleEditClick={(event: React.MouseEvent, cour: Course, currentCourseID: string, setCurrentCourseID: React.Dispatch<React.SetStateAction<string>>, setEditCourseData: React.Dispatch<React.SetStateAction<Course>>) => 
-                                                            handleEditClick(event, cour, currentCourseID, setCurrentCourseID, setEditCourseData)}
-                                                        handleDeleteClick={() => handleDeleteClick}
-                                                        currentCourseID= {currentCourseID}
-                                                        setCurrentCourseID={setCurrentCourseID}
-                                                        setEditCourseData={setEditCourseData}
-                                                    />
+                                                    cour.ID === currentCourseID ? 
+                                                        <MutableRow 
+                                                            editCourseData = {editCourseData} 
+                                                            handleEditCourseChange = {() => handleEditCourseChange}
+                                                            handleCancelClick = {() => handleCancelClick}
+                                                        /> 
+                                                        :  
+                                                        <ReadOnlyRow 
+                                                            cour = {cour}
+                                                            handleEditClick={(event: React.MouseEvent) => handleEditClick(event, cour, currentCourseID, setCurrentCourseID, setEditCourseData)}
+                                                            handleDeleteClick={() => handleDeleteClick}
+                                                            currentCourseID= {currentCourseID}
+                                                            setCurrentCourseID={setCurrentCourseID}
+                                                            setEditCourseData={setEditCourseData}
+                                                        />
                                                 } 
                                             </Fragment>
                                         )}
