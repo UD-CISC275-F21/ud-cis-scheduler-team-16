@@ -23,5 +23,5 @@
   },
   "include": [
     "src"
-  ]
+, "src/interfaces/semester.ts", "src/interfaces/course.ts", "src/interfaces/plan.ts"  ]
 }

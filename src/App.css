@@ -43,7 +43,7 @@ form * {
 .delete-class {
   float: right;
   background-color: transparent;
-  background-image: url("components/delete.jpeg");
+  background-image: url("assets/delete.jpeg");
   background-size: 52px;
   font-family:sans-serif;
   width: 70px;
@@ -62,7 +62,7 @@ form * {
 .edit-class {
   float: right;
   background-color: transparent;
-  background-image: url("components/edit.png");
+  background-image: url("assets/edit.png");
   background-size: 45px;
   font-family:sans-serif;
   width: 70px;
@@ -81,7 +81,7 @@ form * {
 .save-class {
   float: right;
   background-color: transparent;
-  background-image: url("components/save.png");
+  background-image: url("assets/save.png");
   background-size: 45px;
   font-family:sans-serif;
   width: 70px;
@@ -100,7 +100,7 @@ form * {
 .cancel-class{
   float: right;
   background-color: transparent;
-  background-image: url("components/delete.jpeg");
+  background-image: url("assets/delete.jpeg");
   background-size: 52px;
   font-family:sans-serif;
   width: 70px;
@@ -119,7 +119,7 @@ form * {
 .modal-close {
   float: right;
   background-color: transparent;
-  background-image: url("components/delete.jpeg");
+  background-image: url("assets/delete.jpeg");
   background-size: 30px;
   font-family:sans-serif;
   width: 50px;
@@ -135,7 +135,7 @@ form * {
 }
 
 .refresh-logo {
-  background-image: url("components/UD-logo.png");
+  background-image: url("assets/UD-logo.png");
   background-size: 100px;
   background-repeat: no-repeat;
   background-color: transparent;
@@ -192,7 +192,7 @@ padding-top: 15%;
 .add-class{
   float: right;
   background-color: transparent;
-  background-image: url("components/add.png");
+  background-image: url("assets/add.png");
   background-size: 30px;
   font-family:sans-serif;
   width: 50px;
@@ -231,7 +231,7 @@ padding-top: 15%;
 .clear-classes{
   float: right;
   background-color: transparent;
-  background-image: url("components/trash.jpeg");
+  background-image: url("assets/trash.jpeg");
   background-size: 30px;
   font-family:sans-serif;
   width: 50px;
@@ -250,7 +250,7 @@ padding-top: 15%;
 .delete-semester{
   float: right;
   background-color: transparent;
-  background-image: url("components/delete.jpeg");
+  background-image: url("assets/delete.jpeg");
   background-size: 30px;
   font-family:sans-serif;
   width: 50px;

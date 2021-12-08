@@ -13,7 +13,10 @@ export const customModal = {
     },
 };
 
-export const WriteMessage = ({closeModal}: {closeModal: VoidFunction}): JSX.Element => {
+export function refreshPage(): void{
+    window.location.reload();
+}
+export const WriteMessage = ({closeModal}:{closeModal : () => void}): JSX.Element => {
     return <div className="welcome-message">
         <h2 className= "welcome-message-header">Welcome to the UDEL Plan Creater!</h2>
         <p className = "welcome-message-body">
@@ -21,13 +24,14 @@ export const WriteMessage = ({closeModal}: {closeModal: VoidFunction}): JSX.Elem
             On this site you will be able to visualize your entire college career. <br />
         </p>
         <p>
-            Features are:
-            <ul>
-                <li>Students can add or delete a class in a semester</li>
-                <li>Students can add or delete a semester of there plan</li>
-                <li>Students are able to see an entire course list</li>
-                <li>Students can read the description of the course</li>
-            </ul>
+            Tutorial:
+            <ol>
+                <li>You start with a plan with just one empty semester.</li>
+                <li>You can choose to add semesters, clear all semesters from your plan, save plans, and clear your save state.</li>
+                <li>Once expanding a semester, you can add classes manually through the form at the below the accordion.</li>
+                <li>Once you have courses, you can edit or delete singular courses, clear all courses from your semester, or delete semesters.</li>
+                <li>Remember that everyones academic journey is unique. One size never fits all in college, dont get discouraged! Your plan is your path to your future, no matter how long or short it is.</li>
+            </ol>
         </p>
         <button className= "modal-close" onClick={closeModal}></button>
     </div>;

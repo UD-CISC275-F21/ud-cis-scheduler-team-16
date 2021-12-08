@@ -1,19 +1,19 @@
 import React, { useState, Fragment } from "react";
 import { Accordion } from "react-bootstrap";
-import "bootstrap/dist/css/bootstrap.min.css";
 import  Modal from "react-modal";
-import { nanoid } from "nanoid";
-import "./App.css";
-import { Course } from "./components/course";
-import { Semester } from "./components/semester";
+import { handleEditCourseChange, handleEditClick, handleEditCourseSubmit} from "./components/EditCourse";
+import { save, load, clearSave } from "./components/SaveAndLoad";
+import { addSemester, deleteSemester, clearSemesters, clearClasses } from "./components/SemesterFunctions";
+import { handleAddCourseChange, handleAddCourseSubmit } from "./components/AddCourse";
 import ReadOnlyRow from "./components/ReadOnlyRow";
 import MutableRow from "./components/MutableRow";
-import { WriteMessage } from "./components/WelcomeMessage";
-import { customModal } from "./components/WelcomeMessage";
-//import courseData from "./components/class-list.json";
-//import semesterData from "./components/semester-list.json";
-import { ProSidebar, Menu, SidebarHeader, SidebarFooter, SidebarContent } from "react-pro-sidebar";
-import { loadSidebar } from "./components/sidebar";
+import { WriteMessage, customModal, refreshPage } from "./components/WelcomeMessage";
+import { Course } from "./interfaces/course";
+import { Semester } from "./interfaces/semester";
+//import { ProSidebar, Menu, SidebarHeader, SidebarFooter, SidebarContent } from "react-pro-sidebar";
+//import { loadSidebar } from "./components/sidebar";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.css";
 
 /* Resources that assisted in the making of this:
 1. Basis of the semester table: https://youtu.be/dYjdzpZv5yc
@@ -22,11 +22,7 @@ import { loadSidebar } from "./components/sidebar";
 */
 
 const App = () : JSX.Element => {
-    //Const Var
-    const LOCAL_STORAGE_PLAN = "fouryearplanner_plan";
-    const INITIAL_PLAN: Semester[] = [
-        { ID: "0", SemesterName: "Semester 1", Courses: [] }
-    ];
+
     //Hooks
     const [plan, setPlan] = useState<Semester[]>(load());
     const [currentSemesterID, setCurrentSemesterID]= useState("");
@@ -34,14 +30,14 @@ const App = () : JSX.Element => {
     const [modalOpen, setOpen] = useState(true); // For welcome message
     const [semNum, setSemNum] = useState(2);
     const [addCourseData, setAddFormData] = useState<Course>({
-        ID: "aslkdjfldskjf",
-        School: "CISC",
-        ClassID: 30,
-        CourseName: "Automata",
-        Desc: "Whatever",
-        Credits: 3
+        ID: "someid",
+        School: "Department",
+        ClassID: 0,
+        CourseName: "Course Name",
+        Desc: "Some Description",
+        Credits: 0
     });
-    const[editCourseData, setEditCourseData] = useState<Course>
+    const [editCourseData, setEditCourseData] = useState<Course>
     ({
         ID: "",
         School: "",
@@ -52,90 +48,6 @@ const App = () : JSX.Element => {
     });
 
     //Functions
-    const handleEditCourseChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        event.preventDefault();
-
-        const fieldName = event.target.name;
-        const fieldValue = event.target.value;
-
-        const newCourseData = {...editCourseData, [fieldName]: fieldValue};
-
-        setEditCourseData(newCourseData);
-    };
-
-    const handleEditClick = (event: React.MouseEvent, cour: Course)=> {
-        event.preventDefault();
-
-        const courseValues = {
-            ID: currentCourseID,
-            School: cour.School,
-            ClassID: cour.ClassID,
-            CourseName: cour.CourseName,
-            Desc: cour.Desc,
-            Credits: cour.Credits
-        };
-
-        setEditCourseData(courseValues);
-        setCurrentCourseID("");
-    };
-
-    const handleEditCourseSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-        const newPlan = plan.map(inner =>{ 
-            return {...inner, Courses: [...inner.Courses]}; 
-        });
-        const semIndex = plan.findIndex((semester: Semester) => semester.ID === currentSemesterID);
-
-        const editedCourse:Course = {
-            ID: currentCourseID,
-            School: editCourseData.School,
-            ClassID: editCourseData.ClassID,
-            CourseName: editCourseData.CourseName,
-            Desc: editCourseData.Desc,
-            Credits: editCourseData.Credits
-        };
-
-        const courseIndex = plan[semIndex].Courses.findIndex((course: Course)=> course.ID === currentCourseID);
-        newPlan[semIndex].Courses[courseIndex] = editedCourse;
-        setPlan(newPlan);
-        setCurrentCourseID("");
-    };
-
-    const handleAddCourseChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        event.preventDefault();
-
-        const fieldName = event.target.name;
-        const fieldValue = event.target.value;
-        const newCourseData = { ...addCourseData, [fieldName]: fieldValue};
-
-        setAddFormData(newCourseData);
-    };
-
-    const handleAddCourseSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-        const newPlan = plan.map(inner =>{ 
-            return {...inner, Courses: [...inner.Courses]}; 
-        });
-
-        const semIndex = plan.findIndex((semester: Semester) => semester.ID === currentSemesterID);
-        
-        const newCourse = {
-            ID: nanoid(),
-            School: addCourseData.School,
-            ClassID: addCourseData.ClassID,
-            CourseName: addCourseData.CourseName,
-            Desc: addCourseData.Desc,
-            Credits: addCourseData.Credits
-        };
-
-        newPlan[semIndex].Courses.push(newCourse);
-        setPlan(newPlan);
-        setCurrentCourseID("");
-    };
-
-    const handleCancelClick = () => {
-        setCurrentCourseID("");
-    };
 
     const handleDeleteClick = (event: React.MouseEvent, cour: Course) => {
         event.preventDefault();
@@ -150,218 +62,130 @@ const App = () : JSX.Element => {
         setPlan(newPlan);
         setCurrentCourseID("");
     };
-
-
-    const closeModal = () => {
-        setOpen(false);
-    };
-
-    const refreshPage = () => {
-        window.location.reload();
-    };
-
-    function addSemester(plan : Semester[]){
-        const newSemester ={
-            ID: nanoid(),
-            SemesterName: "Semester" + semNum,
-            Courses: []
-        };
-
-        setSemNum(semNum + 1);
-        setPlan([...plan, newSemester]);
-    }
-
-    function deleteSemester(plan : Semester[]){
-        const newPlan = plan.map(inner =>{ 
-            return {...inner}; 
-        });
-        const index = plan.findIndex((semester: Semester) => semester.ID === currentSemesterID);
-
-        //Note for later, add something in here that updates the other semester number when this is called
-
-        newPlan.splice(index, 1);
-        setPlan(newPlan);
-        setCurrentSemesterID("");
-        setSemNum(semNum-1);
-    }
-
-    function clearSemesters(plan : Semester[]){
-        const newPlan = plan.map(inner =>{ 
-            return {...inner}; 
-        });
-        newPlan.splice(0, newPlan.length);
-        
-        setPlan(newPlan);
-        setCurrentSemesterID("");
-        setSemNum(1);
-    }
-
-    function clearClasses(plan : Semester[]){
-        const newPlan = plan.map(inner =>{ 
-            return {...inner}; 
-        });
-        const index = plan.findIndex((semester: Semester) => semester.ID === currentSemesterID);
-        
-        newPlan[index].Courses = [];
-        setPlan(newPlan);
+    
+    const handleCancelClick = () => {
         setCurrentCourseID("");
-    }
+    };
 
-    function save(){ 
-        localStorage.setItem(LOCAL_STORAGE_PLAN, JSON.stringify(plan));
-        alert("Plan saved! This plan will be loaded whenever you load back into this page.");
-    }
-
-    function load() : Semester[] {
-        const rawPlan: string | null = localStorage.getItem(LOCAL_STORAGE_PLAN);
-        if (rawPlan === null) {
-            return [...INITIAL_PLAN];
-        } else {
-            return JSON.parse(rawPlan);
-        }
-    }
-
-    function clearSave(){
-        localStorage.setItem(LOCAL_STORAGE_PLAN, JSON.stringify(INITIAL_PLAN));
-        alert("Save cleared! Refresh your page to start again.");
-    }
+    //Display 
 
     return(
         <div className = "App">
             <Modal
                 isOpen={modalOpen}
-                onRequestClose={closeModal}
+                onRequestClose={() => setOpen(false)}
                 contentLabel="Welcome Message"
                 style={customModal}
             >
-                <WriteMessage closeModal={closeModal}></WriteMessage>
-            </Modal>
+                <WriteMessage closeModal = {() => setOpen(false)} ></WriteMessage>
+            </Modal> 
             <div className="row">
                 <div className="col-8">
                     <h1 className="header"><button className="refresh-logo" onClick={refreshPage}></button> UD CIS Scheduler</h1>
                     <br />
-                    <button className = "edit-semester" type = "button" 
-                        onClick= {() => addSemester(plan)}>Add Semester</button>
-                    <button className = "edit-semester" type = "button" 
-                        onClick= {() => clearSemesters(plan)}>Clear All Semesters</button>
-                    <button className = "edit-semester" type = "button" 
-                        onClick= {() => save()}>Save Plan</button>
-                    <button className = "edit-semester" type = "button" 
+                    <button role = "add-semester" className = "edit-semester" type = "button" 
+                        onClick= {() => addSemester(plan, setPlan, semNum, setSemNum)}>Add Semester</button>
+                    <button role = "clear-semesters" className = "edit-semester" type = "button" 
+                        onClick= {() => clearSemesters(plan, setPlan, setCurrentSemesterID, setSemNum)}>Clear All Semesters</button>
+                    <button role = "save-plan" className = "edit-semester" type = "button" 
+                        onClick= {() => save(plan)}>Save Plan</button>
+                    <button role = "clear-plan" className = "edit-semester" type = "button" 
                         onClick= {() => clearSave()}>Clear Current Save state</button>
                     <br />
-                    <Accordion flush>
-                        { plan.map ( (sem: Semester) =>
-                            <Accordion.Item eventKey= {sem.ID}  key = {sem.ID}>
-                                <Accordion.Header onClick= {() => setCurrentSemesterID(sem.ID)}>{sem.SemesterName}</Accordion.Header>
-                                <Accordion.Body>
-                                    <form onSubmit={handleEditCourseSubmit}>
-                                        <table>
-                                            <thead>
-                                                <tr>
-                                                    <th>School</th>
-                                                    <th>ClassID</th>
-                                                    <th>Course Name</th>
-                                                    <th>Desc</th>
-                                                    <th>Credits</th>
-                                                    <th>Actions</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                { sem.Courses.map ( (cour: Course) =>
-                                                    <Fragment key={cour.ID}>
-                                                        { cour.ID === currentCourseID ? 
-                                                            <MutableRow 
-                                                                editCourseData = {editCourseData} 
-                                                                handleEditCourseChange = {handleEditCourseChange}
-                                                                handleCancelClick = {handleCancelClick}
-                                                            /> 
-                                                            :  
-                                                            <ReadOnlyRow 
-                                                                cour = {cour}
-                                                                handleEditClick={handleEditClick}
-                                                                handleDeleteClick={handleDeleteClick}
-                                                                setCurrentCourseID={setCurrentCourseID}
-                                                            />
-                                                        } 
-                                                    </Fragment>
-                                                )}
-                                            </tbody>
-                                        </table>
-                                        <button className = "edit-semester" type = "button" 
-                                            onClick= {() => clearClasses(plan)}>Clear Classes</button>
-                                        <button className = "edit-semester" type = "button" 
-                                            onClick= {() => deleteSemester(plan)}>Delete Semester</button>
-                                    </form>
-                                </Accordion.Body>
-                            </Accordion.Item>
-                        )}
-                    </Accordion>
-                    <form onSubmit={handleAddCourseSubmit}>
-                        <input 
-                            type ="text"
-                            name = "School"
-                            defaultValue={addCourseData.School}
-                            required= {true}
-                            placeholder = "Enter a School."
-                            onChange={handleAddCourseChange}
-                        />
-                        <input 
-                            type = "number"
-                            name = "ClassID"
-                            defaultValue={addCourseData.ClassID}
-                            required = {true}
-                            placeholder = "Enter a Class ID."
-                            onChange={handleAddCourseChange}
-                        />
-                        <input 
-                            type ="text"
-                            name = "CourseName"
-                            defaultValue={addCourseData.CourseName}
-                            required = {true}
-                            placeholder = "Enter a Course Name."
-                            onChange={handleAddCourseChange}
-                        />
-                        <input 
-                            type ="text"
-                            name = "Desc"
-                            defaultValue={addCourseData.Desc}
-                            required = {true}
-                            placeholder = "Enter a Class Description."
-                            onChange={handleAddCourseChange}
-                        />
-                        <input 
-                            type ="number"
-                            name = "Credits"
-                            defaultValue={addCourseData.Credits}
-                            required = {true}
-                            placeholder = "Enter a Credit Amount."
-                            onChange={handleAddCourseChange}
-                        />
-                        <button type="submit">Add Course</button>
-                    </form>
-                </div>
-                <div className="col-4">
-                    <div className="full-column">
-                        <ProSidebar className="sidebar">
-                            <SidebarHeader className="sidebar-header">
-                            COURSE LIST
-                            </SidebarHeader>
-                            <SidebarContent>
-                                <Menu iconShape="square">
-                                    {loadSidebar("MATH")}
-                                    {loadSidebar("CISC")}
-                                    {loadSidebar("EGGG")}
-                                    {loadSidebar("HIST")}
-                                    {loadSidebar("ENGL")}
-                                </Menu>
-                            </SidebarContent>
-                            <SidebarFooter>
-
-                            </SidebarFooter>
-                        </ProSidebar>
-                    </div>
                 </div>
             </div>
+            <Accordion role= "semester-display" flush>
+                { plan.map ( (sem: Semester) =>
+                    <Accordion.Item eventKey= {sem.ID}  key = {sem.ID}>
+                        <Accordion.Header onClick= {() => setCurrentSemesterID(sem.ID)}>{sem.SemesterName}</Accordion.Header>
+                        <Accordion.Body>
+                            <form onSubmit={(event: React.FormEvent<HTMLFormElement>) => 
+                                handleEditCourseSubmit(event, currentSemesterID, currentCourseID, 
+                                    plan, setPlan, setCurrentCourseID, editCourseData)}>
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>School</th>
+                                            <th>ClassID</th>
+                                            <th>Course Name</th>
+                                            <th>Desc</th>
+                                            <th>Credits</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        { sem.Courses.map ( (cour: Course) =>
+                                            <Fragment key={cour.ID}>
+                                                { cour.ID === currentCourseID ? 
+                                                    <MutableRow 
+                                                        editCourseData = {editCourseData} 
+                                                        handleEditCourseChange = {() => handleEditCourseChange}
+                                                        handleCancelClick = {handleCancelClick}
+                                                    /> 
+                                                    :  
+                                                    <ReadOnlyRow 
+                                                        cour = {cour}
+                                                        handleEditClick={(event: React.MouseEvent) => handleEditClick(event, cour, currentCourseID, setCurrentCourseID, setEditCourseData)}
+                                                        handleDeleteClick={handleDeleteClick}
+                                                        setCurrentCourseID={setCurrentCourseID}
+                                                    />
+                                                } 
+                                            </Fragment>
+                                        )}
+                                    </tbody>
+                                </table>
+                                <button role= "clear-classes" className = "edit-semester" type = "button" 
+                                    onClick= {() => clearClasses(plan, setPlan, currentSemesterID, setCurrentSemesterID)}>Clear Classes</button>
+                                <button role= "delete-semester" className = "edit-semester" type = "button" 
+                                    onClick= {() => deleteSemester(plan, setPlan, currentSemesterID, setCurrentSemesterID, semNum, setSemNum)}>Delete Semester</button>
+                            </form>
+                        </Accordion.Body>
+                    </Accordion.Item>
+                )}
+            </Accordion>
+            <form role = "add-course" onSubmit={(event: React.FormEvent<HTMLFormElement>) => handleAddCourseSubmit(event, plan, setPlan, currentSemesterID, setCurrentCourseID, addCourseData)}>
+                <input 
+                    type ="text"
+                    name = "School"
+                    defaultValue={addCourseData.School}
+                    required= {true}
+                    placeholder = "Enter a School."
+                    onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleAddCourseChange(event, addCourseData, setAddFormData)}
+                />
+                <input 
+                    type = "number"
+                    name = "ClassID"
+                    defaultValue={addCourseData.ClassID}
+                    required = {true}
+                    placeholder = "Enter a Class ID."
+                    onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleAddCourseChange(event, addCourseData, setAddFormData)}
+                />
+                <input 
+                    type ="text"
+                    name = "CourseName"
+                    defaultValue={addCourseData.CourseName}
+                    required = {true}
+                    placeholder = "Enter a Course Name."
+                    onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleAddCourseChange(event, addCourseData, setAddFormData)}
+                />
+                <input 
+                    type ="text"
+                    name = "Desc"
+                    defaultValue={addCourseData.Desc}
+                    required = {true}
+                    placeholder = "Enter a Class Description."
+                    onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleAddCourseChange(event, addCourseData, setAddFormData)}
+                />
+                <input 
+                    type ="number"
+                    name = "Credits"
+                    defaultValue={addCourseData.Credits}
+                    required = {true}
+                    placeholder = "Enter a Credit Amount."
+                    onChange={(event: React.ChangeEvent<HTMLInputElement>) => handleAddCourseChange(event, addCourseData, setAddFormData)}
+                />
+                <button type="submit">Add Course</button>
+            </form>
         </div>
         
     );
