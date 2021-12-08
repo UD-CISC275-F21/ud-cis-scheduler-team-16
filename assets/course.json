@@ -327,10 +327,20 @@
         "id": 208, 
         "name": "Fundamentals of Physics II",
         "desc": "Second course in a sequence with PHYS 207 that provides an introduction to physics for those in the physical sciences and engineering. Emphasis on electro- and magnetostatics in terms of forces, fields and potentials, with some elements of circuit theory. Furthermore, magnetic induction and Maxwell’s equations in integral form are introduced. Integrates conceptual understanding with extensive problem solving.",
+        "preReq": " PHYS 203 or PHYS 207 and PHYS 227, MATH 241 or MATH 232", 
+        "coReq": "PHYS 228, Math 242", 
+        "credits": 3 
+    },
+    {
+        "school": "PHYS",
+        "id": 228, 
+        "name": "Fundamentals of Physics II",
+        "desc": "Second course in a sequence with PHYS 207 that provides an introduction to physics for those in the physical sciences and engineering. Emphasis on electro- and magnetostatics in terms of forces, fields and potentials, with some elements of circuit theory. Furthermore, magnetic induction and Maxwell’s equations in integral form are introduced. Integrates conceptual understanding with extensive problem solving.",
         "preReq": "N/A", 
         "coReq": "PHYS 208", 
         "credits": 3 
     },
+
 
     {
         "school": "MATH",
@@ -531,7 +541,94 @@
         "credits": 3 
     },
     {
-        
-    }
+        "school": "CHEM",
+        "id": 103, 
+        "name": "General Chemistry",
+        "desc": "Matter, the changes that matter undergoes, and the laws governing these changes, with greater emphasis on atomic and molecular structure, chemicalbonding, and energy relationships. Properties of gases, liquids, solids and solutions.",
+        "preReq": "N/A",
+        "coReq": " MATH 114, MATH 115, or MATH 117 and CHEM 133",
+        "credits": 3
+    },
+    {
+        "school": "CHEM",
+        "id": 133, 
+        "name": "General Chemistry Laboratory",
+        "desc": "Laboratory topics and techniques covered include: stoichiometry, gases, liquids, solids, atomic and molecular structure, chemical reactions in solution, and properties of solutions. 42h lab experiments",
+        "preReq": "N/A",
+        "coReq": "  MATH 114 or higher and CHEM 103",
+        "credits": 1
+    },
+    {
+        "school": "CHEM",
+        "id": 104, 
+        "name": "General Chemistry",
+        "desc": "Continuation and application of CHEM 103 with additional emphasis on chemical spontaneity, equilibrium, rates of reactions, electrochemistry and organic chemistry.",
+        "preReq": "CHEM 103 and CHEM 133 or CHEM 111",
+        "coReq": "CHEM 134",
+        "credits": 3
+    },
+    {
+        "school": "CHEM",
+        "id": 134, 
+        "name": "General Chemistry Laboratory",
+        "desc": "This laboratory course is the second in a two-semester sequence designed (and required) for science and engineering majors. Covers thermodynamics, kinetics, equilibrium among gases, liquids and solids, equilibrium in solution, acids and bases, electrochemistry, and nuclear chemistry.  Topics touched on briefly include transition elements and types and nomenclature of organic compounds. Descriptive chemistry of representative elements is interspersed throughout the course.  42h laboratory experiments.",
+        "preReq": "CHEM 103 and CHEM 133, or CHEM 111",
+        "coReq": "CHEM 104",
+        "credits": 1
+    },
+    {
+        "school": "BISC",
+        "id": 207, 
+        "name": "INTRODUCTORY BIOLOGY I",
+        "desc": "Molecular basis of life. Structure and function of cells, including signal transduction pathways. Energy transformations. Classical Mendelian genetics and the flow of information from DNA to RNA to proteins. Laboratory focuses on the testing of hypotheses, data analysis and scientific writing.",
+        "preReq": "N/A",
+        "coReq": " CHEM 103 and CHEM 133, or CHEM 111",
+        "credits": 1
+    },
+    {
+       "school": "BISC",
+        "id": 208, 
+        "name": "INTRODUCTORY BIOLOGY II",
+        "desc": "Mechanisms of evolution. Physiology of multicellular plants and animals. Principles of ecology with emphasis on the biology of populations. Laboratory focuses on testing of hypotheses, data analysis and scientific writing. Animal and plant anatomy also studied.",
+        "preReq": "BISC 207",
+        "coReq": "CHEM 104 and CHEM 134, or CHEM 112",
+        "credits": 4
+    },
+    {
+        "school": "GEOL",
+         "id": 105, 
+         "name": "Geological Hazards and Their Human Impact",
+         "desc": "Geological processes and events that adversely affect humans and civilization. Methods for predicting and dealing with geological hazards. May be taken with a 1 credit lab, GEOL 115.",
+         "preReq": "N/A",
+         "coReq": "N/A",
+         "credits": 3
+     },
+     {
+        "school": "GEOL",
+         "id": 115, 
+         "name": "Geological Hazards Laboratory",
+         "desc": "Laboratory investigation of environmental geological processes and their impact on society: earthquakes, volcanoes, coastal hazards, rivers and streams, groundwater. Identification of earth materials and study of earth processes using topographical, geological and tectonic maps.",
+         "preReq": "N/A",
+         "coReq": "N/A",
+         "credits": 1
+     },
+     {
+        "school": "GEOL",
+        "id": 107, 
+        "name": "Geology of Dynamic Earth",
+        "desc": "Principles of physical geology and its application in interpreting earth processes. Laboratory covers identification of earth materials and the interpretation of topographic and geologic maps.",
+        "preReq": "N/A",
+        "coReq": "N/A",
+        "credits": 4
+     },
+     {
+        "school": "GEOL",
+        "id": 110, 
+        "name": "Earth’s Evolving Systems",
+        "desc": "History of the earth and its biota. Origins, evolution and mass extinctionsof major groups of organisms as demonstrated by the earth’s fossil record. Laboratory covers identification of basic fossil groups and exercises in interpreting Earth history.",
+        "preReq": "N/A",
+        "coReq": "N/A",
+        "credits": 4
+     }
 
 ]
