@@ -367,26 +367,4 @@ const App = () : JSX.Element => {
     );
 };
 
-/* sidebar in progress
-<div className="full-column">
-    <ProSidebar className="sidebar">
-        <SidebarHeader className="sidebar-header">
-        COURSE LIST
-        </SidebarHeader>
-        <SidebarContent>
-            <Menu iconShape="square">
-                {loadSidebar("MATH")}
-                {loadSidebar("CISC")}
-                {loadSidebar("EGGG")}
-                {loadSidebar("HIST")}
-                {loadSidebar("ENGL")}
-            </Menu>
-        </SidebarContent>
-        <SidebarFooter>
-
-        </SidebarFooter>
-    </ProSidebar>
-</div>
-
-*/
 export default App;
