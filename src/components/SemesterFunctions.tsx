@@ -48,10 +48,6 @@ export function clearClasses(plan : Semester[], setPlan : React.Dispatch<React.S
         return {...inner}; 
     });
     const index = plan.findIndex((semester: Semester) => semester.ID === currentSemesterID);
-    
-    if( newPlan[index].Courses === []){
-        return;
-    }
 
     newPlan[index].Courses = [];
     setPlan(newPlan);

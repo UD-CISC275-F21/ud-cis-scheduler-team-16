@@ -80,6 +80,10 @@ export const PlanViewer = ({plan, setPlan, currentSemesterID, setCurrentSemester
                                                     /> 
                                                     :  
                                                     <ReadOnlyRow //What displays a course on the table.
+                                                        plan = {plan}
+                                                        setPlan = {setPlan}
+                                                        currentSemesterID = {currentSemesterID}
+                                                        setCurrentSemesterID = {setCurrentSemesterID}
                                                         cour = {cour}
                                                         handleEditClick={(event: React.MouseEvent) => handleEditClick(event, cour, currentCourseID, setCurrentCourseID, setEditCourseData)}
                                                         handleDeleteClick={(event: React.MouseEvent) => handleDeleteClick(event, cour, plan, currentSemesterID, setCurrentSemesterID, setPlan)}
