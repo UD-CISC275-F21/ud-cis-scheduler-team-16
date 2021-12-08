@@ -23,12 +23,12 @@ const LoadSidebarContent = ({School}: LoadSidebarProps): JSX.Element => {
                     <h5 className="card-title">{School}</h5>
                     <div className="row">
                         <ul>
-                        { courses.map ( ( cour: Course ) =>
-                            <li>{cour.School}</li>
-                            <li>{cour.School}</li>
-                            <li>{cour.School}</li>
-                            <li>{cour.School}</li>
-                            <li>{cour.School}</li>
+                        { courses.map ( () =>
+                            <li>{courses.School}</li>
+                            <li>{courses.School}</li>
+                            <li>{courses.School}</li>
+                            <li>{courses.School}</li>
+                            <li>{courses.School}</li>
                         )}
                         </ul>
                     </div>
