@@ -72,22 +72,21 @@ export const PlanViewer = ({plan, setPlan, currentSemesterID, setCurrentSemester
                                     <tbody>
                                         { sem.Courses.map ( (cour: Course) =>
                                             <Fragment key={cour.ID}>
-                                                { () => 
-                                                    cour.ID === currentCourseID ? 
-                                                        <MutableRow 
-                                                            editCourseData = {editCourseData} 
-                                                            handleEditCourseChange = {() => handleEditCourseChange}
-                                                            handleCancelClick = {() => handleCancelClick}
-                                                        /> 
-                                                        :  
-                                                        <ReadOnlyRow 
-                                                            cour = {cour}
-                                                            handleEditClick={(event: React.MouseEvent) => handleEditClick(event, cour, currentCourseID, setCurrentCourseID, setEditCourseData)}
-                                                            handleDeleteClick={() => handleDeleteClick}
-                                                            currentCourseID= {currentCourseID}
-                                                            setCurrentCourseID={setCurrentCourseID}
-                                                            setEditCourseData={setEditCourseData}
-                                                        />
+                                                { cour.ID === currentCourseID ? 
+                                                    <MutableRow //What allows a user to edit their course.
+                                                        editCourseData = {editCourseData} 
+                                                        handleEditCourseChange = {(event: React.ChangeEvent<HTMLInputElement>) => handleEditCourseChange(event, editCourseData, setEditCourseData)}
+                                                        handleCancelClick = {() => handleCancelClick(setCurrentCourseID)}
+                                                    /> 
+                                                    :  
+                                                    <ReadOnlyRow //What displays a course on the table.
+                                                        cour = {cour}
+                                                        handleEditClick={(event: React.MouseEvent) => handleEditClick(event, cour, currentCourseID, setCurrentCourseID, setEditCourseData)}
+                                                        handleDeleteClick={(event: React.MouseEvent) => handleDeleteClick(event, cour, plan, currentSemesterID, setCurrentSemesterID, setPlan)}
+                                                        currentCourseID= {currentCourseID}
+                                                        setCurrentCourseID={setCurrentCourseID}
+                                                        setEditCourseData={setEditCourseData}
+                                                    />
                                                 } 
                                             </Fragment>
                                         )}
