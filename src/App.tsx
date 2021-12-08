@@ -6,8 +6,8 @@ import { load } from "./components/SaveAndLoad";
 import { WriteMessage, customModal} from "./components/WelcomeMessage";
 import { Course } from "./interfaces/course";
 import { Semester } from "./interfaces/semester";
-//import { ProSidebar, Menu, SidebarHeader, SidebarFooter, SidebarContent } from "react-pro-sidebar";
-//import { loadSidebar } from "./components/sidebar";
+import { ProSidebar, Menu, SidebarHeader, SidebarFooter, SidebarContent } from "react-pro-sidebar";
+import { LoadSidebarProps } from "./components/sidebar";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
@@ -79,31 +79,27 @@ const App = () : JSX.Element => {
                     setCurrentCourseID = {setCurrentCourseID}
                 />
             </div>
+            <div className="full-column">
+                <ProSidebar className="sidebar">
+                    <SidebarHeader className="sidebar-header">
+                    COURSE LIST
+                    </SidebarHeader>
+                    <SidebarContent>
+                        <Menu iconShape="square">
+                            {LoadSidebar("MATH")}
+                            {LoadSidebar("CISC")}
+                            {LoadSidebar("EGGG")}
+                            {LoadSidebar("HIST")}
+                            {LoadSidebar("ENGL")}
+                        </Menu>
+                    </SidebarContent>
+                    <SidebarFooter>
+                    </SidebarFooter>
+                </ProSidebar>
+            </div>
         </div>
         
     );
 };
 
-/* sidebar in progress
-<div className="full-column">
-    <ProSidebar className="sidebar">
-        <SidebarHeader className="sidebar-header">
-        COURSE LIST
-        </SidebarHeader>
-        <SidebarContent>
-            <Menu iconShape="square">
-                {loadSidebar("MATH")}
-                {loadSidebar("CISC")}
-                {loadSidebar("EGGG")}
-                {loadSidebar("HIST")}
-                {loadSidebar("ENGL")}
-            </Menu>
-        </SidebarContent>
-        <SidebarFooter>
-
-        </SidebarFooter>
-    </ProSidebar>
-</div>
-
-*/
 export default App;
