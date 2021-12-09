@@ -87,6 +87,7 @@ const App = () : JSX.Element => {
                     <SidebarContent>
                         <Menu iconShape="square">
                             <DisplayDepartment Department = {"CISC"}/>
+                            <DisplayDepartment Department = {"MATH"}/>
                         </Menu>
                     </SidebarContent>
                     <SidebarFooter>
