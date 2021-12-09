@@ -29,7 +29,7 @@ function DepartmentChecker( Department: string): boolean {
     return result;
 }
 
-export const DisplaySidebar = (Department : string): JSX.Element => {
+export const DisplayDepartment = (Department : string): JSX.Element => {
 
     return(
         <div>
