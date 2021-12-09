@@ -1,6 +1,6 @@
 import React from "react";
 import { Accordion } from "react-bootstrap";
-import data from "../assets/course.json"
+import data from "../assets/course.json";
 import AccordionItem from "react-bootstrap/esm/AccordionItem";
 import AccordionHeader from "react-bootstrap/esm/AccordionHeader";
 import AccordionBody from "react-bootstrap/esm/AccordionBody";
@@ -21,8 +21,7 @@ function DepartmentChecker( Department: string): boolean {
     data.map( acour =>{
         if(acour.School === Department){
             result = true;
-        }
-        else{
+        }else{
             result = false;
         }
     });
@@ -36,11 +35,11 @@ export const DisplayDepartment = ({Department}: {Department: string}): JSX.Eleme
                 <AccordionItem eventKey= "0">
                     <AccordionHeader>{Department}</AccordionHeader>
                     <AccordionBody>
-                    { data.map ( (acour: SidebarProp) =>
-                        { DepartmentChecker(Department) === true ?
-                            <div className="card">
-                                <div className="card-body">
-                                    <div className="row">
+                        { data.map ( (acour: SidebarProp) =>{ 
+                            DepartmentChecker(Department) === true ?
+                                <div className="card">
+                                    <div className="card-body">
+                                        <div className="row">
                                             <ul>
                                                 <li>{acour.School}</li>
                                                 <li>{acour.ClassID}</li>
@@ -48,16 +47,16 @@ export const DisplayDepartment = ({Department}: {Department: string}): JSX.Eleme
                                                 <li>{acour.Desc}</li>
                                                 <li>{acour.Credits}</li>
                                             </ul>
+                                        </div>
+                                        <div className="col-4">
+                                            <button className="add-class"></button>
+                                        </div>  
                                     </div>
-                                    <div className="col-4">
-                                        <button className="add-class"></button>
-                                    </div>  
                                 </div>
-                            </div>
-                            :
-                            <p></p>
+                                :
+                                <p></p>;
                         }
-                    )}
+                        )}
                     </AccordionBody>
                 </AccordionItem>
             </Accordion>
