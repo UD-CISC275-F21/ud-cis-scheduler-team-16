@@ -14,7 +14,7 @@ export const handleAddCourseChange = (event: React.ChangeEvent<HTMLInputElement>
     setAddFormData(newCourseData);
 };
 
-export const handleAddCourseClick = (event: React.MouseEvent, plan: Semester[], setPlan: React.Dispatch<React.SetStateAction<Semester[]>>, 
+export const handleAddCourseSubmit = (event: React.FormEvent<HTMLFormElement>, plan: Semester[], setPlan: React.Dispatch<React.SetStateAction<Semester[]>>, 
     currentSemesterID: string, setCurrentCourseID: React.Dispatch<React.SetStateAction<string>>, addCourseData: Course): void => {
     event.preventDefault();
     const newPlan = plan.map(inner =>{ 

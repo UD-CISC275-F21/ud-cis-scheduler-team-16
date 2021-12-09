@@ -5,8 +5,8 @@ import { load } from "./components/SaveAndLoad";
 import { WriteMessage, customModal} from "./components/WelcomeMessage";
 import { Course } from "./interfaces/course";
 import { Semester } from "./interfaces/semester";
-import { ProSidebar, SidebarHeader, SidebarFooter, SidebarContent } from "react-pro-sidebar";
-import { DisplayDepartment } from "./components/sidebar";
+import { AddCourseBar } from "./components/AddCourseBar";
+//import { DisplayDepartment } from "./components/sidebar";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
@@ -68,21 +68,17 @@ const App = () : JSX.Element => {
                     setSemNum = {setSemNum}
                 />
             </div>
-            <div className="full-column">
-                <ProSidebar className="sidebar">
-                    <SidebarHeader className="sidebar-header">
-                    COURSE LIST
-                    </SidebarHeader>
-                    <SidebarContent>
-                        <DisplayDepartment Department = {"CISC"} setAddFormData = {setAddFormData} plan = {plan} setPlan = {setPlan} currentSemesterID = {currentSemesterID} setCurrentCourseID = {setCurrentCourseID}/>
-                        <DisplayDepartment Department = {"MATH"} setAddFormData = {setAddFormData} plan = {plan} setPlan = {setPlan} currentSemesterID = {currentSemesterID} setCurrentCourseID = {setCurrentCourseID}/>
-                    </SidebarContent>
-                    <SidebarFooter>
-                    </SidebarFooter>
-                </ProSidebar>
+            <div className = "display-add">
+                <AddCourseBar
+                    plan = {plan}
+                    setPlan = {setPlan}
+                    currentSemesterID = {currentSemesterID}
+                    addCourseData = {addCourseData}
+                    setAddFormData = {setAddFormData}
+                    setCurrentCourseID = {setCurrentCourseID}
+                />
             </div>
         </div>
-        
     );
 };
 

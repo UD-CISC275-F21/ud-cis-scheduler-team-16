@@ -3,7 +3,7 @@ import { Semester } from "../interfaces/semester";
 import { nanoid } from "nanoid";
 import { Course } from "../interfaces/course";
 import { Accordion } from "react-bootstrap";
-import { handleAddCourseChange, handleAddCourseClick } from "./AddCourse";
+//import { handleAddCourseChange, handleAddCourseSubmit } from "./AddCourse";
 import data from "../assets/course.json";
 import AccordionItem from "react-bootstrap/esm/AccordionItem";
 import AccordionHeader from "react-bootstrap/esm/AccordionHeader";
@@ -48,7 +48,7 @@ export const DisplayDepartment = ({Department, setAddFormData, plan, setPlan, cu
                 <AccordionItem eventKey= "0">
                     <AccordionHeader>{Department}</AccordionHeader>
                     <AccordionBody>
-                        { data.map ( (acour: SidebarProp) =>{ 
+                        {/* data.map ( (acour: SidebarProp) =>{ 
                             return DepartmentChecker(acour, Department) === true ?
                                 <div className="card" key = "0">
                                     <div className="card-body">
@@ -64,7 +64,7 @@ export const DisplayDepartment = ({Department, setAddFormData, plan, setPlan, cu
                                             {BlankUpdater(acour, addedcourse )}
                                             {(event: React.ChangeEvent<HTMLInputElement>) => handleAddCourseChange(event, addedcourse, setAddFormData)}
                                             <button className="add-class"
-                                                onClick={(event: React.MouseEvent) => handleAddCourseClick(event, plan, setPlan, currentSemesterID, setCurrentCourseID, addedcourse)}>
+                                                </div>onClick={(event: React.MouseEvent) => handleAddCourseClick(event, plan, setPlan, currentSemesterID, setCurrentCourseID, addedcourse)}>
                                             </button>
                                         </div>  
                                     </div>
@@ -72,7 +72,7 @@ export const DisplayDepartment = ({Department, setAddFormData, plan, setPlan, cu
                                 :
                                 null;
                         }
-                        )}
+                        )*/}
                     </AccordionBody>
                 </AccordionItem>
             </Accordion>
