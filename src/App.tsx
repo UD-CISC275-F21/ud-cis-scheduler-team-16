@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import  Modal from "react-modal";
 import { PlanViewer } from "./components/PlanViewer";
-import { AddCourseBar } from "./components/AddCourseBar";
 import { load } from "./components/SaveAndLoad";
 import { WriteMessage, customModal} from "./components/WelcomeMessage";
 import { Course } from "./interfaces/course";
@@ -69,24 +68,14 @@ const App = () : JSX.Element => {
                     setSemNum = {setSemNum}
                 />
             </div>
-            <div className = "display-add">
-                <AddCourseBar
-                    plan = {plan}
-                    setPlan = {setPlan}
-                    currentSemesterID = {currentSemesterID}
-                    addCourseData = {addCourseData}
-                    setAddFormData = {setAddFormData}
-                    setCurrentCourseID = {setCurrentCourseID}
-                />
-            </div>
             <div className="full-column">
                 <ProSidebar className="sidebar">
                     <SidebarHeader className="sidebar-header">
                     COURSE LIST
                     </SidebarHeader>
                     <SidebarContent>
-                        <DisplayDepartment Department = {"CISC"}/>
-                        <DisplayDepartment Department = {"MATH"}/>
+                        <DisplayDepartment Department = {"CISC"} setAddFormData = {setAddFormData} plan = {plan} setPlan = {setPlan} currentSemesterID = {currentSemesterID} setCurrentCourseID = {setCurrentCourseID}/>
+                        <DisplayDepartment Department = {"MATH"} setAddFormData = {setAddFormData} plan = {plan} setPlan = {setPlan} currentSemesterID = {currentSemesterID} setCurrentCourseID = {setCurrentCourseID}/>
                     </SidebarContent>
                     <SidebarFooter>
                     </SidebarFooter>

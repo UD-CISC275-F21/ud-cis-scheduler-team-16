@@ -1,5 +1,9 @@
 import React from "react";
+import { Semester } from "../interfaces/semester";
+import { nanoid } from "nanoid";
+import { Course } from "../interfaces/course";
 import { Accordion } from "react-bootstrap";
+import { handleAddCourseChange, handleAddCourseClick } from "./AddCourse";
 import data from "../assets/course.json";
 import AccordionItem from "react-bootstrap/esm/AccordionItem";
 import AccordionHeader from "react-bootstrap/esm/AccordionHeader";
@@ -16,6 +20,8 @@ export interface SidebarProp {
     Credits: number
 }
 
+const addedcourse : Course = {ID : nanoid(), School: "",ClassID: 0, CourseName: "", Desc: "", Credits: 0};
+
 function DepartmentChecker(acour: SidebarProp, Department: string): boolean {
     let result = false; 
     if(acour.School === Department){
@@ -26,7 +32,16 @@ function DepartmentChecker(acour: SidebarProp, Department: string): boolean {
     return result; 
 }
 
-export const DisplayDepartment = ({Department}: {Department: string}): JSX.Element => {
+function BlankUpdater(acour: SidebarProp, addedcourse: Course){
+    addedcourse.School = acour.School;
+    addedcourse.ClassID = acour.ClassID;
+    addedcourse.CourseName = acour.CourseName;
+    addedcourse.Desc = acour.Desc;
+    addedcourse.Credits = acour.Credits;
+}
+
+export const DisplayDepartment = ({Department, setAddFormData, plan, setPlan, currentSemesterID, setCurrentCourseID}: 
+    {Department: string, setAddFormData: React.Dispatch<React.SetStateAction<Course>>, plan : Semester[], setPlan: React.Dispatch<React.SetStateAction<Semester[]>>, currentSemesterID: string, setCurrentCourseID: React.Dispatch<React.SetStateAction<string>>}): JSX.Element => {
     return(
         <div>
             <Accordion role = "course-list" flush>
@@ -34,7 +49,7 @@ export const DisplayDepartment = ({Department}: {Department: string}): JSX.Eleme
                     <AccordionHeader>{Department}</AccordionHeader>
                     <AccordionBody>
                         { data.map ( (acour: SidebarProp) =>{ 
-                            DepartmentChecker(acour, Department) === true ?
+                            return DepartmentChecker(acour, Department) === true ?
                                 <div className="card" key = "0">
                                     <div className="card-body">
                                         <div className="row">
@@ -46,12 +61,16 @@ export const DisplayDepartment = ({Department}: {Department: string}): JSX.Eleme
                                             </ul>
                                         </div>
                                         <div className="col-4">
-                                            <button className="add-class"></button>
+                                            {BlankUpdater(acour, addedcourse )}
+                                            {(event: React.ChangeEvent<HTMLInputElement>) => handleAddCourseChange(event, addedcourse, setAddFormData)}
+                                            <button className="add-class"
+                                                onClick={(event: React.MouseEvent) => handleAddCourseClick(event, plan, setPlan, currentSemesterID, setCurrentCourseID, addedcourse)}>
+                                            </button>
                                         </div>  
                                     </div>
                                 </div>
                                 :
-                                <p>No Courses Found</p>;
+                                null;
                         }
                         )}
                     </AccordionBody>
