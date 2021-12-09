@@ -79,9 +79,12 @@ const App = () : JSX.Element => {
             >
                 <WriteMessage closeModal = {() => setOpen(false)} ></WriteMessage>
             </Modal> 
+
+            <div className = "page-header">
+                <h1 className="display-1"> <button className="refresh-logo" onClick={refreshPage}></button> UD CIS Scheduler</h1>
+            </div>
             <div className="row">
                 <div className="col-8">
-                    <h1 className="header"><button className="refresh-logo" onClick={refreshPage}></button> UD CIS Scheduler</h1>
                     <br />
                     <button role = "add-semester" className = "edit-semester" type = "button" 
                         onClick= {() => addSemester(plan, setPlan, semNum, setSemNum)}>Add Semester</button>
