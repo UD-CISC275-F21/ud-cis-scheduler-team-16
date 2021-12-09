@@ -24,14 +24,6 @@ const App = () : JSX.Element => {
     const [currentCourseID, setCurrentCourseID] = useState("");
     const [modalOpen, setOpen] = useState(true); // For welcome message
     const [semNum, setSemNum] = useState(2);
-    const [addCourseData, setAddFormData] = useState<Course>({
-        ID: "someid",
-        School: "Department",
-        ClassID: 0,
-        CourseName: "Course Name",
-        Desc: "Some Description",
-        Credits: 0
-    });
     const [editCourseData, setEditCourseData] = useState<Course>
     ({
         ID: "",
@@ -76,9 +68,9 @@ const App = () : JSX.Element => {
                         </SidebarHeader>
                         <SidebarContent>
                             <Menu iconShape="square">
-                                <DisplayDepartment Department = {"CISC"} setAddFormData={setAddFormData} plan = {plan} 
+                                <DisplayDepartment Department = {"CISC"} plan = {plan} 
                                     setPlan= {setPlan} currentSemesterID= {currentSemesterID} setCurrentCourseID={setCurrentCourseID}/>
-                                <DisplayDepartment Department = {"MATH"} setAddFormData={setAddFormData} plan = {plan} 
+                                <DisplayDepartment Department = {"MATH"} plan = {plan} 
                                     setPlan= {setPlan} currentSemesterID= {currentSemesterID} setCurrentCourseID={setCurrentCourseID}/>
                             </Menu>
                         </SidebarContent>
