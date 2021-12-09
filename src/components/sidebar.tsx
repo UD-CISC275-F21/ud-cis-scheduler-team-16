@@ -23,7 +23,7 @@ function DepartmentChecker(acour: SidebarProp, Department: string): boolean {
     }else{
         result = false;
     }
-    return result;
+    return result; 
 }
 
 export const DisplayDepartment = ({Department}: {Department: string}): JSX.Element => {
@@ -35,7 +35,7 @@ export const DisplayDepartment = ({Department}: {Department: string}): JSX.Eleme
                     <AccordionBody>
                         { data.map ( (acour: SidebarProp) =>{ 
                             DepartmentChecker(acour, Department) === true ?
-                                <div className="card">
+                                <div className="card" key = "0">
                                     <div className="card-body">
                                         <div className="row">
                                             <ul>
