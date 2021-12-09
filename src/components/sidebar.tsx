@@ -16,15 +16,13 @@ export interface SidebarProp {
     Credits: number
 }
 
-function DepartmentChecker( Department: string): boolean {
+function DepartmentChecker(acour: SidebarProp, Department: string): boolean {
     let result = false; 
-    data.map( acour =>{
-        if(acour.School === Department){
-            result = true;
-        }else{
-            result = false;
-        }
-    });
+    if(acour.School === Department){
+        result = true;
+    }else{
+        result = false;
+    }
     return result;
 }
 
@@ -36,16 +34,15 @@ export const DisplayDepartment = ({Department}: {Department: string}): JSX.Eleme
                     <AccordionHeader>{Department}</AccordionHeader>
                     <AccordionBody>
                         { data.map ( (acour: SidebarProp) =>{ 
-                            DepartmentChecker(Department) === true ?
+                            DepartmentChecker(acour, Department) === true ?
                                 <div className="card">
                                     <div className="card-body">
                                         <div className="row">
                                             <ul>
-                                                <li>{acour.School}</li>
-                                                <li>{acour.ClassID}</li>
+                                                <li>{acour.School}{acour.ClassID}</li>
                                                 <li>{acour.CourseName}</li>
                                                 <li>{acour.Desc}</li>
-                                                <li>{acour.Credits}</li>
+                                                <li>Credits: {acour.Credits}</li>
                                             </ul>
                                         </div>
                                         <div className="col-4">
@@ -54,7 +51,7 @@ export const DisplayDepartment = ({Department}: {Department: string}): JSX.Eleme
                                     </div>
                                 </div>
                                 :
-                                <p></p>;
+                                <p>No Courses Found</p>;
                         }
                         )}
                     </AccordionBody>

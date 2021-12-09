@@ -6,7 +6,7 @@ import { load } from "./components/SaveAndLoad";
 import { WriteMessage, customModal} from "./components/WelcomeMessage";
 import { Course } from "./interfaces/course";
 import { Semester } from "./interfaces/semester";
-import { ProSidebar, Menu, SidebarHeader, SidebarFooter, SidebarContent } from "react-pro-sidebar";
+import { ProSidebar, SidebarHeader, SidebarFooter, SidebarContent } from "react-pro-sidebar";
 import { DisplayDepartment } from "./components/sidebar";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
@@ -85,10 +85,8 @@ const App = () : JSX.Element => {
                     COURSE LIST
                     </SidebarHeader>
                     <SidebarContent>
-                        <Menu iconShape="square">
-                            <DisplayDepartment Department = {"CISC"}/>
-                            <DisplayDepartment Department = {"MATH"}/>
-                        </Menu>
+                        <DisplayDepartment Department = {"CISC"}/>
+                        <DisplayDepartment Department = {"MATH"}/>
                     </SidebarContent>
                     <SidebarFooter>
                     </SidebarFooter>
