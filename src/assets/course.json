@@ -1,5 +1,5 @@
-{
-"courses":[
+
+[
     {
         "School": "CISC",
         "ClassID": 101,
@@ -460,4 +460,3 @@
         "Credits": 4
     }
 ]
-}

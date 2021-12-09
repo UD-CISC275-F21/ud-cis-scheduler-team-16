@@ -7,7 +7,7 @@ import { WriteMessage, customModal} from "./components/WelcomeMessage";
 import { Course } from "./interfaces/course";
 import { Semester } from "./interfaces/semester";
 import { ProSidebar, Menu, SidebarHeader, SidebarFooter, SidebarContent } from "react-pro-sidebar";
-import { LoadSidebarProps } from "./components/sidebar";
+import { DisplaySidebar } from "./components/sidebar";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
@@ -86,11 +86,7 @@ const App = () : JSX.Element => {
                     </SidebarHeader>
                     <SidebarContent>
                         <Menu iconShape="square">
-                            {LoadSidebar("MATH")}
-                            {LoadSidebar("CISC")}
-                            {LoadSidebar("EGGG")}
-                            {LoadSidebar("HIST")}
-                            {LoadSidebar("ENGL")}
+                            <DisplaySidebar Department = {"CISC"}/>
                         </Menu>
                     </SidebarContent>
                     <SidebarFooter>
