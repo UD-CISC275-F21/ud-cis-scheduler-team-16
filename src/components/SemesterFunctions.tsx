@@ -29,7 +29,7 @@ export function deleteSemester(plan : Semester[], setPlan : React.Dispatch<React
     setCurrentSemesterID("");
     setSemNum(semNum-1);
 }
-
+// Clears all semesters from a plan
 export function clearSemesters(plan : Semester[], setPlan: React.Dispatch<React.SetStateAction<Semester[]>>, 
     setCurrentSemesterID: React.Dispatch<React.SetStateAction<string>>, setSemNum : React.Dispatch<React.SetStateAction<number>> ): void{
     const newPlan = plan.map(inner =>{ 
@@ -48,7 +48,7 @@ export function clearClasses(plan : Semester[], setPlan : React.Dispatch<React.S
         return {...inner}; 
     });
     const index = plan.findIndex((semester: Semester) => semester.ID === currentSemesterID);
-    
+
     newPlan[index].Courses = [];
     setPlan(newPlan);
     setCurrentCourseID("");
