@@ -5,8 +5,8 @@ import { load } from "./components/SaveAndLoad";
 import { WriteMessage, customModal} from "./components/WelcomeMessage";
 import { Course } from "./interfaces/course";
 import { Semester } from "./interfaces/semester";
-import { ProSidebar, SidebarHeader, SidebarFooter, SidebarContent } from "react-pro-sidebar";
 import { DisplayDepartment } from "./components/sidebar";
+import { ProSidebar, Menu, SidebarHeader, SidebarFooter, SidebarContent } from "react-pro-sidebar";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
@@ -54,6 +54,7 @@ const App = () : JSX.Element => {
             >
                 <WriteMessage closeModal = {() => setOpen(false)} ></WriteMessage>
             </Modal> 
+            
             <div className = "plan-display">
                 <PlanViewer
                     plan = {plan}
@@ -68,21 +69,25 @@ const App = () : JSX.Element => {
                     setSemNum = {setSemNum}
                 />
             </div>
-            <div className="full-column">
-                <ProSidebar className="sidebar">
-                    <SidebarHeader className="sidebar-header">
-                    COURSE LIST
-                    </SidebarHeader>
-                    <SidebarContent>
-                        <DisplayDepartment Department = {"CISC"} setAddFormData = {setAddFormData} plan = {plan} setPlan = {setPlan} currentSemesterID = {currentSemesterID} setCurrentCourseID = {setCurrentCourseID}/>
-                        <DisplayDepartment Department = {"MATH"} setAddFormData = {setAddFormData} plan = {plan} setPlan = {setPlan} currentSemesterID = {currentSemesterID} setCurrentCourseID = {setCurrentCourseID}/>
-                    </SidebarContent>
-                    <SidebarFooter>
-                    </SidebarFooter>
-                </ProSidebar>
+            <div className="col-4">
+                <div className="full-column">
+                    <ProSidebar className="sidebar">
+                        <SidebarHeader className="sidebar-header">
+                        COURSE LIST
+                        </SidebarHeader>
+                        <SidebarContent>
+                            <Menu iconShape="square">
+                                <DisplayDepartment Department = {"CISC"} setAddFormData={setAddFormData} plan = {plan} setPlan= {setPlan} currentSemesterID= {currentSemesterID} setCurrentCourseID={setCurrentCourseID}/>
+                                <DisplayDepartment Department = {"MATH"} setAddFormData={setAddFormData} plan = {plan} setPlan= {setPlan} currentSemesterID= {currentSemesterID} setCurrentCourseID={setCurrentCourseID}/>
+                            </Menu>
+                        </SidebarContent>
+                        <SidebarFooter>
+
+                        </SidebarFooter>
+                    </ProSidebar>
+                </div>
             </div>
         </div>
-        
     );
 };
 
