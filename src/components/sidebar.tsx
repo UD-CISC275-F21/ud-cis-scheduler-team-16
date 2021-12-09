@@ -23,9 +23,9 @@ const LoadSidebarContent = ({School}: LoadSidebarProps): JSX.Element => {
                     <h5 className="card-title">{School}</h5>
                     <div className="row">
                         <ul>
-                        { courses.map ( () =>
+                        { courses.map ( ({School, ClassID, CourseName, Desc, Credits}: LoadSidebarProps) =>
                             <li>{courses.School}</li>
-                            <li>{courses.School}</li>
+                            <li>{courses.ClassID}</li>
                             <li>{courses.School}</li>
                             <li>{courses.School}</li>
                             <li>{courses.School}</li>
