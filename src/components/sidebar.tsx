@@ -16,7 +16,7 @@ export interface SidebarProp {
     Credits: number
 }
 
-function DepartmentChecker(acour: SidebarProp, Department: string): boolean {
+function DepartmentChecker( Department: string): boolean {
     let result = false; 
     data.map( acour =>{
         if(acour.School === Department){
@@ -38,7 +38,7 @@ export const DisplaySidebar = (Department : string): JSX.Element => {
                     <AccordionHeader>{Department}</AccordionHeader>
                     <AccordionBody>
                     { data.map ( (acour: SidebarProp) =>
-                        { DepartmentChecker(acour, Department) === true ?
+                        { DepartmentChecker(Department) === true ?
                             <div className="card">
                                 <div className="card-body">
                                     <div className="row">
