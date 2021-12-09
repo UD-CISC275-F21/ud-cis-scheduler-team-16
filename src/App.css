@@ -144,9 +144,6 @@ form * {
   height: 110px;
 }
 
-.header {
-  font-weight: bold;
-}
 
 .welcome-message{
   position: relative;
@@ -219,13 +216,13 @@ padding-top: 15%;
   font-weight:300;
   color:black;
   font-weight: bold;
-  background-color:#4eb5f1;
+  background-color:lightgrey;
   text-align:center;
   border-color: transparent;
 }
 
 .edit-semester:hover{
-  background-color: #4095c6;
+  background-color: lightslategrey;
 }
 
 .clear-classes{
@@ -281,4 +278,10 @@ padding-top: 15%;
 
 .active, .accordion:hover{ /*When the button is clicked, or a mouse is hovering over the button */
   background-color: rgb(101, 145, 226);
+}
+
+.page-header{
+  background-color: lightgrey;
+  text-align: center;
+  border-radius: 15px;
 }
