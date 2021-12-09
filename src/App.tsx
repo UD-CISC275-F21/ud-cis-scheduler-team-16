@@ -5,8 +5,8 @@ import { load } from "./components/SaveAndLoad";
 import { WriteMessage, customModal} from "./components/WelcomeMessage";
 import { Course } from "./interfaces/course";
 import { Semester } from "./interfaces/semester";
-import { AddCourseBar } from "./components/AddCourseBar";
-//import { DisplayDepartment } from "./components/sidebar";
+import { DisplayDepartment } from "./components/sidebar";
+import { ProSidebar, Menu, SidebarHeader, SidebarFooter, SidebarContent } from "react-pro-sidebar";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
@@ -24,14 +24,6 @@ const App = () : JSX.Element => {
     const [currentCourseID, setCurrentCourseID] = useState("");
     const [modalOpen, setOpen] = useState(true); // For welcome message
     const [semNum, setSemNum] = useState(2);
-    const [addCourseData, setAddFormData] = useState<Course>({
-        ID: "someid",
-        School: "Department",
-        ClassID: 0,
-        CourseName: "Course Name",
-        Desc: "Some Description",
-        Credits: 0
-    });
     const [editCourseData, setEditCourseData] = useState<Course>
     ({
         ID: "",
@@ -68,15 +60,24 @@ const App = () : JSX.Element => {
                     setSemNum = {setSemNum}
                 />
             </div>
-            <div className = "display-add">
-                <AddCourseBar
-                    plan = {plan}
-                    setPlan = {setPlan}
-                    currentSemesterID = {currentSemesterID}
-                    addCourseData = {addCourseData}
-                    setAddFormData = {setAddFormData}
-                    setCurrentCourseID = {setCurrentCourseID}
-                />
+            <div className="col-4">
+                <div className="full-column">
+                    <ProSidebar className="sidebar">
+                        <SidebarHeader className="sidebar-header">
+                        COURSE LIST
+                        </SidebarHeader>
+                        <SidebarContent>
+                            <Menu iconShape="square">
+                                <DisplayDepartment Department = {"CISC"} plan = {plan} 
+                                    setPlan= {setPlan} currentSemesterID= {currentSemesterID} setCurrentCourseID={setCurrentCourseID}/>
+                                <DisplayDepartment Department = {"MATH"} plan = {plan} 
+                                    setPlan= {setPlan} currentSemesterID= {currentSemesterID} setCurrentCourseID={setCurrentCourseID}/>
+                            </Menu>
+                        </SidebarContent>
+                        <SidebarFooter>
+                        </SidebarFooter>
+                    </ProSidebar>
+                </div>
             </div>
         </div>
     );

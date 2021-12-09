@@ -39,8 +39,9 @@ export const PlanViewer = ({plan, setPlan, currentSemesterID, setCurrentSemester
         <div className = "plan-viewer">
             <div className="row">
                 <div className="col-8">
-                    <h1 className="header"><button className="refresh-logo" onClick={refreshPage}></button> UD CIS Scheduler</h1>
-                    <br />
+                    <div className = "page-header">
+                        <h1 className="display-1"> <button className="refresh-logo" onClick={refreshPage}></button> UD CIS Scheduler</h1>
+                    </div>
                     <button role = "add-semester" className = "edit-semester" type = "button" 
                         onClick= {() => addSemester(plan, setPlan, semNum, setSemNum)}>Add Semester</button>
                     <button role = "clear-semesters" className = "edit-semester" type = "button" 
@@ -86,7 +87,7 @@ export const PlanViewer = ({plan, setPlan, currentSemesterID, setCurrentSemester
                                                         setCurrentSemesterID = {setCurrentSemesterID}
                                                         cour = {cour}
                                                         handleEditClick={(event: React.MouseEvent) => handleEditClick(event, cour, currentCourseID, setCurrentCourseID, setEditCourseData)}
-                                                        handleDeleteClick={(event: React.MouseEvent) => handleDeleteClick(event, cour, plan, currentSemesterID, setCurrentSemesterID, setPlan)}
+                                                        handleDeleteClick={(event: React.MouseEvent) => handleDeleteClick(event, cour, plan, currentSemesterID, setCurrentCourseID, setPlan)}
                                                         currentCourseID= {currentCourseID}
                                                         setCurrentCourseID={setCurrentCourseID}
                                                         setEditCourseData={setEditCourseData}

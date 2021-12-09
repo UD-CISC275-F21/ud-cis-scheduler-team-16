@@ -106,15 +106,6 @@
         "Desc": "The Vertically-Integrated Projects (VIP) Program operates in a research and development context. Undergraduate students that join VIP teams earn academic credit for their participation in design/discovery efforts that assist faculty and graduate students with research and development issues in their areas of expertise. ",
         "PreReq": "N/A",
         "CoReq": "N/A",
-        "Credits": 1
-    },
-    {
-        "School": "CISC",
-        "ClassID": 287,
-        "CourseName": "Vertically Integrated Projects II",
-        "Desc": "The Vertically-Integrated Projects (VIP) Program operates in a research and development context. Undergraduate students that join VIP teams earn academic credit for their participation in design/discovery efforts that assist faculty and graduate students with research and development issues in their areas of expertise. ",
-        "PreReq": "N/A",
-        "CoReq": "N/A",
         "Credits": 2
     },
     {
@@ -169,24 +160,6 @@
         "Desc": "Develop communication, leadership, and teaching skills while working with youth to broaden participation in computing. With training, student teams assist in after-school programs and K-12 classes to engage youth in computational thinking. Focus on low-entry technologies for creating interactive stories, games, websites, and robotics projects.",
         "PreReq": "CISC 101 or CISC 103 or CISC 106 or CISC 108",
         "CoReq": "N/A",
-        "Credits": 1
-    },
-    {
-        "School": "CISC",
-        "ClassID": 357,
-        "CourseName": "Engaging Youth in Computing",
-        "Desc": "Develop communication, leadership, and teaching skills while working with youth to broaden participation in computing. With training, student teams assist in after-school programs and K-12 classes to engage youth in computational thinking. Focus on low-entry technologies for creating interactive stories, games, websites, and robotics projects.",
-        "PreReq": "CISC 101 or CISC 103 or CISC 106 or CISC 108",
-        "CoReq": "N/A",
-        "Credits": 2
-    },
-    {
-        "School": "CISC",
-        "ClassID": 357,
-        "CourseName": "Engaging Youth in Computing",
-        "Desc": "Develop communication, leadership, and teaching skills while working with youth to broaden participation in computing. With training, student teams assist in after-school programs and K-12 classes to engage youth in computational thinking. Focus on low-entry technologies for creating interactive stories, games, websites, and robotics projects.",
-        "PreReq": "CISC 101 or CISC 103 or CISC 106 or CISC 108",
-        "CoReq": "N/A",
         "Credits": 3
     },
     {
@@ -224,24 +197,6 @@
         "PreReq": "CISC 220.",
         "CoReq": "N/A",
         "Credits": 3
-    },
-    {
-        "School": "CISC",
-        "ClassID": 387,
-        "CourseName": "Vertically Integrated Projects III",
-        "Desc": "The Vertically-Integrated Projects (VIP) Program operates in a research and development context. Undergraduate students that join VIP teams earn academic credit for their participation in design/discovery efforts that assist faculty and graduate students with research and development issues in their areas of expertise.",
-        "PreReq": "N/A",
-        "CoReq": "N/A",
-        "Credits": 1
-    },
-    {
-        "School": "CISC",
-        "ClassID": 387,
-        "CourseName": "Vertically Integrated Projects III",
-        "Desc": "The Vertically-Integrated Projects (VIP) Program operates in a research and development context. Undergraduate students that join VIP teams earn academic credit for their participation in design/discovery efforts that assist faculty and graduate students with research and development issues in their areas of expertise.",
-        "PreReq": "N/A",
-        "CoReq": "N/A",
-        "Credits": 2
     },
     {
         "School": "CISC",
@@ -290,7 +245,7 @@
     },
     {
         "School": "MATH",
-        "ClassID": 10,
+        "ClassID": 101,
         "CourseName": "Intermediate Algebra",
         "Desc": "This course prepares students with the skills necessary for pre-calculus and college mathematics and statistics. Topics include solving equations (linear, rational, and quadratic) and inequalities, linear functions, systems of equations, and operations with polynomial, rational, and radical expressions.",
         "PreReq": "Students must achieve an acceptable score on the Math Placement Exam in accordance with current standards determined by the Department of Mathematical Sciences.",

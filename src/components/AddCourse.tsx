@@ -1,20 +1,8 @@
 import React from "react";
-import { nanoid } from "nanoid";
 import { Semester } from "../interfaces/semester";
 import { Course } from "../interfaces/course";
 
-export const handleAddCourseChange = (event: React.ChangeEvent<HTMLInputElement>, 
-    addCourseData : Course, setAddFormData: React.Dispatch<React.SetStateAction<Course>>): void =>  {
-    event.preventDefault();
-
-    const fieldName = event.target.name;
-    const fieldValue = event.target.value;
-    const newCourseData = { ...addCourseData, [fieldName]: fieldValue};
-
-    setAddFormData(newCourseData);
-};
-
-export const handleAddCourseSubmit = (event: React.FormEvent<HTMLFormElement>, plan: Semester[], setPlan: React.Dispatch<React.SetStateAction<Semester[]>>, 
+export const handleAddCourseClick = (event: React.MouseEvent, plan: Semester[], setPlan: React.Dispatch<React.SetStateAction<Semester[]>>, 
     currentSemesterID: string, setCurrentCourseID: React.Dispatch<React.SetStateAction<string>>, addCourseData: Course): void => {
     event.preventDefault();
     const newPlan = plan.map(inner =>{ 
@@ -24,7 +12,7 @@ export const handleAddCourseSubmit = (event: React.FormEvent<HTMLFormElement>, p
     const semIndex = plan.findIndex((semester: Semester) => semester.ID === currentSemesterID);
     
     const newCourse = {
-        ID: nanoid(),
+        ID: addCourseData.ID,
         School: addCourseData.School,
         ClassID: addCourseData.ClassID,
         CourseName: addCourseData.CourseName,
