@@ -76,12 +76,13 @@ const App = () : JSX.Element => {
                         </SidebarHeader>
                         <SidebarContent>
                             <Menu iconShape="square">
-                                <DisplayDepartment Department = {"CISC"} setAddFormData={setAddFormData} plan = {plan} setPlan= {setPlan} currentSemesterID= {currentSemesterID} setCurrentCourseID={setCurrentCourseID}/>
-                                <DisplayDepartment Department = {"MATH"} setAddFormData={setAddFormData} plan = {plan} setPlan= {setPlan} currentSemesterID= {currentSemesterID} setCurrentCourseID={setCurrentCourseID}/>
+                                <DisplayDepartment Department = {"CISC"} setAddFormData={setAddFormData} plan = {plan} 
+                                    setPlan= {setPlan} currentSemesterID= {currentSemesterID} setCurrentCourseID={setCurrentCourseID}/>
+                                <DisplayDepartment Department = {"MATH"} setAddFormData={setAddFormData} plan = {plan} 
+                                    setPlan= {setPlan} currentSemesterID= {currentSemesterID} setCurrentCourseID={setCurrentCourseID}/>
                             </Menu>
                         </SidebarContent>
                         <SidebarFooter>
-
                         </SidebarFooter>
                     </ProSidebar>
                 </div>

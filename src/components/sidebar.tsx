@@ -50,7 +50,7 @@ export const DisplayDepartment = ({Department, setAddFormData, plan, setPlan, cu
                     <AccordionBody>
                         { data.map ( (acour: SidebarProp) =>{ 
                             return DepartmentChecker(acour, Department) === true ?
-                                <div className="card" key = "0">
+                                <div className="card" key = {acour.School + acour.ClassID + acour.CourseName}>
                                     <div className="card-body">
                                         <div className="row">
                                             <ul>
@@ -62,7 +62,7 @@ export const DisplayDepartment = ({Department, setAddFormData, plan, setPlan, cu
                                         </div>
                                         <div className="col-4">
                                             {BlankUpdater(acour, addedcourse )}
-                                            {(event: React.ChangeEvent<HTMLInputElement>) => handleAddCourseChange(event, addedcourse, setAddFormData)}
+                                            {handleAddCourseChange(event, addedcourse, setAddFormData)}
                                             <button className="add-class"
                                                 onClick={(event: React.MouseEvent) => handleAddCourseClick(event, plan, setPlan, currentSemesterID, setCurrentCourseID, addedcourse)}>
                                             </button>
