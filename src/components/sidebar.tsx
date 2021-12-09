@@ -44,13 +44,12 @@ export const DisplaySidebar = (Department : string): JSX.Element => {
                             <div className="card">
                                 <div className="card-body">
                                     <div className="row">
-                                        
                                             <ul>
                                                 <li>{acour.School}</li>
-                                                <li>{acour.School}</li>
-                                                <li>{acour.School}</li>
-                                                <li>{acour.School}</li>
-                                                <li>{acour.School}</li>
+                                                <li>{acour.ClassID}</li>
+                                                <li>{acour.CourseName}</li>
+                                                <li>{acour.Desc}</li>
+                                                <li>{acour.Credits}</li>
                                             </ul>
                                     </div>
                                     <div className="col-4">
