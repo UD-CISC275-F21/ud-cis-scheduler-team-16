@@ -29,8 +29,7 @@ function DepartmentChecker( Department: string): boolean {
     return result;
 }
 
-export const DisplayDepartment = (Department : string): JSX.Element => {
-
+export const DisplayDepartment = ({Department}: {Department: string}): JSX.Element => {
     return(
         <div>
             <Accordion role = "course-list" flush>
