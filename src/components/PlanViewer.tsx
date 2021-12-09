@@ -87,7 +87,7 @@ export const PlanViewer = ({plan, setPlan, currentSemesterID, setCurrentSemester
                                                         setCurrentSemesterID = {setCurrentSemesterID}
                                                         cour = {cour}
                                                         handleEditClick={(event: React.MouseEvent) => handleEditClick(event, cour, currentCourseID, setCurrentCourseID, setEditCourseData)}
-                                                        handleDeleteClick={(event: React.MouseEvent) => handleDeleteClick(event, cour, plan, currentSemesterID, setCurrentSemesterID, setPlan)}
+                                                        handleDeleteClick={(event: React.MouseEvent) => handleDeleteClick(event, cour, plan, currentSemesterID, setCurrentCourseID, setPlan)}
                                                         currentCourseID= {currentCourseID}
                                                         setCurrentCourseID={setCurrentCourseID}
                                                         setEditCourseData={setEditCourseData}
