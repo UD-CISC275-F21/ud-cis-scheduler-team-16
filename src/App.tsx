@@ -54,7 +54,6 @@ const App = () : JSX.Element => {
             >
                 <WriteMessage closeModal = {() => setOpen(false)} ></WriteMessage>
             </Modal> 
-            
             <div className = "plan-display">
                 <PlanViewer
                     plan = {plan}

@@ -1,5 +1,4 @@
 import React from "react";
-import { nanoid } from "nanoid";
 import { Semester } from "../interfaces/semester";
 import { Course } from "../interfaces/course";
 
@@ -24,7 +23,7 @@ export const handleAddCourseClick = (event: React.MouseEvent, plan: Semester[], 
     const semIndex = plan.findIndex((semester: Semester) => semester.ID === currentSemesterID);
     
     const newCourse = {
-        ID: nanoid(),
+        ID: addCourseData.ID,
         School: addCourseData.School,
         ClassID: addCourseData.ClassID,
         CourseName: addCourseData.CourseName,
