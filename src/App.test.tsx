@@ -40,9 +40,3 @@ test("renders Clear Save State Button", () => {
     const linkElement = screen.getByRole("clear-plan");
     expect(linkElement).toBeInTheDocument();
 });
-
-test("renders Add Class Form", () => {
-    render(<App />);
-    const linkElement = screen.getByRole("add-course");
-    expect(linkElement).toBeInTheDocument();
-});
