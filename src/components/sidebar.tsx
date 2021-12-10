@@ -1,13 +1,10 @@
 import React from "react";
+import Accordion from "react-bootstrap/Accordion";
 import { Semester } from "../interfaces/semester";
 import { nanoid } from "nanoid";
 import { Course } from "../interfaces/course";
-import { Accordion } from "react-bootstrap";
 import { handleAddCourseClick } from "./AddCourse";
 import data from "../assets/course.json";
-import AccordionItem from "react-bootstrap/esm/AccordionItem";
-import AccordionHeader from "react-bootstrap/esm/AccordionHeader";
-import AccordionBody from "react-bootstrap/esm/AccordionBody";
 import "../App.css";
 
 export interface SidebarProp {

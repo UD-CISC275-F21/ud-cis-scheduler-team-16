@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { Accordion } from "react-bootstrap";
+import Accordion from "react-bootstrap/Accordion";
 import { handleEditCourseChange, handleEditClick, handleEditCourseSubmit} from "./EditCourse";
 import { addSemester, deleteSemester, clearSemesters, clearClasses } from "./SemesterFunctions";
 import { save, clearSave } from "./SaveAndLoad";
